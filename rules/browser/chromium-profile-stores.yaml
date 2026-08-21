@@ -17,6 +17,12 @@ match:
     - path: '%LOCALAPPDATA%\Chromium\User Data\'
       kind: directory
       platforms: [windows]
+    - path: "$HOME/.config/chromium/"
+      kind: directory
+      platforms: [linux]
+    - path: "$HOME/Library/Application Support/Chromium/"
+      kind: directory
+      platforms: [macos]
 credentials:
   types:
     - saved-password

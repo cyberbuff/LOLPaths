@@ -15,6 +15,9 @@ match:
     - path: '%APPDATA%\Telegram Desktop\tdata\'
       kind: directory
       platforms: [windows]
+    - path: "$HOME/Library/Application Support/Telegram Desktop/tdata/"
+      kind: directory
+      platforms: [macos]
 credentials:
   types:
     - session-token
@@ -28,5 +31,7 @@ references:
     url: https://www.rapid7.com/blog/post/2024/01/17/whispers-of-atlantida-safeguarding-your-digital-treasure/
   - name: "eSentire Threat Intelligence Malware Analysis: Vidar Stealer"
     url: https://www.esentire.com/blog/esentire-threat-intelligence-malware-analysis-vidar-stealer
+  - name: RustDoor and Koi Stealer for macOS
+    url: https://unit42.paloaltonetworks.com/macos-malware-targets-crypto-sector/
 metadata:
   confidence: high

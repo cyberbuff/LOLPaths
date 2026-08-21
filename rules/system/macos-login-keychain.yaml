@@ -1,0 +1,34 @@
+schema_version: 1
+id: system.macos-login-keychain
+name: macOS Login Keychain Database
+description: >
+  The macOS login keychain database can contain saved passwords, certificates,
+  keys, and application credentials.
+category: system
+subcategory: macos-keychain
+artifact_types:
+  - password-store
+  - credential
+  - private-key
+sensitivity: critical
+match:
+  paths:
+    - path: "$HOME/Library/Keychains/login.keychain-db"
+      kind: file
+      platforms: [macos]
+credentials:
+  types:
+    - saved-password
+    - private-key
+impact:
+  credential_access: true
+tags:
+  - macos
+  - keychain
+references:
+  - name: Reversing Atomic macOS Stealer
+    url: https://spycloud.com/blog/reverse-engineering-atomic-macos-stealer/
+  - name: Contagious Interview Malware SVG Steganography
+    url: https://www.elastic.co/security-labs/contagious-interview-malware-svg-steganography
+metadata:
+  confidence: high

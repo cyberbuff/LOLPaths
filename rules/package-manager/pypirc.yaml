@@ -1,0 +1,39 @@
+schema_version: 1
+id: package-manager.pypirc
+name: PyPI Configuration
+description: >
+  PyPI configuration files can contain package publishing credentials and
+  repository tokens.
+category: package-manager
+subcategory: pypi
+artifact_types:
+  - credential
+  - configuration
+sensitivity: critical
+match:
+  paths:
+    - path: '%USERPROFILE%\.pypirc'
+      kind: file
+      platforms: [windows]
+    - path: "$HOME/.pypirc"
+      kind: file
+      platforms: [linux, macos]
+  content:
+    contains:
+      - username
+      - password
+      - repository
+credentials:
+  types:
+    - password
+    - api-token
+impact:
+  credential_access: true
+tags:
+  - pypi
+  - python
+references:
+  - name: "Analyzing TeamPCP's Supply Chain Attacks"
+    url: https://www.trendmicro.com/en_us/research/26/e/analyzing-teampcp-supply-chain-attacks.html
+metadata:
+  confidence: high

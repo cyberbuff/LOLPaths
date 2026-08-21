@@ -11,6 +11,9 @@ artifact_types:
 sensitivity: critical
 match:
   paths:
+    - path: '%APPDATA%\Dogecoin\*wallet*.dat'
+      kind: glob
+      platforms: [windows]
     - path: "$HOME/.dogecoin/"
       kind: directory
       platforms: [linux, macos]
@@ -25,5 +28,7 @@ tags:
 references:
   - name: Dogecoin Core Data Directory
     url: https://github.com/dogecoin/dogecoin/blob/master/doc/files.md
+  - name: Stealc Infostealer Analysis
+    url: https://blog.sekoia.io/stealc-a-copycat-of-vidar-and-raccoon-infostealers-gaining-in-popularity-part-1/
 metadata:
-  confidence: medium
+  confidence: high

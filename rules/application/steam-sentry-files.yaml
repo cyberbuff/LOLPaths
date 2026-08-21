@@ -1,0 +1,43 @@
+schema_version: 1
+id: application.steam-sentry-files
+name: Steam Sentry Files
+description: >
+  Steam sentry files can contain authorization material used by Steam Guard and
+  account login flows.
+category: application
+subcategory: steam
+artifact_types:
+  - credential
+  - session
+sensitivity: high
+match:
+  paths:
+    - path: '%PROGRAMFILES(X86)%\Steam\ssfn*'
+      kind: glob
+      platforms: [windows]
+    - path: '%PROGRAMFILES%\Steam\ssfn*'
+      kind: glob
+      platforms: [windows]
+    - path: "$HOME/.steam/steam/ssfn*"
+      kind: glob
+      platforms: [linux]
+    - path: "$HOME/Library/Application Support/Steam/ssfn*"
+      kind: glob
+      platforms: [macos]
+    - path: "$HOME/Library/Application Support/Steam/config/"
+      kind: directory
+      platforms: [macos]
+credentials:
+  types:
+    - session-token
+impact:
+  credential_access: true
+tags:
+  - steam
+references:
+  - name: Threat Thursday RedLine Infostealer
+    url: https://papers.vx-underground.org/papers/Malware%20Defense/Malware%20Analysis%202021/2021-07-08%20-%20Threat%20Thursday-%20Redline%20Infostealer.pdf
+  - name: RustDoor and Koi Stealer for macOS
+    url: https://unit42.paloaltonetworks.com/macos-malware-targets-crypto-sector/
+metadata:
+  confidence: medium

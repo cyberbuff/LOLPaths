@@ -1,0 +1,33 @@
+schema_version: 1
+id: ssh.putty-private-keys
+name: PuTTY Private Keys
+description: >
+  PuTTY private key files can contain SSH private keys used for remote access.
+category: ssh
+subcategory: putty
+artifact_types:
+  - private-key
+  - credential
+sensitivity: critical
+match:
+  paths:
+    - path: "**/*.ppk"
+      kind: glob
+      platforms: [windows, linux, macos]
+  content:
+    contains:
+      - PuTTY-User-Key-File
+credentials:
+  types:
+    - private-key
+impact:
+  credential_access: true
+  remote_access: true
+tags:
+  - putty
+  - ssh
+references:
+  - name: Trickbot Updates Password Grabber Module
+    url: https://unit42.paloaltonetworks.com/trickbot-updates-password-grabber-module/
+metadata:
+  confidence: high

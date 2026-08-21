@@ -1,0 +1,30 @@
+schema_version: 1
+id: browser.safari.cookies
+name: Safari Cookie Store
+description: >
+  Safari cookie stores can contain session cookies and authentication state.
+category: browser
+subcategory: safari
+artifact_types:
+  - cookie
+  - session
+sensitivity: critical
+match:
+  paths:
+    - path: "$HOME/Library/Containers/com.apple.Safari/Data/Library/Cookies/"
+      kind: directory
+      platforms: [macos]
+credentials:
+  types:
+    - session-cookie
+impact:
+  credential_access: true
+tags:
+  - safari
+  - browser
+  - cookies
+references:
+  - name: RustDoor and Koi Stealer for macOS
+    url: https://unit42.paloaltonetworks.com/macos-malware-targets-crypto-sector/
+metadata:
+  confidence: high

@@ -1,0 +1,35 @@
+schema_version: 1
+id: crypto-wallet.coinomi.wallets
+name: Coinomi Wallet Files
+description: >
+  Coinomi wallet files can contain wallet databases, configuration, and private
+  key material.
+category: crypto-wallet
+subcategory: coinomi
+artifact_types:
+  - wallet
+  - credential
+sensitivity: critical
+match:
+  paths:
+    - path: '%APPDATA%\Coinomi\Coinomi\wallets\*.wallet'
+      kind: glob
+      platforms: [windows]
+    - path: '%APPDATA%\Coinomi\Coinomi\wallets\*.config'
+      kind: glob
+      platforms: [windows]
+credentials:
+  types:
+    - private-key
+impact:
+  credential_access: true
+tags:
+  - wallet
+  - coinomi
+references:
+  - name: Stealc Infostealer Analysis
+    url: https://blog.sekoia.io/stealc-a-copycat-of-vidar-and-raccoon-infostealers-gaining-in-popularity-part-1/
+  - name: Akira Stealer Technical Analysis
+    url: https://www.glueckkanja.com/en/posts/2025-06-16-quiet-breach
+metadata:
+  confidence: high

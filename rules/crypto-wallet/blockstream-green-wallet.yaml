@@ -1,0 +1,30 @@
+schema_version: 1
+id: crypto-wallet.blockstream-green.wallets
+name: Blockstream Green Wallet Files
+description: >
+  Blockstream Green wallet directories can contain local wallet state and
+  credential material.
+category: crypto-wallet
+subcategory: blockstream-green
+artifact_types:
+  - wallet
+  - credential
+sensitivity: critical
+match:
+  paths:
+    - path: '%APPDATA%\Blockstream\Green\wallets\'
+      kind: directory
+      platforms: [windows]
+credentials:
+  types:
+    - private-key
+impact:
+  credential_access: true
+tags:
+  - wallet
+  - blockstream-green
+references:
+  - name: Stealc Infostealer Analysis
+    url: https://blog.sekoia.io/stealc-a-copycat-of-vidar-and-raccoon-infostealers-gaining-in-popularity-part-1/
+metadata:
+  confidence: high

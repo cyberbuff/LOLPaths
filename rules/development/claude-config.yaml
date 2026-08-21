@@ -1,0 +1,43 @@
+schema_version: 1
+id: development.claude-config
+name: Claude Developer Configuration
+description: >
+  Claude developer configuration files can contain MCP server definitions,
+  tokens, and local integration secrets.
+category: development
+subcategory: claude
+artifact_types:
+  - credential
+  - configuration
+sensitivity: critical
+match:
+  paths:
+    - path: '%USERPROFILE%\.claude.json'
+      kind: file
+      platforms: [windows]
+    - path: '%USERPROFILE%\.claude\mcp.json'
+      kind: file
+      platforms: [windows]
+    - path: "$HOME/.claude.json"
+      kind: file
+      platforms: [linux, macos]
+    - path: "$HOME/.claude/mcp.json"
+      kind: file
+      platforms: [linux, macos]
+  content:
+    contains:
+      - mcpServers
+credentials:
+  types:
+    - api-key
+    - access-token
+impact:
+  credential_access: true
+tags:
+  - claude
+  - mcp
+references:
+  - name: "Analyzing TeamPCP's Supply Chain Attacks"
+    url: https://www.trendmicro.com/en_us/research/26/e/analyzing-teampcp-supply-chain-attacks.html
+metadata:
+  confidence: medium

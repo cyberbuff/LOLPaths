@@ -1,0 +1,45 @@
+schema_version: 1
+id: crypto-wallet.exodus.wallets
+name: Exodus Wallet Files
+description: >
+  Exodus wallet directories and state files can contain wallet secrets, seed
+  material, and encrypted wallet metadata.
+category: crypto-wallet
+subcategory: exodus
+artifact_types:
+  - wallet
+  - credential
+sensitivity: critical
+match:
+  paths:
+    - path: '%APPDATA%\Exodus\exodus.conf.json'
+      kind: file
+      platforms: [windows]
+    - path: '%APPDATA%\Exodus\window-state.json'
+      kind: file
+      platforms: [windows]
+    - path: '%APPDATA%\Exodus\exodus.wallet\passphrase.json'
+      kind: file
+      platforms: [windows]
+    - path: '%APPDATA%\Exodus\exodus.wallet\seed.seco'
+      kind: file
+      platforms: [windows]
+    - path: '%APPDATA%\Exodus\exodus.wallet\info.seco'
+      kind: file
+      platforms: [windows]
+credentials:
+  types:
+    - seed
+    - private-key
+impact:
+  credential_access: true
+tags:
+  - wallet
+  - exodus
+references:
+  - name: Stealc Infostealer Analysis
+    url: https://blog.sekoia.io/stealc-a-copycat-of-vidar-and-raccoon-infostealers-gaining-in-popularity-part-1/
+  - name: Akira Stealer Technical Analysis
+    url: https://www.glueckkanja.com/en/posts/2025-06-16-quiet-breach
+metadata:
+  confidence: high

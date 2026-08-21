@@ -7,12 +7,21 @@ $HOME/.bash_history
 $HOME/.bitcoin/
 $HOME/.bitmonero/
 $HOME/.cardano/
+$HOME/.cargo/credentials.toml
+$HOME/.claude.json
+$HOME/.claude/mcp.json
+$HOME/.config/BraveSoftware/Brave-Browser/
 $HOME/.config/atlascli/config.toml
+$HOME/.config/chromium/
 $HOME/.config/gcloud/
 $HOME/.config/gcloud/application_default_credentials.json
+$HOME/.config/google-chrome/
 $HOME/.config/google-chrome/Default/Network/Cookies
+$HOME/.config/kilo/config.json
 $HOME/.config/lftp/rc
+$HOME/.config/microsoft-edge/
 $HOME/.config/mongocli/config.toml
+$HOME/.config/opera/
 $HOME/.config/solana/
 $HOME/.dashcore/
 $HOME/.databrickscfg
@@ -23,6 +32,7 @@ $HOME/.ethereum/keystore/
 $HOME/.git-credentials
 $HOME/.gitconfig
 $HOME/.helm/
+$HOME/.kiro/settings/mcp.json
 $HOME/.kube/config
 $HOME/.ldaprc
 $HOME/.lftp/rc
@@ -32,6 +42,10 @@ $HOME/.litecoin/wallets/
 $HOME/.m2/settings.xml
 $HOME/.mongorc.js
 $HOME/.mongoshrc.js
+$HOME/.mozilla/firefox/*/cookies.sqlite
+$HOME/.mozilla/firefox/*/key3.db
+$HOME/.mozilla/firefox/*/key4.db
+$HOME/.mozilla/firefox/*/logins.json
 $HOME/.msmtprc
 $HOME/.my.cnf
 $HOME/.mylogin.cnf
@@ -39,9 +53,11 @@ $HOME/.mysql_history
 $HOME/.netrc
 $HOME/.npmrc
 $HOME/.nuget/NuGet/NuGet.Config
+$HOME/.openvpn/*.ovpn
 $HOME/.pgpass
 $HOME/.pip/pip.conf
 $HOME/.psql_history
+$HOME/.pypirc
 $HOME/.rediscli_history
 $HOME/.ripple/
 $HOME/.sh_history
@@ -53,6 +69,7 @@ $HOME/.ssh/id_ecdsa
 $HOME/.ssh/id_ed25519
 $HOME/.ssh/id_rsa
 $HOME/.ssh/known_hosts
+$HOME/.steam/steam/ssfn*
 $HOME/.terraform.d/credentials.tfrc.json
 $HOME/.vault-token
 $HOME/.zcash/
@@ -79,6 +96,7 @@ $XDG_CONFIG_HOME/pip/pip.conf
 **/*.p12
 **/*.pem
 **/*.pfx
+**/*.ppk
 **/.anchor/**/*.json
 **/.drone.y?ml
 **/.env
@@ -116,6 +134,8 @@ $XDG_CONFIG_HOME/pip/pip.conf
 /etc/mysql/my.cnf
 /etc/openldap/ldap.conf
 /etc/openldap/slapd.conf
+/etc/openvpn/**/*.conf
+/etc/openvpn/**/*.ovpn
 /etc/passwd
 /etc/postfix/sasl_passwd
 /etc/redis/redis.conf

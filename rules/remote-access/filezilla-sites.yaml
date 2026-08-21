@@ -18,6 +18,12 @@ match:
     - path: '%APPDATA%\FileZilla\sitemanager.xml'
       kind: file
       platforms: [windows]
+    - path: "$HOME/.config/filezilla/recentservers.xml"
+      kind: file
+      platforms: [macos]
+    - path: "$HOME/.config/filezilla/sitemanager.xml"
+      kind: file
+      platforms: [macos]
   content:
     contains:
       - Server
@@ -39,5 +45,7 @@ references:
     url: https://www.esentire.com/blog/esentire-threat-intelligence-malware-analysis-vidar-stealer
   - name: Immortal Information Stealer
     url: https://www.zscaler.com/blogs/research/immortal-information-stealer
+  - name: RustDoor and Koi Stealer for macOS
+    url: https://unit42.paloaltonetworks.com/macos-malware-targets-crypto-sector/
 metadata:
   confidence: high

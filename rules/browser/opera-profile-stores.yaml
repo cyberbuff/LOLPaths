@@ -17,6 +17,12 @@ match:
     - path: '%APPDATA%\Opera Software\Opera Stable\'
       kind: directory
       platforms: [windows]
+    - path: "$HOME/.config/opera/"
+      kind: directory
+      platforms: [linux]
+    - path: "$HOME/Library/Application Support/com.operasoftware.Opera/"
+      kind: directory
+      platforms: [macos]
 credentials:
   types:
     - saved-password
@@ -31,5 +37,7 @@ tags:
 references:
   - name: "Threat Hunting: Detecting Browser Credential Stealing [T1555.003]"
     url: https://fourcore.io/blogs/threat-hunting-browser-credential-stealing
+  - name: Contagious Interview Malware SVG Steganography
+    url: https://www.elastic.co/security-labs/contagious-interview-malware-svg-steganography
 metadata:
   confidence: medium

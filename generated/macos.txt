@@ -7,8 +7,14 @@ $HOME/.bash_history
 $HOME/.bitcoin/
 $HOME/.bitmonero/
 $HOME/.cardano/
+$HOME/.cargo/credentials.toml
+$HOME/.claude.json
+$HOME/.claude/mcp.json
+$HOME/.config/filezilla/recentservers.xml
+$HOME/.config/filezilla/sitemanager.xml
 $HOME/.config/gcloud/
 $HOME/.config/gcloud/application_default_credentials.json
+$HOME/.config/kilo/config.json
 $HOME/.config/lftp/rc
 $HOME/.config/solana/
 $HOME/.dashcore/
@@ -20,6 +26,7 @@ $HOME/.ethereum/keystore/
 $HOME/.git-credentials
 $HOME/.gitconfig
 $HOME/.helm/
+$HOME/.kiro/settings/mcp.json
 $HOME/.kube/config
 $HOME/.ldaprc
 $HOME/.lftp/rc
@@ -34,9 +41,11 @@ $HOME/.mysql_history
 $HOME/.netrc
 $HOME/.npmrc
 $HOME/.nuget/NuGet/NuGet.Config
+$HOME/.openvpn/*.ovpn
 $HOME/.pgpass
 $HOME/.pip/pip.conf
 $HOME/.psql_history
+$HOME/.pypirc
 $HOME/.rediscli_history
 $HOME/.ripple/
 $HOME/.sh_history
@@ -52,11 +61,29 @@ $HOME/.terraform.d/credentials.tfrc.json
 $HOME/.vault-token
 $HOME/.zcash/
 $HOME/.zsh_history
+$HOME/Library/Application Support/BraveSoftware/Brave-Browser/
+$HOME/Library/Application Support/Chromium/
+$HOME/Library/Application Support/Firefox/Profiles/*/cookies.sqlite
+$HOME/Library/Application Support/Firefox/Profiles/*/key3.db
+$HOME/Library/Application Support/Firefox/Profiles/*/key4.db
+$HOME/Library/Application Support/Firefox/Profiles/*/logins.json
+$HOME/Library/Application Support/Google/Chrome/
 $HOME/Library/Application Support/Google/Chrome/Default/Cookies
+$HOME/Library/Application Support/Google/Chrome/Default/Local Extension Settings/aeblfdkhhhdcdjpifhhbdiojplfjncoa/
 $HOME/Library/Application Support/Litecoin/
 $HOME/Library/Application Support/Litecoin/wallets/
+$HOME/Library/Application Support/Microsoft Edge/
+$HOME/Library/Application Support/OpenVPN Connect/profiles/
+$HOME/Library/Application Support/Steam/config/
+$HOME/Library/Application Support/Steam/ssfn*
+$HOME/Library/Application Support/Telegram Desktop/tdata/
 $HOME/Library/Application Support/atlascli/config.toml
+$HOME/Library/Application Support/com.operasoftware.Opera/
+$HOME/Library/Application Support/discord/Local Storage/
 $HOME/Library/Application Support/mongocli/config.toml
+$HOME/Library/Containers/com.apple.Notes/Data/Library/Notes/
+$HOME/Library/Containers/com.apple.Safari/Data/Library/Cookies/
+$HOME/Library/Keychains/login.keychain-db
 $HOME/authorized-withdrawer-keypair.json
 $HOME/faucet-keypair.json
 $HOME/identity.json
@@ -77,6 +104,7 @@ $XDG_CONFIG_HOME/pip/pip.conf
 **/*.p12
 **/*.pem
 **/*.pfx
+**/*.ppk
 **/.anchor/**/*.json
 **/.drone.y?ml
 **/.env

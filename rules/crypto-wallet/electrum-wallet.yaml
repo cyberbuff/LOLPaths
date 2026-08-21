@@ -13,6 +13,9 @@ match:
     - path: '%APPDATA%\Electrum\wallets\'
       kind: directory
       platforms: [windows]
+    - path: '%APPDATA%\Electrum-LTC\wallets\'
+      kind: directory
+      platforms: [windows]
     - path: "$HOME/.electrum/wallets/"
       kind: directory
       platforms: [linux, macos]
@@ -24,5 +27,7 @@ tags:
 references:
   - name: Electrum FAQ
     url: https://electrum.readthedocs.io/en/latest/faq.html#where-is-the-electrum-datadir-located
+  - name: Stealc Infostealer Analysis
+    url: https://blog.sekoia.io/stealc-a-copycat-of-vidar-and-raccoon-infostealers-gaining-in-popularity-part-1/
 metadata:
   confidence: high

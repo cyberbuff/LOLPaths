@@ -1,0 +1,29 @@
+schema_version: 1
+id: crypto-wallet.rabby.wallets
+name: Rabby Desktop Wallet Storage
+description: >
+  Rabby Desktop data directories can contain wallet state and secret material.
+category: crypto-wallet
+subcategory: rabby
+artifact_types:
+  - wallet
+  - credential
+sensitivity: critical
+match:
+  paths:
+    - path: '%APPDATA%\rabby-desktop\'
+      kind: directory
+      platforms: [windows]
+credentials:
+  types:
+    - private-key
+impact:
+  credential_access: true
+tags:
+  - wallet
+  - rabby
+references:
+  - name: Akira Stealer Technical Analysis
+    url: https://www.glueckkanja.com/en/posts/2025-06-16-quiet-breach
+metadata:
+  confidence: high

@@ -1,0 +1,55 @@
+schema_version: 1
+id: vpn.openvpn-config
+name: OpenVPN Configuration
+description: >
+  OpenVPN configuration files can contain client certificates, private-key
+  references, embedded keys, or password-file references.
+category: vpn
+subcategory: openvpn
+artifact_types:
+  - credential
+  - configuration
+  - private-key
+sensitivity: high
+match:
+  paths:
+    - path: '%USERPROFILE%\OpenVPN\config\*.ovpn'
+      kind: glob
+      platforms: [windows]
+    - path: '%PROGRAMFILES%\OpenVPN\config\*.ovpn'
+      kind: glob
+      platforms: [windows]
+    - path: "/etc/openvpn/**/*.conf"
+      kind: glob
+      platforms: [linux]
+    - path: "/etc/openvpn/**/*.ovpn"
+      kind: glob
+      platforms: [linux]
+    - path: "$HOME/.openvpn/*.ovpn"
+      kind: glob
+      platforms: [linux, macos]
+    - path: "$HOME/Library/Application Support/OpenVPN Connect/profiles/"
+      kind: directory
+      platforms: [macos]
+  content:
+    contains:
+      - auth-user-pass
+      - <key>
+      - pkcs12
+credentials:
+  types:
+    - private-key
+    - password
+impact:
+  credential_access: true
+  remote_access: true
+tags:
+  - openvpn
+  - vpn
+references:
+  - name: Trickbot Updates Password Grabber Module
+    url: https://unit42.paloaltonetworks.com/trickbot-updates-password-grabber-module/
+  - name: RustDoor and Koi Stealer for macOS
+    url: https://unit42.paloaltonetworks.com/macos-malware-targets-crypto-sector/
+metadata:
+  confidence: medium

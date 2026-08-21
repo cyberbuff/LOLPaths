@@ -1,0 +1,36 @@
+schema_version: 1
+id: crypto-wallet.binance.wallets
+name: Binance Wallet Storage
+description: >
+  Binance desktop wallet storage files can contain local wallet state and
+  identifying wallet material.
+category: crypto-wallet
+subcategory: binance
+artifact_types:
+  - wallet
+  - credential
+sensitivity: critical
+match:
+  paths:
+    - path: '%APPDATA%\Binance\app-store.json'
+      kind: file
+      platforms: [windows]
+    - path: '%APPDATA%\Binance\simple-storage.json'
+      kind: file
+      platforms: [windows]
+    - path: '%APPDATA%\Binance\.finger-print.fp'
+      kind: file
+      platforms: [windows]
+credentials:
+  types:
+    - wallet-state
+impact:
+  credential_access: true
+tags:
+  - wallet
+  - binance
+references:
+  - name: Stealc Infostealer Analysis
+    url: https://blog.sekoia.io/stealc-a-copycat-of-vidar-and-raccoon-infostealers-gaining-in-popularity-part-1/
+metadata:
+  confidence: high

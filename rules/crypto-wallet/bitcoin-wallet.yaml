@@ -11,6 +11,12 @@ artifact_types:
 sensitivity: critical
 match:
   paths:
+    - path: '%APPDATA%\Bitcoin\wallets\'
+      kind: directory
+      platforms: [windows]
+    - path: '%APPDATA%\Bitcoin\*wallet*.dat'
+      kind: glob
+      platforms: [windows]
     - path: "$HOME/.bitcoin/"
       kind: directory
       platforms: [linux, macos]
@@ -25,5 +31,7 @@ tags:
 references:
   - name: Bitcoin Core Files
     url: https://github.com/bitcoin/bitcoin/blob/master/doc/files.md
+  - name: Stealc Infostealer Analysis
+    url: https://blog.sekoia.io/stealc-a-copycat-of-vidar-and-raccoon-infostealers-gaining-in-popularity-part-1/
 metadata:
-  confidence: medium
+  confidence: high

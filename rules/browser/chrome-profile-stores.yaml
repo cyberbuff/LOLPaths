@@ -17,6 +17,12 @@ match:
     - path: '%LOCALAPPDATA%\Google\Chrome\User Data\'
       kind: directory
       platforms: [windows]
+    - path: "$HOME/.config/google-chrome/"
+      kind: directory
+      platforms: [linux]
+    - path: "$HOME/Library/Application Support/Google/Chrome/"
+      kind: directory
+      platforms: [macos]
 credentials:
   types:
     - saved-password
@@ -33,5 +39,7 @@ references:
     url: https://fourcore.io/blogs/threat-hunting-browser-credential-stealing
   - name: "eSentire Threat Intelligence Malware Analysis: Vidar Stealer"
     url: https://www.esentire.com/blog/esentire-threat-intelligence-malware-analysis-vidar-stealer
+  - name: Contagious Interview Malware SVG Steganography
+    url: https://www.elastic.co/security-labs/contagious-interview-malware-svg-steganography
 metadata:
   confidence: medium

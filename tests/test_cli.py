@@ -59,6 +59,7 @@ def test_validate_and_generate_commands(tmp_path: Path, capsys: CaptureFixture[s
     assert "application.sample-secret" in output
     assert (generated_dir / "linux.txt").exists()
     assert (docs_dir / "public/api/rules.json").exists()
+    assert (docs_dir / "content/docs/application/sample-secret.mdx").exists()
     assert not (generated_dir / "rules.json").exists()
 
 

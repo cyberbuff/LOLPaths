@@ -16,6 +16,7 @@ export type PathMatcher = {
 
 export type Rule = {
   id: string;
+  doc_path?: string;
   name: string;
   description?: string;
   category: string;

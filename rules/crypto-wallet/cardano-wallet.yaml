@@ -11,6 +11,9 @@ artifact_types:
 sensitivity: critical
 match:
   paths:
+    - path: '%APPDATA%\Daedalus Mainnet\wallets\she*.sqlite'
+      kind: glob
+      platforms: [windows]
     - path: "$HOME/.cardano/"
       kind: directory
       platforms: [linux, macos]
@@ -22,5 +25,8 @@ impact:
 tags:
   - wallet
   - cardano
+references:
+  - name: Stealc Infostealer Analysis
+    url: https://blog.sekoia.io/stealc-a-copycat-of-vidar-and-raccoon-infostealers-gaining-in-popularity-part-1/
 metadata:
-  confidence: low
+  confidence: medium

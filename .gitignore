@@ -10,3 +10,4 @@ docs/node_modules/
 __pycache__/
 *.pyc
 docs/.tmp
+**/tsconfig.tsbuildinfo

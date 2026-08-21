@@ -52,18 +52,22 @@ def validate_rules(rules_dir: Path, schema_path: Path) -> tuple[list[str], list[
     return sorted(ids), issues
 
 
-def load_valid_rules(rules_dir: Path, schema_path: Path) -> list[dict[str, Any]]:
+def load_valid_rule_files(rules_dir: Path, schema_path: Path) -> list[tuple[Path, dict[str, Any]]]:
     _, issues = validate_rules(rules_dir, schema_path)
     if issues:
         raise ValueError(_format_issues(issues))
 
-    rules: list[dict[str, Any]] = []
+    rules: list[tuple[Path, dict[str, Any]]] = []
     for path in _rule_files(rules_dir):
         rule, file_issues = _load_rule(path)
         if file_issues or not isinstance(rule, dict):
             raise ValueError(_format_issues(file_issues))
-        rules.append(rule)
-    return sorted(rules, key=lambda rule: rule["id"])
+        rules.append((path, rule))
+    return sorted(rules, key=lambda item: item[1]["id"])
+
+
+def load_valid_rules(rules_dir: Path, schema_path: Path) -> list[dict[str, Any]]:
+    return [rule for _, rule in load_valid_rule_files(rules_dir, schema_path)]
 
 
 def format_issues(issues: list[ValidationIssue]) -> str:

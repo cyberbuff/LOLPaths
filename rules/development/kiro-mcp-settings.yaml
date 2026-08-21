@@ -1,0 +1,37 @@
+schema_version: 1
+id: development.kiro-mcp-settings
+name: Kiro MCP Settings
+description: >
+  Kiro MCP settings can contain MCP server definitions, tokens, and local
+  integration secrets.
+category: development
+subcategory: kiro
+artifact_types:
+  - credential
+  - configuration
+sensitivity: critical
+match:
+  paths:
+    - path: '%USERPROFILE%\.kiro\settings\mcp.json'
+      kind: file
+      platforms: [windows]
+    - path: "$HOME/.kiro/settings/mcp.json"
+      kind: file
+      platforms: [linux, macos]
+  content:
+    contains:
+      - mcpServers
+credentials:
+  types:
+    - api-key
+    - access-token
+impact:
+  credential_access: true
+tags:
+  - kiro
+  - mcp
+references:
+  - name: "Analyzing TeamPCP's Supply Chain Attacks"
+    url: https://www.trendmicro.com/en_us/research/26/e/analyzing-teampcp-supply-chain-attacks.html
+metadata:
+  confidence: medium

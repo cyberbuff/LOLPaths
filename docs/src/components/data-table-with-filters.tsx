@@ -228,7 +228,7 @@ export function DataTableWithFilters<TData, TValue>({
   const handleRowClick = React.useCallback(
     (row: any) => {
       const rule = row.original as Rule;
-      router.push(`/docs/${rule.id}`);
+      router.push(`/docs/${rule.doc_path ?? rule.id}`);
     },
     [router],
   );

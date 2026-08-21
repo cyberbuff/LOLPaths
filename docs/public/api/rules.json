@@ -12,6 +12,7 @@
         ]
       },
       "description": "Authy Desktop local storage directories can contain sensitive local state for two-factor authentication accounts.\n",
+      "doc_path": "application/authy-desktop-local-storage",
       "id": "application.authy-desktop-local-storage",
       "impact": {
         "credential_access": true
@@ -59,6 +60,7 @@
         ]
       },
       "description": "Discord local storage directories can contain token-bearing browser storage and session artifacts used by the desktop application.\n",
+      "doc_path": "application/discord-local-storage",
       "id": "application.discord-local-storage",
       "impact": {
         "credential_access": true
@@ -78,6 +80,13 @@
             "platforms": [
               "windows"
             ]
+          },
+          {
+            "kind": "directory",
+            "path": "$HOME/Library/Application Support/discord/Local Storage/",
+            "platforms": [
+              "macos"
+            ]
           }
         ]
       },
@@ -89,6 +98,10 @@
         {
           "name": "eSentire Threat Intelligence Malware Analysis: Vidar Stealer",
           "url": "https://www.esentire.com/blog/esentire-threat-intelligence-malware-analysis-vidar-stealer"
+        },
+        {
+          "name": "RustDoor and Koi Stealer for macOS",
+          "url": "https://unit42.paloaltonetworks.com/macos-malware-targets-crypto-sector/"
         }
       ],
       "schema_version": 1,
@@ -98,6 +111,124 @@
         "discord",
         "token",
         "session"
+      ]
+    },
+    {
+      "artifact_types": [
+        "database",
+        "credential"
+      ],
+      "category": "application",
+      "description": "Apple Notes local storage can contain copied secrets, recovery codes, and credential notes.\n",
+      "doc_path": "application/macos-notes-store",
+      "id": "application.macos-notes-store",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "paths": [
+          {
+            "kind": "directory",
+            "path": "$HOME/Library/Containers/com.apple.Notes/Data/Library/Notes/",
+            "platforms": [
+              "macos"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "medium"
+      },
+      "name": "macOS Notes Store",
+      "references": [
+        {
+          "name": "RustDoor and Koi Stealer for macOS",
+          "url": "https://unit42.paloaltonetworks.com/macos-malware-targets-crypto-sector/"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "high",
+      "subcategory": "macos-notes",
+      "tags": [
+        "macos",
+        "notes"
+      ]
+    },
+    {
+      "artifact_types": [
+        "credential",
+        "session"
+      ],
+      "category": "application",
+      "credentials": {
+        "types": [
+          "session-token"
+        ]
+      },
+      "description": "Steam sentry files can contain authorization material used by Steam Guard and account login flows.\n",
+      "doc_path": "application/steam-sentry-files",
+      "id": "application.steam-sentry-files",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "paths": [
+          {
+            "kind": "glob",
+            "path": "%PROGRAMFILES(X86)%\\Steam\\ssfn*",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "glob",
+            "path": "%PROGRAMFILES%\\Steam\\ssfn*",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "glob",
+            "path": "$HOME/.steam/steam/ssfn*",
+            "platforms": [
+              "linux"
+            ]
+          },
+          {
+            "kind": "glob",
+            "path": "$HOME/Library/Application Support/Steam/ssfn*",
+            "platforms": [
+              "macos"
+            ]
+          },
+          {
+            "kind": "directory",
+            "path": "$HOME/Library/Application Support/Steam/config/",
+            "platforms": [
+              "macos"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "medium"
+      },
+      "name": "Steam Sentry Files",
+      "references": [
+        {
+          "name": "Threat Thursday RedLine Infostealer",
+          "url": "https://papers.vx-underground.org/papers/Malware%20Defense/Malware%20Analysis%202021/2021-07-08%20-%20Threat%20Thursday-%20Redline%20Infostealer.pdf"
+        },
+        {
+          "name": "RustDoor and Koi Stealer for macOS",
+          "url": "https://unit42.paloaltonetworks.com/macos-malware-targets-crypto-sector/"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "high",
+      "subcategory": "steam",
+      "tags": [
+        "steam"
       ]
     },
     {
@@ -112,6 +243,7 @@
         ]
       },
       "description": "Telegram Desktop tdata directories can contain encrypted local session and account artifacts.\n",
+      "doc_path": "application/telegram-desktop-tdata",
       "id": "application.telegram-desktop-tdata",
       "impact": {
         "credential_access": true
@@ -123,6 +255,13 @@
             "path": "%APPDATA%\\Telegram Desktop\\tdata\\",
             "platforms": [
               "windows"
+            ]
+          },
+          {
+            "kind": "directory",
+            "path": "$HOME/Library/Application Support/Telegram Desktop/tdata/",
+            "platforms": [
+              "macos"
             ]
           }
         ]
@@ -139,6 +278,10 @@
         {
           "name": "eSentire Threat Intelligence Malware Analysis: Vidar Stealer",
           "url": "https://www.esentire.com/blog/esentire-threat-intelligence-malware-analysis-vidar-stealer"
+        },
+        {
+          "name": "RustDoor and Koi Stealer for macOS",
+          "url": "https://unit42.paloaltonetworks.com/macos-malware-targets-crypto-sector/"
         }
       ],
       "schema_version": 1,
@@ -164,6 +307,7 @@
         ]
       },
       "description": "Brave profile directories can contain saved passwords, cookies, local encryption state, autofill data, payment data, and session artifacts.\n",
+      "doc_path": "browser/brave-profile-stores",
       "id": "browser.brave.profile-stores",
       "impact": {
         "credential_access": true
@@ -176,6 +320,20 @@
             "platforms": [
               "windows"
             ]
+          },
+          {
+            "kind": "directory",
+            "path": "$HOME/.config/BraveSoftware/Brave-Browser/",
+            "platforms": [
+              "linux"
+            ]
+          },
+          {
+            "kind": "directory",
+            "path": "$HOME/Library/Application Support/BraveSoftware/Brave-Browser/",
+            "platforms": [
+              "macos"
+            ]
           }
         ]
       },
@@ -187,6 +345,10 @@
         {
           "name": "Threat Hunting: Detecting Browser Credential Stealing [T1555.003]",
           "url": "https://fourcore.io/blogs/threat-hunting-browser-credential-stealing"
+        },
+        {
+          "name": "Contagious Interview Malware SVG Steganography",
+          "url": "https://www.elastic.co/security-labs/contagious-interview-malware-svg-steganography"
         }
       ],
       "schema_version": 1,
@@ -211,6 +373,7 @@
         ]
       },
       "description": "Browser cookie stores can contain session cookies and authentication state.\n",
+      "doc_path": "browser/chrome-cookies",
       "id": "browser.chrome.cookies",
       "impact": {
         "credential_access": true
@@ -261,6 +424,55 @@
     {
       "artifact_types": [
         "password-store",
+        "credential",
+        "session"
+      ],
+      "category": "browser",
+      "credentials": {
+        "types": [
+          "password-manager-vault",
+          "session-token"
+        ]
+      },
+      "description": "Chrome extension local storage for LastPass can contain password-manager vault state and session artifacts.\n",
+      "doc_path": "browser/chrome-lastpass-extension-storage",
+      "id": "browser.chrome.lastpass-extension-storage",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "paths": [
+          {
+            "kind": "directory",
+            "path": "$HOME/Library/Application Support/Google/Chrome/Default/Local Extension Settings/aeblfdkhhhdcdjpifhhbdiojplfjncoa/",
+            "platforms": [
+              "macos"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "high"
+      },
+      "name": "Chrome LastPass Extension Storage",
+      "references": [
+        {
+          "name": "RustDoor and Koi Stealer for macOS",
+          "url": "https://unit42.paloaltonetworks.com/macos-malware-targets-crypto-sector/"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "chrome",
+      "tags": [
+        "chrome",
+        "lastpass",
+        "password-manager"
+      ]
+    },
+    {
+      "artifact_types": [
+        "password-store",
         "cookie",
         "session",
         "configuration"
@@ -273,6 +485,7 @@
         ]
       },
       "description": "Chrome profile directories can contain saved passwords, cookies, local encryption state, autofill data, payment data, and session artifacts.\n",
+      "doc_path": "browser/chrome-profile-stores",
       "id": "browser.chrome.profile-stores",
       "impact": {
         "credential_access": true
@@ -284,6 +497,20 @@
             "path": "%LOCALAPPDATA%\\Google\\Chrome\\User Data\\",
             "platforms": [
               "windows"
+            ]
+          },
+          {
+            "kind": "directory",
+            "path": "$HOME/.config/google-chrome/",
+            "platforms": [
+              "linux"
+            ]
+          },
+          {
+            "kind": "directory",
+            "path": "$HOME/Library/Application Support/Google/Chrome/",
+            "platforms": [
+              "macos"
             ]
           }
         ]
@@ -300,6 +527,10 @@
         {
           "name": "eSentire Threat Intelligence Malware Analysis: Vidar Stealer",
           "url": "https://www.esentire.com/blog/esentire-threat-intelligence-malware-analysis-vidar-stealer"
+        },
+        {
+          "name": "Contagious Interview Malware SVG Steganography",
+          "url": "https://www.elastic.co/security-labs/contagious-interview-malware-svg-steganography"
         }
       ],
       "schema_version": 1,
@@ -327,6 +558,7 @@
         ]
       },
       "description": "Chromium profile directories can contain saved passwords, cookies, local encryption state, autofill data, payment data, and session artifacts.\n",
+      "doc_path": "browser/chromium-profile-stores",
       "id": "browser.chromium.profile-stores",
       "impact": {
         "credential_access": true
@@ -338,6 +570,20 @@
             "path": "%LOCALAPPDATA%\\Chromium\\User Data\\",
             "platforms": [
               "windows"
+            ]
+          },
+          {
+            "kind": "directory",
+            "path": "$HOME/.config/chromium/",
+            "platforms": [
+              "linux"
+            ]
+          },
+          {
+            "kind": "directory",
+            "path": "$HOME/Library/Application Support/Chromium/",
+            "platforms": [
+              "macos"
             ]
           }
         ]
@@ -377,6 +623,7 @@
         ]
       },
       "description": "Microsoft Edge profile directories can contain saved passwords, cookies, local encryption state, autofill data, payment data, and session artifacts.\n",
+      "doc_path": "browser/edge-profile-stores",
       "id": "browser.edge.profile-stores",
       "impact": {
         "credential_access": true
@@ -388,6 +635,20 @@
             "path": "%LOCALAPPDATA%\\Microsoft\\Edge\\User Data\\",
             "platforms": [
               "windows"
+            ]
+          },
+          {
+            "kind": "directory",
+            "path": "$HOME/.config/microsoft-edge/",
+            "platforms": [
+              "linux"
+            ]
+          },
+          {
+            "kind": "directory",
+            "path": "$HOME/Library/Application Support/Microsoft Edge/",
+            "platforms": [
+              "macos"
             ]
           }
         ]
@@ -404,6 +665,10 @@
         {
           "name": "eSentire Threat Intelligence Malware Analysis: Vidar Stealer",
           "url": "https://www.esentire.com/blog/esentire-threat-intelligence-malware-analysis-vidar-stealer"
+        },
+        {
+          "name": "Contagious Interview Malware SVG Steganography",
+          "url": "https://www.elastic.co/security-labs/contagious-interview-malware-svg-steganography"
         }
       ],
       "schema_version": 1,
@@ -430,6 +695,7 @@
         ]
       },
       "description": "Firefox profile credential and cookie files can contain saved passwords, password database keys, cookies, and browser session state.\n",
+      "doc_path": "browser/firefox-profile-credentials",
       "id": "browser.firefox-profile-credentials",
       "impact": {
         "credential_access": true
@@ -463,6 +729,62 @@
             "platforms": [
               "windows"
             ]
+          },
+          {
+            "kind": "glob",
+            "path": "$HOME/.mozilla/firefox/*/logins.json",
+            "platforms": [
+              "linux"
+            ]
+          },
+          {
+            "kind": "glob",
+            "path": "$HOME/.mozilla/firefox/*/key4.db",
+            "platforms": [
+              "linux"
+            ]
+          },
+          {
+            "kind": "glob",
+            "path": "$HOME/.mozilla/firefox/*/key3.db",
+            "platforms": [
+              "linux"
+            ]
+          },
+          {
+            "kind": "glob",
+            "path": "$HOME/.mozilla/firefox/*/cookies.sqlite",
+            "platforms": [
+              "linux"
+            ]
+          },
+          {
+            "kind": "glob",
+            "path": "$HOME/Library/Application Support/Firefox/Profiles/*/logins.json",
+            "platforms": [
+              "macos"
+            ]
+          },
+          {
+            "kind": "glob",
+            "path": "$HOME/Library/Application Support/Firefox/Profiles/*/key4.db",
+            "platforms": [
+              "macos"
+            ]
+          },
+          {
+            "kind": "glob",
+            "path": "$HOME/Library/Application Support/Firefox/Profiles/*/key3.db",
+            "platforms": [
+              "macos"
+            ]
+          },
+          {
+            "kind": "glob",
+            "path": "$HOME/Library/Application Support/Firefox/Profiles/*/cookies.sqlite",
+            "platforms": [
+              "macos"
+            ]
           }
         ]
       },
@@ -478,6 +800,10 @@
         {
           "name": "eSentire Threat Intelligence Malware Analysis: Vidar Stealer",
           "url": "https://www.esentire.com/blog/esentire-threat-intelligence-malware-analysis-vidar-stealer"
+        },
+        {
+          "name": "Reversing Atomic macOS Stealer",
+          "url": "https://spycloud.com/blog/reverse-engineering-atomic-macos-stealer/"
         }
       ],
       "schema_version": 1,
@@ -505,6 +831,7 @@
         ]
       },
       "description": "Opera profile directories can contain saved passwords, cookies, local encryption state, autofill data, payment data, and session artifacts.\n",
+      "doc_path": "browser/opera-profile-stores",
       "id": "browser.opera.profile-stores",
       "impact": {
         "credential_access": true
@@ -517,6 +844,20 @@
             "platforms": [
               "windows"
             ]
+          },
+          {
+            "kind": "directory",
+            "path": "$HOME/.config/opera/",
+            "platforms": [
+              "linux"
+            ]
+          },
+          {
+            "kind": "directory",
+            "path": "$HOME/Library/Application Support/com.operasoftware.Opera/",
+            "platforms": [
+              "macos"
+            ]
           }
         ]
       },
@@ -528,6 +869,10 @@
         {
           "name": "Threat Hunting: Detecting Browser Credential Stealing [T1555.003]",
           "url": "https://fourcore.io/blogs/threat-hunting-browser-credential-stealing"
+        },
+        {
+          "name": "Contagious Interview Malware SVG Steganography",
+          "url": "https://www.elastic.co/security-labs/contagious-interview-malware-svg-steganography"
         }
       ],
       "schema_version": 1,
@@ -537,6 +882,53 @@
         "browser",
         "opera",
         "credentials",
+        "cookies"
+      ]
+    },
+    {
+      "artifact_types": [
+        "cookie",
+        "session"
+      ],
+      "category": "browser",
+      "credentials": {
+        "types": [
+          "session-cookie"
+        ]
+      },
+      "description": "Safari cookie stores can contain session cookies and authentication state.\n",
+      "doc_path": "browser/safari-cookies",
+      "id": "browser.safari.cookies",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "paths": [
+          {
+            "kind": "directory",
+            "path": "$HOME/Library/Containers/com.apple.Safari/Data/Library/Cookies/",
+            "platforms": [
+              "macos"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "high"
+      },
+      "name": "Safari Cookie Store",
+      "references": [
+        {
+          "name": "RustDoor and Koi Stealer for macOS",
+          "url": "https://unit42.paloaltonetworks.com/macos-malware-targets-crypto-sector/"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "safari",
+      "tags": [
+        "safari",
+        "browser",
         "cookies"
       ]
     },
@@ -555,6 +947,7 @@
         ]
       },
       "description": "Vivaldi profile directories can contain saved passwords, cookies, local encryption state, autofill data, payment data, and session artifacts.\n",
+      "doc_path": "browser/vivaldi-profile-stores",
       "id": "browser.vivaldi.profile-stores",
       "impact": {
         "credential_access": true
@@ -605,6 +998,7 @@
         ]
       },
       "description": "Yandex Browser profile directories can contain saved passwords, cookies, local encryption state, autofill data, payment data, and session artifacts.\n",
+      "doc_path": "browser/yandex-browser-profile-stores",
       "id": "browser.yandex.profile-stores",
       "impact": {
         "credential_access": true
@@ -652,6 +1046,7 @@
         ]
       },
       "description": "Common private-key file names and extensions. Content verification is useful because extensions alone do not prove a file contains a private key.\n",
+      "doc_path": "certificates/private-key-files",
       "id": "certificates.private-key-files",
       "impact": {
         "credential_access": true
@@ -745,6 +1140,7 @@
       ],
       "category": "cicd",
       "description": "Anchor configuration files can reveal Solana program deployment settings, cluster targets, wallet paths, and local test commands.\n",
+      "doc_path": "cicd/anchor",
       "id": "cicd.anchor.config",
       "impact": {
         "discovery": true,
@@ -794,6 +1190,7 @@
       ],
       "category": "cicd",
       "description": "Drone pipeline configuration files can reveal build steps, deployment logic, runner behavior, and secret references.\n",
+      "doc_path": "cicd/drone",
       "id": "cicd.drone.config",
       "impact": {
         "discovery": true,
@@ -843,6 +1240,7 @@
       ],
       "category": "cicd",
       "description": "GitHub Actions workflow files can reveal build logic, permissions, and secret references.\n",
+      "doc_path": "cicd/github-actions-workflows",
       "id": "cicd.github-actions.workflows",
       "impact": {
         "discovery": true,
@@ -891,6 +1289,7 @@
       ],
       "category": "cicd",
       "description": "GitLab CI configuration files can reveal build logic, deployment commands, runner behavior, and secret references.\n",
+      "doc_path": "cicd/gitlab-ci",
       "id": "cicd.gitlab-ci.config",
       "impact": {
         "discovery": true,
@@ -948,6 +1347,7 @@
         ]
       },
       "description": "Jenkins credential store files and secrets directories can contain encrypted credentials and key material used by a Jenkins controller.\n",
+      "doc_path": "cicd/jenkins-credentials",
       "id": "cicd.jenkins.credentials",
       "impact": {
         "credential_access": true,
@@ -1008,6 +1408,7 @@
       ],
       "category": "cicd",
       "description": "Jenkinsfile pipeline definitions can reveal build stages, deployment logic, credential bindings, and secret references.\n",
+      "doc_path": "cicd/jenkinsfile",
       "id": "cicd.jenkinsfile.config",
       "impact": {
         "discovery": true,
@@ -1057,6 +1458,7 @@
       ],
       "category": "cicd",
       "description": "Travis CI configuration files can reveal build logic, deployment commands, environment variables, and secret references.\n",
+      "doc_path": "cicd/travis-ci",
       "id": "cicd.travis-ci.config",
       "impact": {
         "discovery": true,
@@ -1106,6 +1508,7 @@
       ],
       "category": "cloud",
       "description": "AWS CLI configuration files can reveal profiles, regions, output formats, role assumptions, and credential process settings.\n",
+      "doc_path": "cloud/aws/config",
       "id": "cloud.aws.config",
       "impact": {
         "cloud_access": true,
@@ -1168,6 +1571,7 @@
         ]
       },
       "description": "AWS CLI credential files may contain access keys, secret access keys, and temporary session tokens.\n",
+      "doc_path": "cloud/aws/credentials",
       "id": "cloud.aws.credentials",
       "impact": {
         "cloud_access": true,
@@ -1235,6 +1639,7 @@
         ]
       },
       "description": "Azure CLI profile and token artifacts can contain authentication state and cloud account metadata.\n",
+      "doc_path": "cloud/azure/cli-auth",
       "id": "cloud.azure.cli-auth",
       "impact": {
         "cloud_access": true,
@@ -1300,6 +1705,7 @@
         ]
       },
       "description": "Databricks CLI configuration profiles can contain workspace hosts, personal access tokens, OAuth client IDs, and OAuth client secrets.\n",
+      "doc_path": "cloud/databricks/config",
       "id": "cloud.databricks.config",
       "impact": {
         "cloud_access": true,
@@ -1363,6 +1769,7 @@
         ]
       },
       "description": "Application Default Credentials may contain OAuth refresh tokens or service account material used by Google Cloud tooling.\n",
+      "doc_path": "cloud/gcp/application-default-credentials",
       "id": "cloud.gcp.application-default-credentials",
       "impact": {
         "cloud_access": true,
@@ -1418,6 +1825,7 @@
       ],
       "category": "cloud",
       "description": "gcloud configuration directories can contain account, project, and credential state.\n",
+      "doc_path": "cloud/gcp/gcloud-config",
       "id": "cloud.gcp.gcloud-config",
       "impact": {
         "cloud_access": true,
@@ -1475,6 +1883,7 @@
         ]
       },
       "description": "MongoDB Atlas CLI configuration profiles can contain Atlas project IDs, organization IDs, access tokens, refresh tokens, and API keys.\n",
+      "doc_path": "cloud/mongodb-atlas/cli-config",
       "id": "cloud.mongodb-atlas.cli-config",
       "impact": {
         "cloud_access": true,
@@ -1553,6 +1962,7 @@
         ]
       },
       "description": "MongoDB CLI configuration profiles can contain Atlas and Ops Manager project IDs, organization IDs, service settings, and API keys.\n",
+      "doc_path": "cloud/mongodb/cli-config",
       "id": "cloud.mongodb.cli-config",
       "impact": {
         "cloud_access": true,
@@ -1631,6 +2041,7 @@
         ]
       },
       "description": "Docker client config files can contain registry authentication material.\n",
+      "doc_path": "containers/docker-config",
       "id": "containers.docker.config",
       "impact": {
         "credential_access": true
@@ -1711,6 +2122,7 @@
         ]
       },
       "description": "Runtime secret mount directories can contain injected credentials, tokens, certificates, and application secrets.\n",
+      "doc_path": "containers/runtime-secret-files",
       "id": "containers.runtime-secret-files",
       "impact": {
         "credential_access": true
@@ -1765,13 +2177,138 @@
           "private-key"
         ]
       },
+      "description": "Atomic Wallet local storage directories can contain wallet state and secret material.\n",
+      "doc_path": "crypto-wallet/atomic-wallet",
+      "id": "crypto-wallet.atomic.wallets",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "paths": [
+          {
+            "kind": "directory",
+            "path": "%APPDATA%\\atomic\\Local Storage\\leveldb\\",
+            "platforms": [
+              "windows"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "high"
+      },
+      "name": "Atomic Wallet Storage",
+      "references": [
+        {
+          "name": "Stealc Infostealer Analysis",
+          "url": "https://blog.sekoia.io/stealc-a-copycat-of-vidar-and-raccoon-infostealers-gaining-in-popularity-part-1/"
+        },
+        {
+          "name": "Akira Stealer Technical Analysis",
+          "url": "https://www.glueckkanja.com/en/posts/2025-06-16-quiet-breach"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "atomic",
+      "tags": [
+        "wallet",
+        "atomic"
+      ]
+    },
+    {
+      "artifact_types": [
+        "wallet",
+        "credential"
+      ],
+      "category": "crypto-wallet",
+      "credentials": {
+        "types": [
+          "wallet-state"
+        ]
+      },
+      "description": "Binance desktop wallet storage files can contain local wallet state and identifying wallet material.\n",
+      "doc_path": "crypto-wallet/binance-wallet",
+      "id": "crypto-wallet.binance.wallets",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "paths": [
+          {
+            "kind": "file",
+            "path": "%APPDATA%\\Binance\\app-store.json",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "file",
+            "path": "%APPDATA%\\Binance\\simple-storage.json",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "file",
+            "path": "%APPDATA%\\Binance\\.finger-print.fp",
+            "platforms": [
+              "windows"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "high"
+      },
+      "name": "Binance Wallet Storage",
+      "references": [
+        {
+          "name": "Stealc Infostealer Analysis",
+          "url": "https://blog.sekoia.io/stealc-a-copycat-of-vidar-and-raccoon-infostealers-gaining-in-popularity-part-1/"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "binance",
+      "tags": [
+        "wallet",
+        "binance"
+      ]
+    },
+    {
+      "artifact_types": [
+        "wallet",
+        "credential"
+      ],
+      "category": "crypto-wallet",
+      "credentials": {
+        "types": [
+          "private-key"
+        ]
+      },
       "description": "Bitcoin Core data directories can contain wallet databases and private key material.\n",
+      "doc_path": "crypto-wallet/bitcoin-wallet",
       "id": "crypto-wallet.bitcoin.wallets",
       "impact": {
         "credential_access": true
       },
       "match": {
         "paths": [
+          {
+            "kind": "directory",
+            "path": "%APPDATA%\\Bitcoin\\wallets\\",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "glob",
+            "path": "%APPDATA%\\Bitcoin\\*wallet*.dat",
+            "platforms": [
+              "windows"
+            ]
+          },
           {
             "kind": "directory",
             "path": "$HOME/.bitcoin/",
@@ -1783,13 +2320,17 @@
         ]
       },
       "metadata": {
-        "confidence": "medium"
+        "confidence": "high"
       },
       "name": "Bitcoin Core Wallet Directory",
       "references": [
         {
           "name": "Bitcoin Core Files",
           "url": "https://github.com/bitcoin/bitcoin/blob/master/doc/files.md"
+        },
+        {
+          "name": "Stealc Infostealer Analysis",
+          "url": "https://blog.sekoia.io/stealc-a-copycat-of-vidar-and-raccoon-infostealers-gaining-in-popularity-part-1/"
         }
       ],
       "schema_version": 1,
@@ -1811,13 +2352,67 @@
           "private-key"
         ]
       },
+      "description": "Blockstream Green wallet directories can contain local wallet state and credential material.\n",
+      "doc_path": "crypto-wallet/blockstream-green-wallet",
+      "id": "crypto-wallet.blockstream-green.wallets",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "paths": [
+          {
+            "kind": "directory",
+            "path": "%APPDATA%\\Blockstream\\Green\\wallets\\",
+            "platforms": [
+              "windows"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "high"
+      },
+      "name": "Blockstream Green Wallet Files",
+      "references": [
+        {
+          "name": "Stealc Infostealer Analysis",
+          "url": "https://blog.sekoia.io/stealc-a-copycat-of-vidar-and-raccoon-infostealers-gaining-in-popularity-part-1/"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "blockstream-green",
+      "tags": [
+        "wallet",
+        "blockstream-green"
+      ]
+    },
+    {
+      "artifact_types": [
+        "wallet",
+        "credential"
+      ],
+      "category": "crypto-wallet",
+      "credentials": {
+        "types": [
+          "private-key"
+        ]
+      },
       "description": "Cardano directories can contain wallet files, node state, and key material.\n",
+      "doc_path": "crypto-wallet/cardano-wallet",
       "id": "crypto-wallet.cardano.wallets",
       "impact": {
         "credential_access": true
       },
       "match": {
         "paths": [
+          {
+            "kind": "glob",
+            "path": "%APPDATA%\\Daedalus Mainnet\\wallets\\she*.sqlite",
+            "platforms": [
+              "windows"
+            ]
+          },
           {
             "kind": "directory",
             "path": "$HOME/.cardano/",
@@ -1829,9 +2424,15 @@
         ]
       },
       "metadata": {
-        "confidence": "low"
+        "confidence": "medium"
       },
       "name": "Cardano Wallet Directory",
+      "references": [
+        {
+          "name": "Stealc Infostealer Analysis",
+          "url": "https://blog.sekoia.io/stealc-a-copycat-of-vidar-and-raccoon-infostealers-gaining-in-popularity-part-1/"
+        }
+      ],
       "schema_version": 1,
       "sensitivity": "critical",
       "subcategory": "cardano",
@@ -1851,7 +2452,65 @@
           "private-key"
         ]
       },
+      "description": "Coinomi wallet files can contain wallet databases, configuration, and private key material.\n",
+      "doc_path": "crypto-wallet/coinomi-wallet",
+      "id": "crypto-wallet.coinomi.wallets",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "paths": [
+          {
+            "kind": "glob",
+            "path": "%APPDATA%\\Coinomi\\Coinomi\\wallets\\*.wallet",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "glob",
+            "path": "%APPDATA%\\Coinomi\\Coinomi\\wallets\\*.config",
+            "platforms": [
+              "windows"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "high"
+      },
+      "name": "Coinomi Wallet Files",
+      "references": [
+        {
+          "name": "Stealc Infostealer Analysis",
+          "url": "https://blog.sekoia.io/stealc-a-copycat-of-vidar-and-raccoon-infostealers-gaining-in-popularity-part-1/"
+        },
+        {
+          "name": "Akira Stealer Technical Analysis",
+          "url": "https://www.glueckkanja.com/en/posts/2025-06-16-quiet-breach"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "coinomi",
+      "tags": [
+        "wallet",
+        "coinomi"
+      ]
+    },
+    {
+      "artifact_types": [
+        "wallet",
+        "credential"
+      ],
+      "category": "crypto-wallet",
+      "credentials": {
+        "types": [
+          "private-key"
+        ]
+      },
       "description": "Dash Core data directories can contain wallet databases and private key material.\n",
+      "doc_path": "crypto-wallet/dash-wallet",
       "id": "crypto-wallet.dash.wallets",
       "impact": {
         "credential_access": true
@@ -1898,12 +2557,20 @@
         ]
       },
       "description": "Dogecoin Core data directories can contain wallet databases and private key material.\n",
+      "doc_path": "crypto-wallet/dogecoin-wallet",
       "id": "crypto-wallet.dogecoin.wallets",
       "impact": {
         "credential_access": true
       },
       "match": {
         "paths": [
+          {
+            "kind": "glob",
+            "path": "%APPDATA%\\Dogecoin\\*wallet*.dat",
+            "platforms": [
+              "windows"
+            ]
+          },
           {
             "kind": "directory",
             "path": "$HOME/.dogecoin/",
@@ -1915,13 +2582,17 @@
         ]
       },
       "metadata": {
-        "confidence": "medium"
+        "confidence": "high"
       },
       "name": "Dogecoin Core Wallet Directory",
       "references": [
         {
           "name": "Dogecoin Core Data Directory",
           "url": "https://github.com/dogecoin/dogecoin/blob/master/doc/files.md"
+        },
+        {
+          "name": "Stealc Infostealer Analysis",
+          "url": "https://blog.sekoia.io/stealc-a-copycat-of-vidar-and-raccoon-infostealers-gaining-in-popularity-part-1/"
         }
       ],
       "schema_version": 1,
@@ -1934,10 +2605,57 @@
     },
     {
       "artifact_types": [
+        "wallet",
+        "credential"
+      ],
+      "category": "crypto-wallet",
+      "credentials": {
+        "types": [
+          "private-key"
+        ]
+      },
+      "description": "Electron Cash wallet directories can contain wallet files and private key material.\n",
+      "doc_path": "crypto-wallet/electron-cash-wallet",
+      "id": "crypto-wallet.electron-cash.wallets",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "paths": [
+          {
+            "kind": "directory",
+            "path": "%APPDATA%\\ElectronCash\\wallets\\",
+            "platforms": [
+              "windows"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "high"
+      },
+      "name": "Electron Cash Wallet Files",
+      "references": [
+        {
+          "name": "Stealc Infostealer Analysis",
+          "url": "https://blog.sekoia.io/stealc-a-copycat-of-vidar-and-raccoon-infostealers-gaining-in-popularity-part-1/"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "electron-cash",
+      "tags": [
+        "wallet",
+        "electron-cash"
+      ]
+    },
+    {
+      "artifact_types": [
         "wallet"
       ],
       "category": "crypto-wallet",
       "description": "Electrum wallet files are sensitive wallet artifacts and should be protected.\n",
+      "doc_path": "crypto-wallet/electrum-wallet",
       "id": "crypto-wallet.electrum.wallets",
       "impact": {
         "credential_access": true
@@ -1947,6 +2665,13 @@
           {
             "kind": "directory",
             "path": "%APPDATA%\\Electrum\\wallets\\",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "directory",
+            "path": "%APPDATA%\\Electrum-LTC\\wallets\\",
             "platforms": [
               "windows"
             ]
@@ -1969,6 +2694,10 @@
         {
           "name": "Electrum FAQ",
           "url": "https://electrum.readthedocs.io/en/latest/faq.html#where-is-the-electrum-datadir-located"
+        },
+        {
+          "name": "Stealc Infostealer Analysis",
+          "url": "https://blog.sekoia.io/stealc-a-copycat-of-vidar-and-raccoon-infostealers-gaining-in-popularity-part-1/"
         }
       ],
       "schema_version": 1,
@@ -1991,12 +2720,20 @@
         ]
       },
       "description": "Ethereum keystore directories can contain encrypted account key files.\n",
+      "doc_path": "crypto-wallet/ethereum-keystore",
       "id": "crypto-wallet.ethereum.keystore",
       "impact": {
         "credential_access": true
       },
       "match": {
         "paths": [
+          {
+            "kind": "directory",
+            "path": "%APPDATA%\\Ethereum\\keystore\\",
+            "platforms": [
+              "windows"
+            ]
+          },
           {
             "kind": "directory",
             "path": "$HOME/.ethereum/keystore/",
@@ -2008,13 +2745,17 @@
         ]
       },
       "metadata": {
-        "confidence": "medium"
+        "confidence": "high"
       },
       "name": "Ethereum Keystore Directory",
       "references": [
         {
           "name": "Geth Account Management",
           "url": "https://geth.ethereum.org/docs/tools/clef/introduction#basic-usage"
+        },
+        {
+          "name": "Stealc Infostealer Analysis",
+          "url": "https://blog.sekoia.io/stealc-a-copycat-of-vidar-and-raccoon-infostealers-gaining-in-popularity-part-1/"
         }
       ],
       "schema_version": 1,
@@ -2033,10 +2774,189 @@
       "category": "crypto-wallet",
       "credentials": {
         "types": [
+          "seed",
+          "private-key"
+        ]
+      },
+      "description": "Exodus wallet directories and state files can contain wallet secrets, seed material, and encrypted wallet metadata.\n",
+      "doc_path": "crypto-wallet/exodus-wallet",
+      "id": "crypto-wallet.exodus.wallets",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "paths": [
+          {
+            "kind": "file",
+            "path": "%APPDATA%\\Exodus\\exodus.conf.json",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "file",
+            "path": "%APPDATA%\\Exodus\\window-state.json",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "file",
+            "path": "%APPDATA%\\Exodus\\exodus.wallet\\passphrase.json",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "file",
+            "path": "%APPDATA%\\Exodus\\exodus.wallet\\seed.seco",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "file",
+            "path": "%APPDATA%\\Exodus\\exodus.wallet\\info.seco",
+            "platforms": [
+              "windows"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "high"
+      },
+      "name": "Exodus Wallet Files",
+      "references": [
+        {
+          "name": "Stealc Infostealer Analysis",
+          "url": "https://blog.sekoia.io/stealc-a-copycat-of-vidar-and-raccoon-infostealers-gaining-in-popularity-part-1/"
+        },
+        {
+          "name": "Akira Stealer Technical Analysis",
+          "url": "https://www.glueckkanja.com/en/posts/2025-06-16-quiet-breach"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "exodus",
+      "tags": [
+        "wallet",
+        "exodus"
+      ]
+    },
+    {
+      "artifact_types": [
+        "wallet",
+        "credential"
+      ],
+      "category": "crypto-wallet",
+      "credentials": {
+        "types": [
+          "private-key"
+        ]
+      },
+      "description": "Guarda desktop wallet local storage can contain wallet state and secret material.\n",
+      "doc_path": "crypto-wallet/guarda-wallet",
+      "id": "crypto-wallet.guarda.wallets",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "paths": [
+          {
+            "kind": "directory",
+            "path": "%APPDATA%\\Guarda\\Local Storage\\leveldb\\",
+            "platforms": [
+              "windows"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "high"
+      },
+      "name": "Guarda Wallet Storage",
+      "references": [
+        {
+          "name": "Akira Stealer Technical Analysis",
+          "url": "https://www.glueckkanja.com/en/posts/2025-06-16-quiet-breach"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "guarda",
+      "tags": [
+        "wallet",
+        "guarda"
+      ]
+    },
+    {
+      "artifact_types": [
+        "wallet",
+        "credential"
+      ],
+      "category": "crypto-wallet",
+      "credentials": {
+        "types": [
+          "private-key"
+        ]
+      },
+      "description": "Jaxx Desktop local storage and IndexedDB directories can contain wallet state and secret material.\n",
+      "doc_path": "crypto-wallet/jaxx-wallet",
+      "id": "crypto-wallet.jaxx.wallets",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "paths": [
+          {
+            "kind": "file",
+            "path": "%APPDATA%\\jaxx\\Local Storage\\file__0.localstorage",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "directory",
+            "path": "%APPDATA%\\com.liberty.jaxx\\IndexedDB\\file__0.indexeddb.leveldb\\",
+            "platforms": [
+              "windows"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "high"
+      },
+      "name": "Jaxx Wallet Storage",
+      "references": [
+        {
+          "name": "Stealc Infostealer Analysis",
+          "url": "https://blog.sekoia.io/stealc-a-copycat-of-vidar-and-raccoon-infostealers-gaining-in-popularity-part-1/"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "jaxx",
+      "tags": [
+        "wallet",
+        "jaxx"
+      ]
+    },
+    {
+      "artifact_types": [
+        "wallet",
+        "credential"
+      ],
+      "category": "crypto-wallet",
+      "credentials": {
+        "types": [
           "private-key"
         ]
       },
       "description": "Litecoin data directories can contain wallet databases and private key material.\n",
+      "doc_path": "crypto-wallet/litecoin-wallet",
       "id": "crypto-wallet.litecoin.wallets",
       "impact": {
         "credential_access": true
@@ -2117,6 +3037,7 @@
         ]
       },
       "description": "Monero data directories can contain wallet files and private key material.\n",
+      "doc_path": "crypto-wallet/monero-wallet",
       "id": "crypto-wallet.monero.wallets",
       "impact": {
         "credential_access": true
@@ -2169,7 +3090,146 @@
           "private-key"
         ]
       },
+      "description": "MultiDoge wallet files can contain wallet databases and private key material.\n",
+      "doc_path": "crypto-wallet/multidoge-wallet",
+      "id": "crypto-wallet.multidoge.wallet",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "paths": [
+          {
+            "kind": "file",
+            "path": "%APPDATA%\\MultiDoge\\multidoge.wallet",
+            "platforms": [
+              "windows"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "high"
+      },
+      "name": "MultiDoge Wallet File",
+      "references": [
+        {
+          "name": "Stealc Infostealer Analysis",
+          "url": "https://blog.sekoia.io/stealc-a-copycat-of-vidar-and-raccoon-infostealers-gaining-in-popularity-part-1/"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "multidoge",
+      "tags": [
+        "wallet",
+        "multidoge"
+      ]
+    },
+    {
+      "artifact_types": [
+        "wallet",
+        "credential"
+      ],
+      "category": "crypto-wallet",
+      "credentials": {
+        "types": [
+          "private-key"
+        ]
+      },
+      "description": "Rabby Desktop data directories can contain wallet state and secret material.\n",
+      "doc_path": "crypto-wallet/rabby-wallet",
+      "id": "crypto-wallet.rabby.wallets",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "paths": [
+          {
+            "kind": "directory",
+            "path": "%APPDATA%\\rabby-desktop\\",
+            "platforms": [
+              "windows"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "high"
+      },
+      "name": "Rabby Desktop Wallet Storage",
+      "references": [
+        {
+          "name": "Akira Stealer Technical Analysis",
+          "url": "https://www.glueckkanja.com/en/posts/2025-06-16-quiet-breach"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "rabby",
+      "tags": [
+        "wallet",
+        "rabby"
+      ]
+    },
+    {
+      "artifact_types": [
+        "wallet",
+        "credential"
+      ],
+      "category": "crypto-wallet",
+      "credentials": {
+        "types": [
+          "private-key"
+        ]
+      },
+      "description": "Ravencoin Core data directories can contain wallet databases and private key material.\n",
+      "doc_path": "crypto-wallet/ravencoin-wallet",
+      "id": "crypto-wallet.ravencoin.wallets",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "paths": [
+          {
+            "kind": "glob",
+            "path": "%APPDATA%\\Raven\\*wallet*.dat",
+            "platforms": [
+              "windows"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "high"
+      },
+      "name": "Ravencoin Core Wallet Directory",
+      "references": [
+        {
+          "name": "Stealc Infostealer Analysis",
+          "url": "https://blog.sekoia.io/stealc-a-copycat-of-vidar-and-raccoon-infostealers-gaining-in-popularity-part-1/"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "ravencoin",
+      "tags": [
+        "wallet",
+        "ravencoin"
+      ]
+    },
+    {
+      "artifact_types": [
+        "wallet",
+        "credential"
+      ],
+      "category": "crypto-wallet",
+      "credentials": {
+        "types": [
+          "private-key"
+        ]
+      },
       "description": "Ripple wallet directories can contain wallet databases and private key material.\n",
+      "doc_path": "crypto-wallet/ripple-wallet",
       "id": "crypto-wallet.ripple.wallets",
       "impact": {
         "credential_access": true
@@ -2211,6 +3271,7 @@
         ]
       },
       "description": "Solana CLI configuration directories can contain keypair files and cluster configuration.\n",
+      "doc_path": "crypto-wallet/solana-config",
       "id": "crypto-wallet.solana.config",
       "impact": {
         "credential_access": true
@@ -2258,6 +3319,7 @@
         ]
       },
       "description": "Solana keypair JSON files can contain validator, identity, vote account, stake account, faucet, and wallet private keys.\n",
+      "doc_path": "crypto-wallet/solana-keypairs",
       "id": "crypto-wallet.solana.keypair-files",
       "impact": {
         "credential_access": true
@@ -2440,6 +3502,7 @@
       ],
       "category": "crypto-wallet",
       "description": "Solana ledger directories can contain validator state and local node data that may support key and infrastructure discovery.\n",
+      "doc_path": "crypto-wallet/solana-ledger",
       "id": "crypto-wallet.solana.ledger-files",
       "impact": {
         "discovery": true
@@ -2497,7 +3560,54 @@
           "private-key"
         ]
       },
+      "description": "Wasabi wallet files can contain encrypted wallet metadata and private key material.\n",
+      "doc_path": "crypto-wallet/wasabi-wallet",
+      "id": "crypto-wallet.wasabi.wallets",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "paths": [
+          {
+            "kind": "glob",
+            "path": "%APPDATA%\\WalletWasabi\\Client\\Wallets\\*.json",
+            "platforms": [
+              "windows"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "high"
+      },
+      "name": "Wasabi Wallet Files",
+      "references": [
+        {
+          "name": "Stealc Infostealer Analysis",
+          "url": "https://blog.sekoia.io/stealc-a-copycat-of-vidar-and-raccoon-infostealers-gaining-in-popularity-part-1/"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "wasabi",
+      "tags": [
+        "wallet",
+        "wasabi"
+      ]
+    },
+    {
+      "artifact_types": [
+        "wallet",
+        "credential"
+      ],
+      "category": "crypto-wallet",
+      "credentials": {
+        "types": [
+          "private-key"
+        ]
+      },
       "description": "Zcash data directories can contain wallet databases and private key material.\n",
+      "doc_path": "crypto-wallet/zcash-wallet",
       "id": "crypto-wallet.zcash.wallets",
       "impact": {
         "credential_access": true
@@ -2545,6 +3655,7 @@
         ]
       },
       "description": "MongoDB shell startup files can contain connection logic, credentials, or commands executed when the shell starts.\n",
+      "doc_path": "database/mongodb-shell-config",
       "id": "database.mongodb-shell-config",
       "impact": {
         "credential_access": true,
@@ -2600,6 +3711,7 @@
       ],
       "category": "database",
       "description": "MongoDB Shell global configuration files can define startup behavior, logging, history redaction, OIDC settings, and trusted endpoints.\n",
+      "doc_path": "database/mongodb-shell-global-config",
       "id": "database.mongodb-shell-global-config",
       "impact": {
         "discovery": true
@@ -2675,6 +3787,7 @@
         ]
       },
       "description": "MySQL client configuration files can contain usernames, passwords, and hostnames.\n",
+      "doc_path": "database/mysql-config",
       "id": "database.mysql.config",
       "impact": {
         "credential_access": true
@@ -2787,6 +3900,7 @@
       ],
       "category": "database",
       "description": "MySQL client history files can contain connection details, commands, or authentication material.\n",
+      "doc_path": "database/mysql-history",
       "id": "database.mysql.history",
       "impact": {
         "credential_access": true,
@@ -2829,6 +3943,7 @@
       ],
       "category": "database",
       "description": "PostgreSQL psql history files can contain connection details, commands, or authentication material.\n",
+      "doc_path": "database/postgresql-history",
       "id": "database.postgresql.history",
       "impact": {
         "credential_access": true,
@@ -2877,6 +3992,7 @@
         ]
       },
       "description": "PostgreSQL password files store connection credentials for libpq clients.\n",
+      "doc_path": "database/postgresql-pgpass",
       "id": "database.postgresql.pgpass",
       "impact": {
         "credential_access": true
@@ -2937,6 +4053,7 @@
         ]
       },
       "description": "Redis server configuration files can contain passwords, ACL settings, TLS material references, and replication credentials.\n",
+      "doc_path": "database/redis-config",
       "id": "database.redis-config",
       "impact": {
         "credential_access": true,
@@ -2987,6 +4104,7 @@
       ],
       "category": "database",
       "description": "Redis CLI history can contain connection details, commands, or authentication material.\n",
+      "doc_path": "database/redis-history",
       "id": "database.redis.history",
       "impact": {
         "credential_access": true,
@@ -3018,6 +4136,81 @@
     },
     {
       "artifact_types": [
+        "credential",
+        "configuration"
+      ],
+      "category": "development",
+      "credentials": {
+        "types": [
+          "api-key",
+          "access-token"
+        ]
+      },
+      "description": "Claude developer configuration files can contain MCP server definitions, tokens, and local integration secrets.\n",
+      "doc_path": "development/claude-config",
+      "id": "development.claude-config",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "content": {
+          "contains": [
+            "mcpServers"
+          ]
+        },
+        "paths": [
+          {
+            "kind": "file",
+            "path": "%USERPROFILE%\\.claude.json",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "file",
+            "path": "%USERPROFILE%\\.claude\\mcp.json",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "file",
+            "path": "$HOME/.claude.json",
+            "platforms": [
+              "linux",
+              "macos"
+            ]
+          },
+          {
+            "kind": "file",
+            "path": "$HOME/.claude/mcp.json",
+            "platforms": [
+              "linux",
+              "macos"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "medium"
+      },
+      "name": "Claude Developer Configuration",
+      "references": [
+        {
+          "name": "Analyzing TeamPCP's Supply Chain Attacks",
+          "url": "https://www.trendmicro.com/en_us/research/26/e/analyzing-teampcp-supply-chain-attacks.html"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "claude",
+      "tags": [
+        "claude",
+        "mcp"
+      ]
+    },
+    {
+      "artifact_types": [
         "environment",
         "configuration",
         "credential"
@@ -3031,6 +4224,7 @@
         ]
       },
       "description": "Dotenv-style files commonly contain application secrets, API keys, and connection strings.\n",
+      "doc_path": "development/env-files",
       "id": "development.env-files",
       "impact": {
         "credential_access": true,
@@ -3085,6 +4279,113 @@
         "credential",
         "configuration"
       ],
+      "category": "development",
+      "credentials": {
+        "types": [
+          "api-key",
+          "access-token"
+        ]
+      },
+      "description": "Kilo Code configuration can contain AI coding tool credentials and local integration secrets.\n",
+      "doc_path": "development/kilo-config",
+      "id": "development.kilo-config",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "paths": [
+          {
+            "kind": "file",
+            "path": "$HOME/.config/kilo/config.json",
+            "platforms": [
+              "linux",
+              "macos"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "high"
+      },
+      "name": "Kilo Code Configuration",
+      "references": [
+        {
+          "name": "How TeamPCP's Python Toolkit Survives a C2 Takedown",
+          "url": "https://hunt.io/blog/teampcp-python-toolkit-firescale-github-c2-takedown"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "kilo",
+      "tags": [
+        "kilo"
+      ]
+    },
+    {
+      "artifact_types": [
+        "credential",
+        "configuration"
+      ],
+      "category": "development",
+      "credentials": {
+        "types": [
+          "api-key",
+          "access-token"
+        ]
+      },
+      "description": "Kiro MCP settings can contain MCP server definitions, tokens, and local integration secrets.\n",
+      "doc_path": "development/kiro-mcp-settings",
+      "id": "development.kiro-mcp-settings",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "content": {
+          "contains": [
+            "mcpServers"
+          ]
+        },
+        "paths": [
+          {
+            "kind": "file",
+            "path": "%USERPROFILE%\\.kiro\\settings\\mcp.json",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "file",
+            "path": "$HOME/.kiro/settings/mcp.json",
+            "platforms": [
+              "linux",
+              "macos"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "medium"
+      },
+      "name": "Kiro MCP Settings",
+      "references": [
+        {
+          "name": "Analyzing TeamPCP's Supply Chain Attacks",
+          "url": "https://www.trendmicro.com/en_us/research/26/e/analyzing-teampcp-supply-chain-attacks.html"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "kiro",
+      "tags": [
+        "kiro",
+        "mcp"
+      ]
+    },
+    {
+      "artifact_types": [
+        "credential",
+        "configuration"
+      ],
       "category": "email",
       "credentials": {
         "types": [
@@ -3092,6 +4393,7 @@
         ]
       },
       "description": "msmtp configuration files can contain SMTP accounts, usernames, passwords, and password command references.\n",
+      "doc_path": "email/msmtp-config",
       "id": "email.msmtp-config",
       "impact": {
         "credential_access": true,
@@ -3161,6 +4463,7 @@
         ]
       },
       "description": "Postfix SASL password maps store relay authentication credentials.\n",
+      "doc_path": "email/postfix-sasl-passwords",
       "id": "email.postfix-sasl-passwords",
       "impact": {
         "credential_access": true,
@@ -3201,11 +4504,65 @@
     },
     {
       "artifact_types": [
+        "password-store",
+        "credential"
+      ],
+      "category": "email",
+      "credentials": {
+        "types": [
+          "saved-password"
+        ]
+      },
+      "description": "Thunderbird profile files can contain saved mail account credentials and key database material.\n",
+      "doc_path": "email/thunderbird-profile-credentials",
+      "id": "email.thunderbird.profile-credentials",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "paths": [
+          {
+            "kind": "glob",
+            "path": "%APPDATA%\\Thunderbird\\Profiles\\*\\logins.json",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "glob",
+            "path": "%APPDATA%\\Thunderbird\\Profiles\\*\\key4.db",
+            "platforms": [
+              "windows"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "high"
+      },
+      "name": "Thunderbird Profile Credentials",
+      "references": [
+        {
+          "name": "StrelaStealer Malware Analysis",
+          "url": "https://fortgale.com/blog/malware-analysis/strelastealer-malware-analysis-2/"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "thunderbird",
+      "tags": [
+        "thunderbird",
+        "email"
+      ]
+    },
+    {
+      "artifact_types": [
         "configuration",
         "credential"
       ],
       "category": "identity",
       "description": "LDAP client configuration files can reveal directory hosts, bind settings, TLS material, and authentication defaults.\n",
+      "doc_path": "identity/ldap-client-config",
       "id": "identity.ldap-client-config",
       "impact": {
         "discovery": true,
@@ -3276,6 +4633,7 @@
       ],
       "category": "identity",
       "description": "LDAP server configuration files can contain root DNs, password hashes, TLS material references, and directory access settings.\n",
+      "doc_path": "identity/ldap-server-config",
       "id": "identity.ldap-server-config",
       "impact": {
         "credential_access": true,
@@ -3334,6 +4692,7 @@
       ],
       "category": "infrastructure",
       "description": "Ansible vault files and related configuration may contain encrypted or referenced secrets.\n",
+      "doc_path": "cicd/ansible-vault",
       "id": "infrastructure.ansible.vault",
       "impact": {
         "credential_access": true,
@@ -3418,6 +4777,7 @@
         ]
       },
       "description": "Terraform variable definition files can contain provider inputs, credentials, or secret values used during infrastructure provisioning.\n",
+      "doc_path": "cicd/terraform-variable-files",
       "id": "infrastructure.terraform-variable-files",
       "impact": {
         "credential_access": true,
@@ -3494,6 +4854,7 @@
       ],
       "category": "infrastructure",
       "description": "Terraform state files can contain resource attributes, provider metadata, and secrets.\n",
+      "doc_path": "cicd/terraform-state",
       "id": "infrastructure.terraform.state",
       "impact": {
         "credential_access": true,
@@ -3564,6 +4925,7 @@
       ],
       "category": "kubernetes",
       "description": "Helm home directories can contain repository credentials, TLS files, chart cache data, and cluster-related configuration.\n",
+      "doc_path": "kubernetes/helm-directory",
       "id": "kubernetes.helm-directory",
       "impact": {
         "credential_access": true,
@@ -3617,6 +4979,7 @@
         ]
       },
       "description": "Kubernetes client configuration may contain cluster endpoints, client certificates, bearer tokens, or references to authentication material.\n",
+      "doc_path": "kubernetes/kubeconfig",
       "id": "kubernetes.kubeconfig",
       "impact": {
         "credential_access": true,
@@ -3700,6 +5063,7 @@
       ],
       "category": "kubernetes",
       "description": "Mounted Kubernetes service account CA certificates identify the cluster API trust root and support in-cluster API discovery.\n",
+      "doc_path": "kubernetes/service-account-ca-certificate",
       "id": "kubernetes.service-account-ca-certificate",
       "impact": {
         "discovery": true
@@ -3756,6 +5120,7 @@
       ],
       "category": "kubernetes",
       "description": "Mounted Kubernetes service account namespace files reveal the namespace used for in-cluster API requests.\n",
+      "doc_path": "kubernetes/service-account-namespace",
       "id": "kubernetes.service-account-namespace",
       "impact": {
         "discovery": true
@@ -3817,6 +5182,7 @@
         ]
       },
       "description": "Mounted Kubernetes service account tokens can authenticate workloads to the API server.\n",
+      "doc_path": "kubernetes/service-account-token",
       "id": "kubernetes.service-account-token",
       "impact": {
         "credential_access": true,
@@ -3865,6 +5231,65 @@
     },
     {
       "artifact_types": [
+        "credential",
+        "configuration"
+      ],
+      "category": "package-manager",
+      "credentials": {
+        "types": [
+          "access-token"
+        ]
+      },
+      "description": "Cargo registry credential files can contain tokens for publishing Rust crates or authenticating to private registries.\n",
+      "doc_path": "package-manager/cargo-credentials",
+      "id": "package-manager.cargo-credentials",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "content": {
+          "regex": [
+            "(?i)token\\s*="
+          ]
+        },
+        "paths": [
+          {
+            "kind": "file",
+            "path": "%USERPROFILE%\\.cargo\\credentials.toml",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "file",
+            "path": "$HOME/.cargo/credentials.toml",
+            "platforms": [
+              "linux",
+              "macos"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "high"
+      },
+      "name": "Cargo Registry Credentials",
+      "references": [
+        {
+          "name": "Analyzing TeamPCP's Supply Chain Attacks",
+          "url": "https://www.trendmicro.com/en_us/research/26/e/analyzing-teampcp-supply-chain-attacks.html"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "cargo",
+      "tags": [
+        "cargo",
+        "rust"
+      ]
+    },
+    {
+      "artifact_types": [
         "configuration",
         "credential"
       ],
@@ -3875,6 +5300,7 @@
         ]
       },
       "description": "Maven settings files can contain server credentials for package repositories.\n",
+      "doc_path": "package-manager/maven-settings",
       "id": "package-manager.maven-settings",
       "impact": {
         "credential_access": true
@@ -3934,6 +5360,7 @@
         ]
       },
       "description": "npm configuration files may contain registry tokens or scoped registry credentials.\n",
+      "doc_path": "package-manager/npmrc",
       "id": "package-manager.npmrc",
       "impact": {
         "credential_access": true
@@ -3994,6 +5421,7 @@
         ]
       },
       "description": "NuGet configuration can contain package source credentials.\n",
+      "doc_path": "package-manager/nuget-config",
       "id": "package-manager.nuget-config",
       "impact": {
         "credential_access": true
@@ -4052,6 +5480,7 @@
         ]
       },
       "description": "pip configuration files can include package index URLs with embedded credentials.\n",
+      "doc_path": "package-manager/pip-config",
       "id": "package-manager.pip-config",
       "impact": {
         "credential_access": true
@@ -4112,6 +5541,68 @@
         "credential",
         "configuration"
       ],
+      "category": "package-manager",
+      "credentials": {
+        "types": [
+          "password",
+          "api-token"
+        ]
+      },
+      "description": "PyPI configuration files can contain package publishing credentials and repository tokens.\n",
+      "doc_path": "package-manager/pypirc",
+      "id": "package-manager.pypirc",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "content": {
+          "contains": [
+            "username",
+            "password",
+            "repository"
+          ]
+        },
+        "paths": [
+          {
+            "kind": "file",
+            "path": "%USERPROFILE%\\.pypirc",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "file",
+            "path": "$HOME/.pypirc",
+            "platforms": [
+              "linux",
+              "macos"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "high"
+      },
+      "name": "PyPI Configuration",
+      "references": [
+        {
+          "name": "Analyzing TeamPCP's Supply Chain Attacks",
+          "url": "https://www.trendmicro.com/en_us/research/26/e/analyzing-teampcp-supply-chain-attacks.html"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "pypi",
+      "tags": [
+        "pypi",
+        "python"
+      ]
+    },
+    {
+      "artifact_types": [
+        "credential",
+        "configuration"
+      ],
       "category": "remote-access",
       "credentials": {
         "types": [
@@ -4119,6 +5610,7 @@
         ]
       },
       "description": "FileZilla saved-site files can contain FTP, FTPS, or SFTP connection details and saved passwords.\n",
+      "doc_path": "remote-access/filezilla-sites",
       "id": "remote-access.filezilla-sites",
       "impact": {
         "credential_access": true,
@@ -4147,6 +5639,20 @@
             "platforms": [
               "windows"
             ]
+          },
+          {
+            "kind": "file",
+            "path": "$HOME/.config/filezilla/recentservers.xml",
+            "platforms": [
+              "macos"
+            ]
+          },
+          {
+            "kind": "file",
+            "path": "$HOME/.config/filezilla/sitemanager.xml",
+            "platforms": [
+              "macos"
+            ]
           }
         ]
       },
@@ -4162,6 +5668,10 @@
         {
           "name": "Immortal Information Stealer",
           "url": "https://www.zscaler.com/blogs/research/immortal-information-stealer"
+        },
+        {
+          "name": "RustDoor and Koi Stealer for macOS",
+          "url": "https://unit42.paloaltonetworks.com/macos-malware-targets-crypto-sector/"
         }
       ],
       "schema_version": 1,
@@ -4185,6 +5695,7 @@
         ]
       },
       "description": "lftp startup files can contain bookmark, proxy, username, and password settings for remote file transfer services.\n",
+      "doc_path": "remote-access/lftp-config",
       "id": "remote-access.lftp-config",
       "impact": {
         "credential_access": true,
@@ -4254,6 +5765,7 @@
         ]
       },
       "description": "netrc files can store machine, login, password, and account entries used by command-line network clients.\n",
+      "doc_path": "remote-access/netrc",
       "id": "remote-access.netrc",
       "impact": {
         "credential_access": true,
@@ -4313,6 +5825,7 @@
         ]
       },
       "description": "Vault token files can contain reusable tokens for authenticating to Vault.\n",
+      "doc_path": "secret-manager/vault-token",
       "id": "secret-manager.vault-token",
       "impact": {
         "credential_access": true
@@ -4359,6 +5872,7 @@
       ],
       "category": "shell",
       "description": "Bash history files may contain credentials, tokens, connection strings, hostnames, internal paths, or other sensitive command data.\n",
+      "doc_path": "shell/bash-history",
       "id": "shell.bash-history",
       "impact": {
         "credential_access": true,
@@ -4401,6 +5915,7 @@
       ],
       "category": "shell",
       "description": "POSIX sh history files may contain credentials, tokens, connection strings, hostnames, internal paths, or other sensitive command data.\n",
+      "doc_path": "shell/sh-history",
       "id": "shell.sh-history",
       "impact": {
         "credential_access": true,
@@ -4437,6 +5952,7 @@
       ],
       "category": "shell",
       "description": "zsh history files may contain credentials, tokens, connection strings, hostnames, internal paths, or other sensitive command data.\n",
+      "doc_path": "shell/zsh-history",
       "id": "shell.zsh-history",
       "impact": {
         "credential_access": true,
@@ -4479,6 +5995,7 @@
       ],
       "category": "source-control",
       "description": "Git configuration can reveal identities, remotes, credential helpers, and URL rewrites.\n",
+      "doc_path": "source-control/git-config",
       "id": "source-control.git-config",
       "impact": {
         "discovery": true,
@@ -4532,6 +6049,7 @@
         ]
       },
       "description": "Git credential store files can contain usernames, passwords, or tokens for remotes.\n",
+      "doc_path": "source-control/git-credentials",
       "id": "source-control.git-credentials",
       "impact": {
         "credential_access": true,
@@ -4579,6 +6097,7 @@
       ],
       "category": "ssh",
       "description": "SSH authorized_keys files list public keys allowed to access an account.\n",
+      "doc_path": "ssh/authorized-keys",
       "id": "ssh.authorized-keys",
       "impact": {
         "discovery": true,
@@ -4626,6 +6145,7 @@
       ],
       "category": "ssh",
       "description": "SSH client configuration can identify hosts, users, proxy settings, and key paths.\n",
+      "doc_path": "ssh/config",
       "id": "ssh.config",
       "impact": {
         "discovery": true,
@@ -4678,6 +6198,7 @@
         ]
       },
       "description": "SSH host private keys authenticate servers and can enable host impersonation if copied to another system.\n",
+      "doc_path": "ssh/host-private-keys",
       "id": "ssh.host-private-keys",
       "impact": {
         "credential_access": true,
@@ -4729,6 +6250,7 @@
       ],
       "category": "ssh",
       "description": "SSH known_hosts files can reveal previously accessed hosts.\n",
+      "doc_path": "ssh/known-hosts",
       "id": "ssh.known-hosts",
       "impact": {
         "discovery": true
@@ -4780,6 +6302,7 @@
         ]
       },
       "description": "Private keys commonly used for SSH authentication.\n",
+      "doc_path": "ssh/private-keys",
       "id": "ssh.private-keys",
       "impact": {
         "credential_access": true,
@@ -4896,6 +6419,60 @@
     },
     {
       "artifact_types": [
+        "private-key",
+        "credential"
+      ],
+      "category": "ssh",
+      "credentials": {
+        "types": [
+          "private-key"
+        ]
+      },
+      "description": "PuTTY private key files can contain SSH private keys used for remote access.\n",
+      "doc_path": "ssh/putty-private-keys",
+      "id": "ssh.putty-private-keys",
+      "impact": {
+        "credential_access": true,
+        "remote_access": true
+      },
+      "match": {
+        "content": {
+          "contains": [
+            "PuTTY-User-Key-File"
+          ]
+        },
+        "paths": [
+          {
+            "kind": "glob",
+            "path": "**/*.ppk",
+            "platforms": [
+              "windows",
+              "linux",
+              "macos"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "high"
+      },
+      "name": "PuTTY Private Keys",
+      "references": [
+        {
+          "name": "Trickbot Updates Password Grabber Module",
+          "url": "https://unit42.paloaltonetworks.com/trickbot-updates-password-grabber-module/"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "putty",
+      "tags": [
+        "putty",
+        "ssh"
+      ]
+    },
+    {
+      "artifact_types": [
         "environment",
         "configuration",
         "credential"
@@ -4909,6 +6486,7 @@
         ]
       },
       "description": "System environment files can expose application secrets, API keys, and service connection strings.\n",
+      "doc_path": "system/environment-file",
       "id": "system.environment-file",
       "impact": {
         "credential_access": true
@@ -4947,10 +6525,63 @@
     },
     {
       "artifact_types": [
+        "password-store",
+        "credential",
+        "private-key"
+      ],
+      "category": "system",
+      "credentials": {
+        "types": [
+          "saved-password",
+          "private-key"
+        ]
+      },
+      "description": "The macOS login keychain database can contain saved passwords, certificates, keys, and application credentials.\n",
+      "doc_path": "system/macos-login-keychain",
+      "id": "system.macos-login-keychain",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "paths": [
+          {
+            "kind": "file",
+            "path": "$HOME/Library/Keychains/login.keychain-db",
+            "platforms": [
+              "macos"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "high"
+      },
+      "name": "macOS Login Keychain Database",
+      "references": [
+        {
+          "name": "Reversing Atomic macOS Stealer",
+          "url": "https://spycloud.com/blog/reverse-engineering-atomic-macos-stealer/"
+        },
+        {
+          "name": "Contagious Interview Malware SVG Steganography",
+          "url": "https://www.elastic.co/security-labs/contagious-interview-malware-svg-steganography"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "macos-keychain",
+      "tags": [
+        "macos",
+        "keychain"
+      ]
+    },
+    {
+      "artifact_types": [
         "configuration"
       ],
       "category": "system",
       "description": "Unix passwd files reveal local account names, user IDs, home directories, and login shells.\n",
+      "doc_path": "system/passwd-file",
       "id": "system.passwd-file",
       "impact": {
         "discovery": true
@@ -5000,6 +6631,7 @@
         ]
       },
       "description": "Unix shadow files contain local account password hashes and password aging metadata.\n",
+      "doc_path": "system/shadow-file",
       "id": "system.shadow-file",
       "impact": {
         "credential_access": true,
@@ -5044,6 +6676,7 @@
       ],
       "category": "system",
       "description": "SSH authentication logs can reveal accepted login events, usernames, source addresses, and remote access patterns.\n",
+      "doc_path": "system/ssh-auth-logs",
       "id": "system.ssh-auth-logs",
       "impact": {
         "discovery": true
@@ -5086,6 +6719,102 @@
     },
     {
       "artifact_types": [
+        "credential",
+        "configuration",
+        "private-key"
+      ],
+      "category": "vpn",
+      "credentials": {
+        "types": [
+          "private-key",
+          "password"
+        ]
+      },
+      "description": "OpenVPN configuration files can contain client certificates, private-key references, embedded keys, or password-file references.\n",
+      "doc_path": "vpn/openvpn-config",
+      "id": "vpn.openvpn-config",
+      "impact": {
+        "credential_access": true,
+        "remote_access": true
+      },
+      "match": {
+        "content": {
+          "contains": [
+            "auth-user-pass",
+            "<key>",
+            "pkcs12"
+          ]
+        },
+        "paths": [
+          {
+            "kind": "glob",
+            "path": "%USERPROFILE%\\OpenVPN\\config\\*.ovpn",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "glob",
+            "path": "%PROGRAMFILES%\\OpenVPN\\config\\*.ovpn",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "glob",
+            "path": "/etc/openvpn/**/*.conf",
+            "platforms": [
+              "linux"
+            ]
+          },
+          {
+            "kind": "glob",
+            "path": "/etc/openvpn/**/*.ovpn",
+            "platforms": [
+              "linux"
+            ]
+          },
+          {
+            "kind": "glob",
+            "path": "$HOME/.openvpn/*.ovpn",
+            "platforms": [
+              "linux",
+              "macos"
+            ]
+          },
+          {
+            "kind": "directory",
+            "path": "$HOME/Library/Application Support/OpenVPN Connect/profiles/",
+            "platforms": [
+              "macos"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "medium"
+      },
+      "name": "OpenVPN Configuration",
+      "references": [
+        {
+          "name": "Trickbot Updates Password Grabber Module",
+          "url": "https://unit42.paloaltonetworks.com/trickbot-updates-password-grabber-module/"
+        },
+        {
+          "name": "RustDoor and Koi Stealer for macOS",
+          "url": "https://unit42.paloaltonetworks.com/macos-malware-targets-crypto-sector/"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "high",
+      "subcategory": "openvpn",
+      "tags": [
+        "openvpn",
+        "vpn"
+      ]
+    },
+    {
+      "artifact_types": [
         "configuration",
         "credential",
         "private-key"
@@ -5097,6 +6826,7 @@
         ]
       },
       "description": "WireGuard configuration files commonly contain interface private keys and peer connection details.\n",
+      "doc_path": "vpn/wireguard-config",
       "id": "vpn.wireguard-config",
       "impact": {
         "credential_access": true,

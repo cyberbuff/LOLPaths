@@ -1,0 +1,30 @@
+schema_version: 1
+id: crypto-wallet.wasabi.wallets
+name: Wasabi Wallet Files
+description: >
+  Wasabi wallet files can contain encrypted wallet metadata and private key
+  material.
+category: crypto-wallet
+subcategory: wasabi
+artifact_types:
+  - wallet
+  - credential
+sensitivity: critical
+match:
+  paths:
+    - path: '%APPDATA%\WalletWasabi\Client\Wallets\*.json'
+      kind: glob
+      platforms: [windows]
+credentials:
+  types:
+    - private-key
+impact:
+  credential_access: true
+tags:
+  - wallet
+  - wasabi
+references:
+  - name: Stealc Infostealer Analysis
+    url: https://blog.sekoia.io/stealc-a-copycat-of-vidar-and-raccoon-infostealers-gaining-in-popularity-part-1/
+metadata:
+  confidence: high

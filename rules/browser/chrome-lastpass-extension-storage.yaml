@@ -1,0 +1,33 @@
+schema_version: 1
+id: browser.chrome.lastpass-extension-storage
+name: Chrome LastPass Extension Storage
+description: >
+  Chrome extension local storage for LastPass can contain password-manager
+  vault state and session artifacts.
+category: browser
+subcategory: chrome
+artifact_types:
+  - password-store
+  - credential
+  - session
+sensitivity: critical
+match:
+  paths:
+    - path: "$HOME/Library/Application Support/Google/Chrome/Default/Local Extension Settings/aeblfdkhhhdcdjpifhhbdiojplfjncoa/"
+      kind: directory
+      platforms: [macos]
+credentials:
+  types:
+    - password-manager-vault
+    - session-token
+impact:
+  credential_access: true
+tags:
+  - chrome
+  - lastpass
+  - password-manager
+references:
+  - name: RustDoor and Koi Stealer for macOS
+    url: https://unit42.paloaltonetworks.com/macos-malware-targets-crypto-sector/
+metadata:
+  confidence: high

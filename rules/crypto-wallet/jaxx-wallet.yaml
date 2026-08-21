@@ -1,0 +1,33 @@
+schema_version: 1
+id: crypto-wallet.jaxx.wallets
+name: Jaxx Wallet Storage
+description: >
+  Jaxx Desktop local storage and IndexedDB directories can contain wallet state
+  and secret material.
+category: crypto-wallet
+subcategory: jaxx
+artifact_types:
+  - wallet
+  - credential
+sensitivity: critical
+match:
+  paths:
+    - path: '%APPDATA%\jaxx\Local Storage\file__0.localstorage'
+      kind: file
+      platforms: [windows]
+    - path: '%APPDATA%\com.liberty.jaxx\IndexedDB\file__0.indexeddb.leveldb\'
+      kind: directory
+      platforms: [windows]
+credentials:
+  types:
+    - private-key
+impact:
+  credential_access: true
+tags:
+  - wallet
+  - jaxx
+references:
+  - name: Stealc Infostealer Analysis
+    url: https://blog.sekoia.io/stealc-a-copycat-of-vidar-and-raccoon-infostealers-gaining-in-popularity-part-1/
+metadata:
+  confidence: high

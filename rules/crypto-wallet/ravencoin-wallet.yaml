@@ -1,0 +1,30 @@
+schema_version: 1
+id: crypto-wallet.ravencoin.wallets
+name: Ravencoin Core Wallet Directory
+description: >
+  Ravencoin Core data directories can contain wallet databases and private key
+  material.
+category: crypto-wallet
+subcategory: ravencoin
+artifact_types:
+  - wallet
+  - credential
+sensitivity: critical
+match:
+  paths:
+    - path: '%APPDATA%\Raven\*wallet*.dat'
+      kind: glob
+      platforms: [windows]
+credentials:
+  types:
+    - private-key
+impact:
+  credential_access: true
+tags:
+  - wallet
+  - ravencoin
+references:
+  - name: Stealc Infostealer Analysis
+    url: https://blog.sekoia.io/stealc-a-copycat-of-vidar-and-raccoon-infostealers-gaining-in-popularity-part-1/
+metadata:
+  confidence: high

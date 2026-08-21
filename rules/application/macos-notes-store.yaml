@@ -1,0 +1,27 @@
+schema_version: 1
+id: application.macos-notes-store
+name: macOS Notes Store
+description: >
+  Apple Notes local storage can contain copied secrets, recovery codes, and
+  credential notes.
+category: application
+subcategory: macos-notes
+artifact_types:
+  - database
+  - credential
+sensitivity: high
+match:
+  paths:
+    - path: "$HOME/Library/Containers/com.apple.Notes/Data/Library/Notes/"
+      kind: directory
+      platforms: [macos]
+impact:
+  credential_access: true
+tags:
+  - macos
+  - notes
+references:
+  - name: RustDoor and Koi Stealer for macOS
+    url: https://unit42.paloaltonetworks.com/macos-malware-targets-crypto-sector/
+metadata:
+  confidence: medium

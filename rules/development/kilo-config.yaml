@@ -1,0 +1,30 @@
+schema_version: 1
+id: development.kilo-config
+name: Kilo Code Configuration
+description: >
+  Kilo Code configuration can contain AI coding tool credentials and local
+  integration secrets.
+category: development
+subcategory: kilo
+artifact_types:
+  - credential
+  - configuration
+sensitivity: critical
+match:
+  paths:
+    - path: "$HOME/.config/kilo/config.json"
+      kind: file
+      platforms: [linux, macos]
+credentials:
+  types:
+    - api-key
+    - access-token
+impact:
+  credential_access: true
+tags:
+  - kilo
+references:
+  - name: "How TeamPCP's Python Toolkit Survives a C2 Takedown"
+    url: https://hunt.io/blog/teampcp-python-toolkit-firescale-github-c2-takedown
+metadata:
+  confidence: high

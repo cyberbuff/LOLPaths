@@ -17,12 +17,12 @@ Outputs:
 - `generated/macos.txt`
 - `docs/public/api/rules.json`
 - `docs/public/api/stats.json`
-- `docs/content/docs/*.mdx`
+- `docs/content/docs/<rule path>.mdx`
 
 Platform files contain only paths for that platform. `docs/public/api/rules.json`
 contains the complete normalized rule database.
 
-The docs API and rule pages mirror the LOAS docs pattern: source YAML produces
-public API JSON and documentation content pages.
+The docs API and rule pages mirror the rule tree: source YAML produces public
+API JSON and documentation content pages under matching category folders.
 
 Do not edit generated files manually.

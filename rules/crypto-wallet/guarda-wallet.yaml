@@ -1,0 +1,30 @@
+schema_version: 1
+id: crypto-wallet.guarda.wallets
+name: Guarda Wallet Storage
+description: >
+  Guarda desktop wallet local storage can contain wallet state and secret
+  material.
+category: crypto-wallet
+subcategory: guarda
+artifact_types:
+  - wallet
+  - credential
+sensitivity: critical
+match:
+  paths:
+    - path: '%APPDATA%\Guarda\Local Storage\leveldb\'
+      kind: directory
+      platforms: [windows]
+credentials:
+  types:
+    - private-key
+impact:
+  credential_access: true
+tags:
+  - wallet
+  - guarda
+references:
+  - name: Akira Stealer Technical Analysis
+    url: https://www.glueckkanja.com/en/posts/2025-06-16-quiet-breach
+metadata:
+  confidence: high
