@@ -15,9 +15,6 @@ export default async function HomePage() {
       <section className="path-grid relative px-6 py-20 sm:px-10 lg:px-16">
         <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
           <div>
-            <p className="mb-4 font-mono text-sm uppercase text-fd-primary">
-              YAML-first sensitive path intelligence
-            </p>
             <h1 className="max-w-3xl text-5xl font-semibold leading-tight tracking-normal sm:text-6xl">
               LOLPaths maps where sensitive artifacts live.
             </h1>
