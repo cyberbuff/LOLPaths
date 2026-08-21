@@ -2159,9 +2159,60 @@
         "paths": [
           {
             "kind": "file",
-            "path": "%USERPROFILE%\\.my.cnf",
+            "path": "%WINDIR%\\my.ini",
             "platforms": [
               "windows"
+            ]
+          },
+          {
+            "kind": "file",
+            "path": "%WINDIR%\\my.cnf",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "file",
+            "path": "C:\\my.ini",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "file",
+            "path": "C:\\my.cnf",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "file",
+            "path": "C:\\ProgramData\\MySQL\\MySQL Server 8.4\\my.ini",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "file",
+            "path": "%APPDATA%\\MySQL\\.mylogin.cnf",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "file",
+            "path": "/etc/my.cnf",
+            "platforms": [
+              "linux",
+              "macos"
+            ]
+          },
+          {
+            "kind": "file",
+            "path": "/etc/mysql/my.cnf",
+            "platforms": [
+              "linux",
+              "macos"
             ]
           },
           {
@@ -2174,9 +2225,10 @@
           },
           {
             "kind": "file",
-            "path": "/etc/mysql/my.cnf",
+            "path": "$HOME/.mylogin.cnf",
             "platforms": [
-              "linux"
+              "linux",
+              "macos"
             ]
           }
         ]

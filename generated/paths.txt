@@ -64,6 +64,8 @@ $HOME/.msmtprc	linux	file	email.msmtp-config
 $HOME/.msmtprc	macos	file	email.msmtp-config
 $HOME/.my.cnf	linux	file	database.mysql.config
 $HOME/.my.cnf	macos	file	database.mysql.config
+$HOME/.mylogin.cnf	linux	file	database.mysql.config
+$HOME/.mylogin.cnf	macos	file	database.mysql.config
 $HOME/.mysql_history	linux	file	shell.history
 $HOME/.mysql_history	macos	file	shell.history
 $HOME/.netrc	linux	file	remote-access.netrc
@@ -146,6 +148,7 @@ $XDG_CONFIG_HOME/pip/pip.conf	macos	file	package-manager.pip-config
 %APPDATA%\Electrum\wallets\	windows	directory	crypto-wallet.electrum.wallets
 %APPDATA%\Litecoin\	windows	directory	crypto-wallet.litecoin.wallets
 %APPDATA%\Litecoin\wallets\	windows	directory	crypto-wallet.litecoin.wallets
+%APPDATA%\MySQL\.mylogin.cnf	windows	file	database.mysql.config
 %APPDATA%\NuGet\NuGet.Config	windows	file	package-manager.nuget-config
 %APPDATA%\atlascli\config.toml	windows	file	cloud.mongodb-atlas.cli-config
 %APPDATA%\gcloud\	windows	directory	cloud.gcp.gcloud-config
@@ -164,7 +167,6 @@ $XDG_CONFIG_HOME/pip/pip.conf	macos	file	package-manager.pip-config
 %USERPROFILE%\.gitconfig	windows	file	source-control.git-config
 %USERPROFILE%\.kube\config	windows	file	kubernetes.kubeconfig
 %USERPROFILE%\.m2\settings.xml	windows	file	package-manager.maven-settings
-%USERPROFILE%\.my.cnf	windows	file	database.mysql.config
 %USERPROFILE%\.netrc	windows	file	remote-access.netrc
 %USERPROFILE%\.npmrc	windows	file	package-manager.npmrc
 %USERPROFILE%\.ssh\authorized_keys	windows	file	ssh.authorized-keys
@@ -176,6 +178,8 @@ $XDG_CONFIG_HOME/pip/pip.conf	macos	file	package-manager.pip-config
 %USERPROFILE%\.ssh\id_rsa	windows	file	ssh.private-keys
 %USERPROFILE%\.ssh\known_hosts	windows	file	ssh.known-hosts
 %USERPROFILE%\.vault-token	windows	file	secret-manager.vault-token
+%WINDIR%\my.cnf	windows	file	database.mysql.config
+%WINDIR%\my.ini	windows	file	database.mysql.config
 **/*-keypair.json	linux	glob	crypto-wallet.solana.keypair-files
 **/*-keypair.json	macos	glob	crypto-wallet.solana.keypair-files
 **/*-keypair.json	windows	glob	crypto-wallet.solana.keypair-files
@@ -271,7 +275,10 @@ $XDG_CONFIG_HOME/pip/pip.conf	macos	file	package-manager.pip-config
 /etc/mongosh.conf	linux	file	database.mongodb-shell-global-config
 /etc/mongosh.conf	macos	file	database.mongodb-shell-global-config
 /etc/msmtprc	linux	file	email.msmtp-config
+/etc/my.cnf	linux	file	database.mysql.config
+/etc/my.cnf	macos	file	database.mysql.config
 /etc/mysql/my.cnf	linux	file	database.mysql.config
+/etc/mysql/my.cnf	macos	file	database.mysql.config
 /etc/openldap/ldap.conf	linux	file	identity.ldap-client-config
 /etc/openldap/slapd.conf	linux	file	identity.ldap-server-config
 /etc/passwd	linux	file	system.passwd-file
@@ -301,5 +308,8 @@ $XDG_CONFIG_HOME/pip/pip.conf	macos	file	package-manager.pip-config
 /var/run/secrets/kubernetes.io/serviceaccount/namespace	linux	file	kubernetes.service-account-namespace
 /var/run/secrets/kubernetes.io/serviceaccount/token	linux	file	kubernetes.service-account-token
 /var/secrets/**	linux	glob	containers.runtime-secret-files
+C:\ProgramData\MySQL\MySQL Server 8.4\my.ini	windows	file	database.mysql.config
 C:\ProgramData\bitmonero\	windows	directory	crypto-wallet.monero.wallets
+C:\my.cnf	windows	file	database.mysql.config
+C:\my.ini	windows	file	database.mysql.config
 mongosh.cfg	windows	file	database.mongodb-shell-global-config

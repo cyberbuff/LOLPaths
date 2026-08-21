@@ -2,6 +2,7 @@
 %APPDATA%\Electrum\wallets\
 %APPDATA%\Litecoin\
 %APPDATA%\Litecoin\wallets\
+%APPDATA%\MySQL\.mylogin.cnf
 %APPDATA%\NuGet\NuGet.Config
 %APPDATA%\atlascli\config.toml
 %APPDATA%\gcloud\
@@ -20,7 +21,6 @@
 %USERPROFILE%\.gitconfig
 %USERPROFILE%\.kube\config
 %USERPROFILE%\.m2\settings.xml
-%USERPROFILE%\.my.cnf
 %USERPROFILE%\.netrc
 %USERPROFILE%\.npmrc
 %USERPROFILE%\.ssh\authorized_keys
@@ -32,6 +32,8 @@
 %USERPROFILE%\.ssh\id_rsa
 %USERPROFILE%\.ssh\known_hosts
 %USERPROFILE%\.vault-token
+%WINDIR%\my.cnf
+%WINDIR%\my.ini
 **/*-keypair.json
 **/*.auto.tfvars
 **/*.auto.tfvars.json
@@ -59,5 +61,8 @@
 **/terraform.tfstate.backup
 **/terraform.tfvars
 **/terraform.tfvars.json
+C:\ProgramData\MySQL\MySQL Server 8.4\my.ini
 C:\ProgramData\bitmonero\
+C:\my.cnf
+C:\my.ini
 mongosh.cfg

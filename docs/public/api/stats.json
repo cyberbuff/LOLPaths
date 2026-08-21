@@ -1,11 +1,12 @@
 {
-  "categories": 1,
-  "critical": 1,
-  "path_matchers": 1,
+  "categories": 20,
+  "critical": 33,
+  "path_matchers": 189,
   "platforms": [
     "linux",
-    "macos"
+    "macos",
+    "windows"
   ],
-  "rules": 1,
+  "rules": 72,
   "schema_version": 1
 }

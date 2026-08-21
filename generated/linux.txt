@@ -34,6 +34,7 @@ $HOME/.mongorc.js
 $HOME/.mongoshrc.js
 $HOME/.msmtprc
 $HOME/.my.cnf
+$HOME/.mylogin.cnf
 $HOME/.mysql_history
 $HOME/.netrc
 $HOME/.npmrc
@@ -111,6 +112,7 @@ $XDG_CONFIG_HOME/pip/pip.conf
 /etc/letsencrypt/live/**/*.pem
 /etc/mongosh.conf
 /etc/msmtprc
+/etc/my.cnf
 /etc/mysql/my.cnf
 /etc/openldap/ldap.conf
 /etc/openldap/slapd.conf

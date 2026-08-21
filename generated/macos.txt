@@ -29,6 +29,7 @@ $HOME/.mongorc.js
 $HOME/.mongoshrc.js
 $HOME/.msmtprc
 $HOME/.my.cnf
+$HOME/.mylogin.cnf
 $HOME/.mysql_history
 $HOME/.netrc
 $HOME/.npmrc
@@ -97,6 +98,8 @@ $XDG_CONFIG_HOME/pip/pip.conf
 **/terraform.tfvars
 **/terraform.tfvars.json
 /etc/mongosh.conf
+/etc/my.cnf
+/etc/mysql/my.cnf
 /etc/passwd
 /opt/homebrew/etc/mongosh.conf
 /usr/local/etc/mongosh.conf
