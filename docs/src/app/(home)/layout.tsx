@@ -12,8 +12,8 @@ export default function Layout({ children }: { children: ReactNode }) {
           url: "/docs",
         },
         {
-          text: "Rule Format",
-          url: "/docs/rule-format",
+          text: "Rules",
+          url: "/docs/rules",
         },
         {
           text: "Contributing",

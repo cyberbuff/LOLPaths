@@ -35,10 +35,10 @@ export default async function HomePage() {
                 <ArrowRight className="size-4" />
               </Link>
               <Link
-                href="/docs/rule-format"
+                href="/docs/rules"
                 className="inline-flex items-center gap-2 rounded-md border border-fd-border px-4 py-2 text-sm font-medium"
               >
-                Rule format
+                View Rules
               </Link>
             </div>
           </div>
