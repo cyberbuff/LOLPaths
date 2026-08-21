@@ -1,6 +1,6 @@
 ---
 title: What is LOLPaths?
-description: A YAML-first catalog of sensitive filesystem artifacts for defensive security teams.
+description: A catalog of sensitive filesystem artifacts for defensive security teams.
 icon: CircleQuestionMark
 ---
 
@@ -15,16 +15,16 @@ The primary source of truth is YAML. Generated text and JSON artifacts are
 derived from those rules for tools that do not want to parse YAML directly.
 
 <Folder name="lolpaths" defaultOpen>
-  <Folder name="rules" defaultOpen>
-    <File name="cloud/aws/credentials.yaml" />
-    <File name="ssh/private-keys.yaml" />
-    <File name="kubernetes/kubeconfig.yaml" />
-  </Folder>
-  <Folder name="generated" defaultOpen>
-    <File name="windows.txt" />
-    <File name="linux.txt" />
-    <File name="macos.txt" />
-  </Folder>
+	<Folder name="rules" defaultOpen>
+		<File name="cloud/aws/credentials.yaml" />
+		<File name="ssh/private-keys.yaml" />
+		<File name="kubernetes/kubeconfig.yaml" />
+	</Folder>
+	<Folder name="generated" defaultOpen>
+		<File name="windows.txt" />
+		<File name="linux.txt" />
+		<File name="macos.txt" />
+	</Folder>
 </Folder>
 
 ## Use Cases
