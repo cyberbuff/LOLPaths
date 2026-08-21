@@ -22,10 +22,8 @@ def generate_outputs(
     entries = sorted(
         _path_entries(rules), key=lambda item: (item["path"], item["platform"], item["rule_id"])
     )
-    _write_paths(output_dir / "paths.txt", entries)
     for platform in PLATFORMS:
         _write_platform(output_dir / f"{platform}.txt", entries, platform)
-    _write_rules_json(output_dir / "rules.json", rules)
     if docs_dir is not None:
         _write_docs_outputs(docs_dir, rules, entries)
 
@@ -44,13 +42,6 @@ def _path_entries(rules: list[dict[str, Any]]) -> list[dict[str, str]]:
                     "name": rule["name"],
                 }
     return list(entries.values())
-
-
-def _write_paths(path: Path, entries: list[dict[str, str]]) -> None:
-    lines = [HEADER]
-    for entry in entries:
-        lines.append(f"{entry['path']}\t{entry['platform']}\t{entry['kind']}\t{entry['rule_id']}\n")
-    path.write_text("".join(lines), encoding="utf-8")
 
 
 def _write_platform(path: Path, entries: list[dict[str, str]], platform: str) -> None:

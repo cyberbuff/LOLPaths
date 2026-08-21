@@ -61,17 +61,11 @@ match:
     second = {path.name: path.read_text(encoding="utf-8") for path in output_dir.iterdir()}
 
     assert first == second
-    assert "sample-credentials" in first["paths.txt"]
+    assert set(first) == {"linux.txt", "macos.txt", "windows.txt"}
     assert "windows-sample-glob" in first["windows.txt"]
     assert "unix-sample-glob" in first["linux.txt"]
     assert "unix-sample-glob" in first["macos.txt"]
     assert "windows-sample-glob" not in first["linux.txt"]
-
-    database = json.loads(first["rules.json"])
-    assert [rule["id"] for rule in database["rules"]] == [
-        "application.sample-directory",
-        "application.sample-file",
-    ]
 
 
 def test_generator_writes_docs_api_and_rule_pages(tmp_path: Path) -> None:

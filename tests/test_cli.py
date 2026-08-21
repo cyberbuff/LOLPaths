@@ -54,7 +54,8 @@ def test_validate_and_generate_commands(tmp_path: Path, capsys: CaptureFixture[s
     assert validate_code == 0
     assert generate_code == 0
     assert "application.sample-secret" in output
-    assert (generated_dir / "rules.json").exists()
+    assert (generated_dir / "linux.txt").exists()
+    assert not (generated_dir / "rules.json").exists()
 
 
 def test_list_and_show_commands_filter_rules(tmp_path: Path, capsys: CaptureFixture[str]) -> None:
