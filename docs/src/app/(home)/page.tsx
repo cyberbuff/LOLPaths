@@ -46,7 +46,7 @@ export default async function HomePage() {
           <div className="rounded-lg border border-fd-border bg-fd-background/80 p-5 shadow-2xl shadow-black/20 backdrop-blur">
             <div className="mb-4 flex items-center justify-between border-b border-fd-border pb-3">
               <span className="font-mono text-sm text-fd-muted-foreground">
-                generated/rules.json
+                public/api/rules.json
               </span>
               <Database className="size-4 text-fd-primary" />
             </div>

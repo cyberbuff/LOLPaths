@@ -80,11 +80,9 @@ literal strings or regexes.
 
 Generated files are derived from YAML and should not be edited manually:
 
-- `generated/paths.txt`
 - `generated/windows.txt`
 - `generated/linux.txt`
 - `generated/macos.txt`
-- `generated/rules.json`
 - `docs/public/api/rules.json`
 - `docs/public/api/stats.json`
 - `docs/content/docs/rules/*.mdx`

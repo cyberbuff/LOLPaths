@@ -12,18 +12,15 @@ uv run lolpaths generate
 
 Outputs:
 
-- `generated/paths.txt`
 - `generated/windows.txt`
 - `generated/linux.txt`
 - `generated/macos.txt`
-- `generated/rules.json`
 - `docs/public/api/rules.json`
 - `docs/public/api/stats.json`
 - `docs/content/docs/*.mdx`
 
-`paths.txt` includes path, platform, kind, and rule ID as tab-separated rows.
-Platform files contain only paths for that platform. `rules.json` contains the
-complete normalized rule database.
+Platform files contain only paths for that platform. `docs/public/api/rules.json`
+contains the complete normalized rule database.
 
 The docs API and rule pages mirror the LOAS docs pattern: source YAML produces
 public API JSON and documentation content pages.

@@ -10,4 +10,4 @@ bun run build
 ```
 
 The MDX source lives in `content/docs`. The homepage reads catalog counts from
-`../generated/rules.json`.
+`public/api/rules.json`.
