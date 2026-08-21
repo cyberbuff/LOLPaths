@@ -1,0 +1,31 @@
+schema_version: 1
+id: crypto-wallet.solana.config
+name: Solana Config Directory
+description: >
+  Solana CLI configuration directories can contain keypair files and cluster
+  configuration.
+category: crypto-wallet
+subcategory: solana
+artifact_types:
+  - wallet
+  - credential
+  - configuration
+sensitivity: critical
+match:
+  paths:
+    - path: "$HOME/.config/solana/"
+      kind: directory
+      platforms: [linux, macos]
+credentials:
+  types:
+    - private-key
+impact:
+  credential_access: true
+tags:
+  - wallet
+  - solana
+references:
+  - name: Solana CLI
+    url: https://solana.com/docs/intro/installation/solana-cli-basics
+metadata:
+  confidence: medium

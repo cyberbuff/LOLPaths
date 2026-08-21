@@ -1,0 +1,28 @@
+schema_version: 1
+id: ssh.authorized-keys
+name: SSH Authorized Keys
+description: >
+  SSH authorized_keys files list public keys allowed to access an account.
+category: ssh
+artifact_types:
+  - configuration
+sensitivity: medium
+match:
+  paths:
+    - path: '%USERPROFILE%\.ssh\authorized_keys'
+      kind: file
+      platforms: [windows]
+    - path: "$HOME/.ssh/authorized_keys"
+      kind: file
+      platforms: [linux, macos]
+impact:
+  discovery: true
+  remote_access: true
+tags:
+  - ssh
+  - authentication
+references:
+  - name: sshd
+    url: https://man.openbsd.org/sshd.8
+metadata:
+  confidence: high

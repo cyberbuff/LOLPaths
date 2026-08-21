@@ -1,0 +1,36 @@
+schema_version: 1
+id: package-manager.npmrc
+name: npm Configuration
+description: >
+  npm configuration files may contain registry tokens or scoped registry credentials.
+category: package-manager
+subcategory: npm
+artifact_types:
+  - credential
+  - configuration
+sensitivity: critical
+match:
+  paths:
+    - path: '%USERPROFILE%\.npmrc'
+      kind: file
+      platforms: [windows]
+    - path: "$HOME/.npmrc"
+      kind: file
+      platforms: [linux, macos]
+  content:
+    regex:
+      - '(?i)_authToken\s*='
+      - '(?i)//[^/]+/:_authToken='
+credentials:
+  types:
+    - access-token
+impact:
+  credential_access: true
+tags:
+  - npm
+  - package-manager
+references:
+  - name: npmrc
+    url: https://docs.npmjs.com/cli/v10/configuring-npm/npmrc/
+metadata:
+  confidence: high

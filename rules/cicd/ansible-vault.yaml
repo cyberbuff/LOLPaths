@@ -1,0 +1,41 @@
+schema_version: 1
+id: infrastructure.ansible.vault
+name: Ansible Vault and Inventory Secrets
+description: >
+  Ansible vault files and related configuration may contain encrypted or referenced secrets.
+category: infrastructure
+subcategory: ansible
+artifact_types:
+  - password-store
+  - configuration
+sensitivity: high
+match:
+  paths:
+    - path: "$HOME/.ansible/"
+      kind: directory
+      platforms: [linux, macos]
+    - path: "**/group_vars/*.y?ml"
+      kind: glob
+      platforms: [windows, linux, macos]
+    - path: "**/host_vars/*.y?ml"
+      kind: glob
+      platforms: [windows, linux, macos]
+    - path: "**/ansible.cfg"
+      kind: glob
+      platforms: [windows, linux, macos]
+  content:
+    contains:
+      - "$ANSIBLE_VAULT"
+      - vault_password_file
+impact:
+  credential_access: true
+  discovery: true
+tags:
+  - ansible
+references:
+  - name: Ansible Vault Guide
+    url: https://docs.ansible.com/projects/ansible/latest/vault_guide/index.html
+  - name: Ansible Inventory Guide
+    url: https://docs.ansible.com/projects/ansible/latest/inventory_guide/intro_inventory.html
+metadata:
+  confidence: medium

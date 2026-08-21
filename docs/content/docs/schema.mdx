@@ -1,0 +1,33 @@
+---
+title: Schema
+description: The JSON Schema contract for LOLPaths rules.
+icon: Braces
+---
+
+The canonical structural schema lives at:
+
+```text
+schema/lolpaths.schema.json
+```
+
+It validates:
+
+- Required fields
+- Rule ID format
+- Categories
+- Sensitivity values
+- Path kinds
+- Platform arrays
+- Metadata shape
+- Content matcher structure
+
+The validator adds checks that JSON Schema cannot express cleanly, including
+duplicate rule IDs and malformed content regexes.
+
+Rule IDs use lowercase dot-separated identifiers:
+
+```text
+cloud.aws.credentials
+ssh.private-keys
+kubernetes.service-account-token
+```

@@ -1,0 +1,40 @@
+schema_version: 1
+id: package-manager.pip-config
+name: pip Configuration
+description: >
+  pip configuration files can include package index URLs with embedded credentials.
+category: package-manager
+subcategory: pip
+artifact_types:
+  - configuration
+  - credential
+sensitivity: high
+match:
+  paths:
+    - path: '%APPDATA%\pip\pip.ini'
+      kind: file
+      platforms: [windows]
+    - path: "$HOME/.pip/pip.conf"
+      kind: file
+      platforms: [linux, macos]
+    - path: "$XDG_CONFIG_HOME/pip/pip.conf"
+      kind: file
+      platforms: [linux, macos]
+  content:
+    contains:
+      - index-url
+      - extra-index-url
+credentials:
+  types:
+    - password
+    - access-token
+impact:
+  credential_access: true
+tags:
+  - pip
+  - python
+references:
+  - name: pip Configuration
+    url: https://pip.pypa.io/en/stable/topics/configuration/
+metadata:
+  confidence: medium

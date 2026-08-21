@@ -1,0 +1,51 @@
+schema_version: 1
+id: cloud.mongodb-atlas.cli-config
+name: MongoDB Atlas CLI Config
+description: >
+  MongoDB Atlas CLI configuration profiles can contain Atlas project IDs,
+  organization IDs, access tokens, refresh tokens, and API keys.
+category: cloud
+subcategory: mongodb-atlas
+artifact_types:
+  - credential
+  - configuration
+sensitivity: critical
+match:
+  paths:
+    - path: '%APPDATA%\atlascli\config.toml'
+      kind: file
+      platforms: [windows]
+    - path: "$HOME/Library/Application Support/atlascli/config.toml"
+      kind: file
+      platforms: [macos]
+    - path: "$XDG_CONFIG_HOME/atlascli/config.toml"
+      kind: file
+      platforms: [linux]
+    - path: "$HOME/.config/atlascli/config.toml"
+      kind: file
+      platforms: [linux]
+  content:
+    contains:
+      - access_token
+      - refresh_token
+      - private_api_key
+      - public_api_key
+      - project_id
+      - org_id
+credentials:
+  types:
+    - access-token
+    - refresh-token
+    - api-key
+impact:
+  credential_access: true
+  cloud_access: true
+tags:
+  - mongodb-atlas
+  - atlas-cli
+  - cloud
+references:
+  - name: Atlas CLI Save Connection Settings
+    url: https://www.mongodb.com/docs/atlas/cli/current/atlas-cli-save-connection-settings/
+metadata:
+  confidence: high

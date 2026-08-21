@@ -1,0 +1,32 @@
+schema_version: 1
+id: cicd.jenkinsfile.config
+name: Jenkinsfile Pipeline Configuration
+description: >
+  Jenkinsfile pipeline definitions can reveal build stages, deployment logic,
+  credential bindings, and secret references.
+category: cicd
+subcategory: jenkins
+artifact_types:
+  - configuration
+sensitivity: medium
+match:
+  paths:
+    - path: "**/Jenkinsfile"
+      kind: glob
+      platforms: [windows, linux, macos]
+  content:
+    contains:
+      - pipeline
+      - stages
+      - credentials
+impact:
+  discovery: true
+  source_code_access: true
+tags:
+  - jenkins
+  - cicd
+references:
+  - name: Jenkins Pipeline
+    url: https://www.jenkins.io/doc/book/pipeline/
+metadata:
+  confidence: high

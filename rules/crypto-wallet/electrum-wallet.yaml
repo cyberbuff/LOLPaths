@@ -1,0 +1,28 @@
+schema_version: 1
+id: crypto-wallet.electrum.wallets
+name: Electrum Wallet Files
+description: >
+  Electrum wallet files are sensitive wallet artifacts and should be protected.
+category: crypto-wallet
+subcategory: electrum
+artifact_types:
+  - wallet
+sensitivity: critical
+match:
+  paths:
+    - path: '%APPDATA%\Electrum\wallets\'
+      kind: directory
+      platforms: [windows]
+    - path: "$HOME/.electrum/wallets/"
+      kind: directory
+      platforms: [linux, macos]
+impact:
+  credential_access: true
+tags:
+  - wallet
+  - electrum
+references:
+  - name: Electrum FAQ
+    url: https://electrum.readthedocs.io/en/latest/faq.html#where-is-the-electrum-datadir-located
+metadata:
+  confidence: high

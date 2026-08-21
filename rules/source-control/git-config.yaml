@@ -1,0 +1,28 @@
+schema_version: 1
+id: source-control.git-config
+name: Git Config
+description: >
+  Git configuration can reveal identities, remotes, credential helpers, and URL rewrites.
+category: source-control
+subcategory: git
+artifact_types:
+  - configuration
+sensitivity: medium
+match:
+  paths:
+    - path: '%USERPROFILE%\.gitconfig'
+      kind: file
+      platforms: [windows]
+    - path: "$HOME/.gitconfig"
+      kind: file
+      platforms: [linux, macos]
+impact:
+  discovery: true
+  source_code_access: true
+tags:
+  - git
+references:
+  - name: git-config
+    url: https://git-scm.com/docs/git-config
+metadata:
+  confidence: high

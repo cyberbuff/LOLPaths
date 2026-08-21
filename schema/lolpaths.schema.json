@@ -1,0 +1,232 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lolpaths.dev/schema/lolpaths.schema.json",
+  "title": "LOLPaths rule",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "id", "name", "category", "sensitivity", "match"],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:[.-][a-z0-9]+)*$"
+    },
+    "name": { "type": "string", "minLength": 1 },
+    "description": { "type": "string", "minLength": 1 },
+    "category": { "$ref": "#/$defs/category" },
+    "subcategory": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:[.-][a-z0-9]+)*$"
+    },
+    "artifact_types": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/artifact_type" },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "sensitivity": {
+      "enum": ["critical", "high", "medium", "low", "informational"]
+    },
+    "match": { "$ref": "#/$defs/match" },
+    "credentials": { "$ref": "#/$defs/credentials" },
+    "impact": { "$ref": "#/$defs/impact" },
+    "scope": { "$ref": "#/$defs/scope" },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "references": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/reference" }
+    },
+    "sources": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/source" }
+    },
+    "metadata": { "$ref": "#/$defs/metadata" }
+  },
+  "$defs": {
+    "category": {
+      "enum": [
+        "cloud",
+        "ssh",
+        "source-control",
+        "containers",
+        "kubernetes",
+        "cicd",
+        "package-manager",
+        "database",
+        "secret-manager",
+        "infrastructure",
+        "certificates",
+        "shell",
+        "browser",
+        "email",
+        "vpn",
+        "remote-access",
+        "application",
+        "crypto-wallet",
+        "identity",
+        "system",
+        "development"
+      ]
+    },
+    "artifact_type": {
+      "enum": [
+        "credential",
+        "token",
+        "api-key",
+        "private-key",
+        "certificate",
+        "configuration",
+        "history",
+        "database",
+        "wallet",
+        "session",
+        "cookie",
+        "connection-string",
+        "password-store",
+        "backup",
+        "state-file",
+        "environment"
+      ]
+    },
+    "match": {
+      "type": "object",
+      "additionalProperties": false,
+      "anyOf": [
+        { "required": ["paths"] },
+        { "required": ["content"] }
+      ],
+      "properties": {
+        "paths": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/path_matcher" },
+          "minItems": 1
+        },
+        "content": { "$ref": "#/$defs/content_matcher" }
+      }
+    },
+    "path_matcher": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "kind", "platforms"],
+      "properties": {
+        "path": { "type": "string", "minLength": 1 },
+        "kind": { "enum": ["file", "directory", "glob"] },
+        "platforms": {
+          "type": "array",
+          "items": { "enum": ["windows", "linux", "macos"] },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      }
+    },
+    "content_matcher": {
+      "type": "object",
+      "additionalProperties": false,
+      "anyOf": [
+        { "required": ["contains"] },
+        { "required": ["regex"] }
+      ],
+      "properties": {
+        "contains": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "regex": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      }
+    },
+    "credentials": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "types": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      }
+    },
+    "impact": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "credential_access": { "type": "boolean" },
+        "lateral_movement": { "type": "boolean" },
+        "remote_access": { "type": "boolean" },
+        "cloud_access": { "type": "boolean" },
+        "source_code_access": { "type": "boolean" },
+        "privilege_escalation": { "type": "boolean" },
+        "discovery": { "type": "boolean" }
+      }
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "environments": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "workstation",
+              "server",
+              "container",
+              "cicd-runner",
+              "kubernetes-node",
+              "development",
+              "cloud-host"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      }
+    },
+    "reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "url"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "url": { "type": "string", "minLength": 1 }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "type"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "type": {
+          "enum": ["vendor-documentation", "upstream", "research", "incident", "community", "other"]
+        },
+        "url": { "type": "string", "minLength": 1 }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "confidence": { "enum": ["high", "medium", "low"] },
+        "last_reviewed": { "type": "string", "format": "date" },
+        "created": { "type": "string", "format": "date" },
+        "modified": { "type": "string", "format": "date" },
+        "contributors": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        }
+      }
+    }
+  }
+}

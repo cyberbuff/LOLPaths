@@ -1,0 +1,32 @@
+schema_version: 1
+id: cicd.drone.config
+name: Drone Pipeline Configuration
+description: >
+  Drone pipeline configuration files can reveal build steps, deployment logic,
+  runner behavior, and secret references.
+category: cicd
+subcategory: drone
+artifact_types:
+  - configuration
+sensitivity: medium
+match:
+  paths:
+    - path: "**/.drone.y?ml"
+      kind: glob
+      platforms: [windows, linux, macos]
+  content:
+    contains:
+      - kind
+      - steps
+      - secrets
+impact:
+  discovery: true
+  source_code_access: true
+tags:
+  - drone
+  - cicd
+references:
+  - name: Drone Pipeline Configuration
+    url: https://docs.drone.io/pipeline/overview/
+metadata:
+  confidence: high

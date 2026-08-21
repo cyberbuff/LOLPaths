@@ -1,0 +1,41 @@
+schema_version: 1
+id: cloud.databricks.config
+name: Databricks CLI Config
+description: >
+  Databricks CLI configuration profiles can contain workspace hosts,
+  personal access tokens, OAuth client IDs, and OAuth client secrets.
+category: cloud
+subcategory: databricks
+artifact_types:
+  - credential
+  - configuration
+sensitivity: critical
+match:
+  paths:
+    - path: '%USERPROFILE%\.databrickscfg'
+      kind: file
+      platforms: [windows]
+    - path: "$HOME/.databrickscfg"
+      kind: file
+      platforms: [linux, macos]
+  content:
+    contains:
+      - host
+      - token
+      - client_id
+      - client_secret
+credentials:
+  types:
+    - access-token
+    - client-secret
+impact:
+  credential_access: true
+  cloud_access: true
+tags:
+  - databricks
+  - cloud
+references:
+  - name: Databricks Configuration Profiles
+    url: https://docs.databricks.com/aws/en/dev-tools/auth/config-profiles
+metadata:
+  confidence: high

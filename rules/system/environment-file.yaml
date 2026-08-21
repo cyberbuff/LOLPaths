@@ -1,0 +1,34 @@
+schema_version: 1
+id: system.environment-file
+name: System Environment File
+description: >
+  System environment files can expose application secrets, API keys, and
+  service connection strings.
+category: system
+artifact_types:
+  - environment
+  - configuration
+  - credential
+sensitivity: high
+match:
+  paths:
+    - path: "/etc/environment"
+      kind: file
+      platforms: [linux]
+  content:
+    regex:
+      - '(?i)(api[_-]?key|secret|token|password)\s*='
+credentials:
+  types:
+    - api-key
+    - password
+    - access-token
+impact:
+  credential_access: true
+tags:
+  - environment
+references:
+  - name: TrendAI LiteLLM supply chain compromise
+    url: https://www.trendaisecurity.com/en-us/resources-insights/trendai-security-blog/inside-litellm-supply-chain-compromise
+metadata:
+  confidence: medium

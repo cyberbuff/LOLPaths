@@ -1,0 +1,35 @@
+schema_version: 1
+id: browser.chrome.cookies
+name: Chrome Cookie Stores
+description: >
+  Browser cookie stores can contain session cookies and authentication state.
+category: browser
+subcategory: chrome
+artifact_types:
+  - cookie
+  - session
+sensitivity: critical
+match:
+  paths:
+    - path: '%LOCALAPPDATA%\Google\Chrome\User Data\Default\Network\Cookies'
+      kind: file
+      platforms: [windows]
+    - path: "$HOME/.config/google-chrome/Default/Network/Cookies"
+      kind: file
+      platforms: [linux]
+    - path: "$HOME/Library/Application Support/Google/Chrome/Default/Cookies"
+      kind: file
+      platforms: [macos]
+credentials:
+  types:
+    - session-cookie
+impact:
+  credential_access: true
+tags:
+  - browser
+  - cookies
+references:
+  - name: Chromium User Data Directory
+    url: https://chromium.googlesource.com/chromium/src/+/HEAD/docs/user_data_dir.md
+metadata:
+  confidence: medium

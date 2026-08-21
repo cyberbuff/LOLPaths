@@ -1,0 +1,41 @@
+schema_version: 1
+id: cloud.azure.cli-auth
+name: Azure CLI Authentication Artifacts
+description: >
+  Azure CLI profile and token artifacts can contain authentication state and
+  cloud account metadata.
+category: cloud
+subcategory: azure
+artifact_types:
+  - credential
+  - configuration
+sensitivity: high
+match:
+  paths:
+    - path: '%USERPROFILE%\.azure\'
+      kind: directory
+      platforms: [windows]
+    - path: "$HOME/.azure/"
+      kind: directory
+      platforms: [linux, macos]
+  content:
+    contains:
+      - accessToken
+      - refreshToken
+credentials:
+  types:
+    - access-token
+    - refresh-token
+impact:
+  credential_access: true
+  cloud_access: true
+tags:
+  - azure
+  - cloud
+references:
+  - name: Azure CLI Configuration Options
+    url: https://learn.microsoft.com/en-us/cli/azure/azure-cli-configuration
+  - name: MSAL-based Azure CLI
+    url: https://learn.microsoft.com/en-us/cli/azure/msal-based-azure-cli
+metadata:
+  confidence: medium

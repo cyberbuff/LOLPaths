@@ -1,0 +1,24 @@
+---
+title: Contributing
+description: How to add or update LOLPaths rules.
+icon: GitPullRequest
+---
+
+Add or update one logical artifact rule at a time.
+
+1. Select the correct broad category.
+2. Create or update one YAML rule.
+3. Add platform-specific paths.
+4. Add content indicators only when well supported.
+5. Choose sensitivity conservatively.
+6. Add reliable references or provenance when available.
+7. Validate, generate, and test.
+
+```bash
+uv run lolpaths validate
+uv run lolpaths generate
+uv run python -m pytest -q
+```
+
+Do not submit real credentials, private keys, cookies, wallet seeds, or customer
+data.

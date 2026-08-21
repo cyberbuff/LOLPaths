@@ -1,0 +1,38 @@
+schema_version: 1
+id: ssh.host-private-keys
+name: SSH Host Private Keys
+description: >
+  SSH host private keys authenticate servers and can enable host impersonation
+  if copied to another system.
+category: ssh
+artifact_types:
+  - credential
+  - private-key
+sensitivity: critical
+match:
+  paths:
+    - path: "/etc/ssh/ssh_host_*_key"
+      kind: glob
+      platforms: [linux]
+  content:
+    regex:
+      - '-----BEGIN OPENSSH PRIVATE KEY-----'
+      - '-----BEGIN RSA PRIVATE KEY-----'
+      - '-----BEGIN EC PRIVATE KEY-----'
+credentials:
+  types:
+    - private-key
+impact:
+  credential_access: true
+  remote_access: true
+tags:
+  - ssh
+  - host-key
+  - private-key
+references:
+  - name: OpenSSH sshd_config HostKey
+    url: https://man.openbsd.org/sshd_config#HostKey
+  - name: TrendAI LiteLLM supply chain compromise
+    url: https://www.trendaisecurity.com/en-us/resources-insights/trendai-security-blog/inside-litellm-supply-chain-compromise
+metadata:
+  confidence: high

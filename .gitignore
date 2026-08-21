@@ -1,0 +1,12 @@
+.venv/
+.uv-cache/
+.pytest_cache/
+.ruff_cache/
+.codegraph/
+docs/.next/
+docs/.source/
+docs/.tmp/
+docs/node_modules/
+__pycache__/
+*.pyc
+docs/.tmp

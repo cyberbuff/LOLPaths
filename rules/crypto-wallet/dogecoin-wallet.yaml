@@ -1,0 +1,29 @@
+schema_version: 1
+id: crypto-wallet.dogecoin.wallets
+name: Dogecoin Core Wallet Directory
+description: >
+  Dogecoin Core data directories can contain wallet databases and private key material.
+category: crypto-wallet
+subcategory: dogecoin
+artifact_types:
+  - wallet
+  - credential
+sensitivity: critical
+match:
+  paths:
+    - path: "$HOME/.dogecoin/"
+      kind: directory
+      platforms: [linux, macos]
+credentials:
+  types:
+    - private-key
+impact:
+  credential_access: true
+tags:
+  - wallet
+  - dogecoin
+references:
+  - name: Dogecoin Core Data Directory
+    url: https://github.com/dogecoin/dogecoin/blob/master/doc/files.md
+metadata:
+  confidence: medium

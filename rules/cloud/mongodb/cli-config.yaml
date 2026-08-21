@@ -1,0 +1,48 @@
+schema_version: 1
+id: cloud.mongodb.cli-config
+name: MongoDB CLI Config
+description: >
+  MongoDB CLI configuration profiles can contain Atlas and Ops Manager project
+  IDs, organization IDs, service settings, and API keys.
+category: cloud
+subcategory: mongodb-cli
+artifact_types:
+  - credential
+  - configuration
+sensitivity: critical
+match:
+  paths:
+    - path: '%APPDATA%\mongocli\config.toml'
+      kind: file
+      platforms: [windows]
+    - path: "$HOME/Library/Application Support/mongocli/config.toml"
+      kind: file
+      platforms: [macos]
+    - path: "$XDG_CONFIG_HOME/mongocli/config.toml"
+      kind: file
+      platforms: [linux]
+    - path: "$HOME/.config/mongocli/config.toml"
+      kind: file
+      platforms: [linux]
+  content:
+    contains:
+      - private_api_key
+      - public_api_key
+      - organization_id
+      - project_id
+      - service
+credentials:
+  types:
+    - api-key
+impact:
+  credential_access: true
+  cloud_access: true
+tags:
+  - mongodb
+  - mongocli
+  - cloud
+references:
+  - name: MongoDB CLI Configuration File
+    url: https://www.mongodb.com/docs/mongocli/current/configure/configuration-file/
+metadata:
+  confidence: high

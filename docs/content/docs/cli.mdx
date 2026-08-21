@@ -1,0 +1,38 @@
+---
+title: CLI
+description: Validate, generate, list, and inspect LOLPaths rules.
+icon: Terminal
+---
+
+Install Python dependencies from the repository root:
+
+```bash
+uv sync
+```
+
+Validate all rules:
+
+```bash
+uv run lolpaths validate
+```
+
+Generate derived artifacts:
+
+```bash
+uv run lolpaths generate
+```
+
+This writes platform text files, normalized JSON, docs API JSON, and generated
+MDX rule pages.
+
+List and inspect rules:
+
+```bash
+uv run lolpaths list
+uv run lolpaths list --platform windows
+uv run lolpaths list --category cloud
+uv run lolpaths list --sensitivity critical
+uv run lolpaths show ssh.private-keys
+```
+
+The CLI does not scan local filesystems. It validates and exports catalog data.

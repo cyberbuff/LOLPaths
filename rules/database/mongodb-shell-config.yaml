@@ -1,0 +1,38 @@
+schema_version: 1
+id: database.mongodb-shell-config
+name: MongoDB Shell Configuration
+description: >
+  MongoDB shell startup files can contain connection logic, credentials, or
+  commands executed when the shell starts.
+category: database
+subcategory: mongodb
+artifact_types:
+  - credential
+  - configuration
+  - database
+sensitivity: high
+match:
+  paths:
+    - path: "$HOME/.mongorc.js"
+      kind: file
+      platforms: [linux, macos]
+    - path: "$HOME/.mongoshrc.js"
+      kind: file
+      platforms: [linux, macos]
+  content:
+    contains:
+      - Mongo
+      - password
+credentials:
+  types:
+    - password
+impact:
+  credential_access: true
+  discovery: true
+tags:
+  - mongodb
+references:
+  - name: mongosh Configuration File
+    url: https://www.mongodb.com/docs/mongodb-shell/mongoshrc/
+metadata:
+  confidence: medium

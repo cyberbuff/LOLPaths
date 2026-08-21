@@ -1,0 +1,34 @@
+schema_version: 1
+id: cloud.aws.config
+name: AWS CLI Config
+description: >
+  AWS CLI configuration files can reveal profiles, regions, output formats,
+  role assumptions, and credential process settings.
+category: cloud
+subcategory: aws
+artifact_types:
+  - configuration
+sensitivity: medium
+match:
+  paths:
+    - path: '%USERPROFILE%\.aws\config'
+      kind: file
+      platforms: [windows]
+    - path: "$HOME/.aws/config"
+      kind: file
+      platforms: [linux, macos]
+  content:
+    contains:
+      - "[profile"
+      - region
+impact:
+  cloud_access: true
+  discovery: true
+tags:
+  - aws
+  - cloud
+references:
+  - name: AWS CLI Configuration and Credential File Settings
+    url: https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html
+metadata:
+  confidence: high

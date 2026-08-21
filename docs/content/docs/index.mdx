@@ -1,0 +1,45 @@
+---
+title: What is LOLPaths?
+description: A YAML-first catalog of sensitive filesystem artifacts for defensive security teams.
+icon: CircleQuestionMark
+---
+
+import { File, Folder } from "fumadocs-ui/components/files";
+
+**LOLPaths** is a community-maintained catalog of filesystem paths and file
+characteristics associated with credentials, secrets, tokens, private keys,
+cloud configuration, authentication artifacts, shell history, CI/CD secrets,
+database credentials, wallet files, and other sensitive files.
+
+The primary source of truth is YAML. Generated text and JSON artifacts are
+derived from those rules for tools that do not want to parse YAML directly.
+
+<Folder name="lolpaths" defaultOpen>
+  <Folder name="rules" defaultOpen>
+    <File name="cloud/aws/credentials.yaml" />
+    <File name="ssh/private-keys.yaml" />
+    <File name="kubernetes/kubeconfig.yaml" />
+  </Folder>
+  <Folder name="generated" defaultOpen>
+    <File name="paths.txt" />
+    <File name="windows.txt" />
+    <File name="rules.json" />
+  </Folder>
+</Folder>
+
+## Use Cases
+
+- Detection engineering
+- Secret scanning
+- DLP
+- EDR file-access monitoring
+- Security validation
+- Deception engineering
+- AI and coding-agent filesystem guardrails
+- Rule generation for other security tools
+
+## Safety Boundary
+
+LOLPaths catalogs sensitive artifact locations and matching metadata. It is not
+a credential replay, account takeover, password cracking, wallet extraction, or
+exfiltration framework.

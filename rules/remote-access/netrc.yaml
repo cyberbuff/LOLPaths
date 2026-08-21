@@ -1,0 +1,37 @@
+schema_version: 1
+id: remote-access.netrc
+name: netrc Credentials
+description: >
+  netrc files can store machine, login, password, and account entries used by
+  command-line network clients.
+category: remote-access
+artifact_types:
+  - credential
+  - configuration
+sensitivity: high
+match:
+  paths:
+    - path: '%USERPROFILE%\.netrc'
+      kind: file
+      platforms: [windows]
+    - path: "$HOME/.netrc"
+      kind: file
+      platforms: [linux, macos]
+  content:
+    contains:
+      - machine
+      - login
+      - password
+credentials:
+  types:
+    - password
+impact:
+  credential_access: true
+  remote_access: true
+tags:
+  - netrc
+references:
+  - name: GNU inetutils netrc
+    url: https://www.gnu.org/software/inetutils/manual/html_node/The-_002enetrc-file.html
+metadata:
+  confidence: high

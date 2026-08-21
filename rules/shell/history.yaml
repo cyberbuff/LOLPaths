@@ -1,0 +1,49 @@
+schema_version: 1
+id: shell.history
+name: Shell History Files
+description: >
+  Command history files may contain credentials, tokens, connection strings,
+  hostnames, internal paths, or other sensitive data.
+category: shell
+artifact_types:
+  - history
+sensitivity: high
+match:
+  paths:
+    - path: "$HOME/.bash_history"
+      kind: file
+      platforms: [linux, macos]
+    - path: "$HOME/.zsh_history"
+      kind: file
+      platforms: [linux, macos]
+    - path: "$HOME/.sh_history"
+      kind: file
+      platforms: [linux, macos]
+    - path: "$HOME/.mysql_history"
+      kind: file
+      platforms: [linux, macos]
+    - path: "$HOME/.psql_history"
+      kind: file
+      platforms: [linux, macos]
+    - path: "$HOME/.rediscli_history"
+      kind: file
+      platforms: [linux, macos]
+impact:
+  credential_access: true
+  discovery: true
+tags:
+  - shell
+  - history
+references:
+  - name: Bash History Facilities
+    url: https://www.gnu.org/software/bash/manual/html_node/Bash-History-Facilities.html
+  - name: zsh Parameters
+    url: https://zsh.sourceforge.io/Doc/Release/Parameters.html
+  - name: MySQL Client Logging
+    url: https://dev.mysql.com/doc/refman/8.0/en/mysql-logging.html
+  - name: PostgreSQL psql
+    url: https://www.postgresql.org/docs/current/app-psql.html
+  - name: Redis CLI
+    url: https://redis-stack.io/docs/connect/cli/
+metadata:
+  confidence: high

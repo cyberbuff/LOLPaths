@@ -1,0 +1,49 @@
+schema_version: 1
+id: certificates.private-key-files
+name: Private Key File Patterns
+description: >
+  Common private-key file names and extensions. Content verification is useful
+  because extensions alone do not prove a file contains a private key.
+category: certificates
+artifact_types:
+  - private-key
+  - certificate
+sensitivity: high
+match:
+  paths:
+    - path: "/etc/ssl/private/"
+      kind: directory
+      platforms: [linux]
+    - path: "/etc/letsencrypt/live/**/*.pem"
+      kind: glob
+      platforms: [linux]
+    - path: "/etc/letsencrypt/live/**/*.key"
+      kind: glob
+      platforms: [linux]
+    - path: "**/*.key"
+      kind: glob
+      platforms: [windows, linux, macos]
+    - path: "**/*.pem"
+      kind: glob
+      platforms: [windows, linux, macos]
+    - path: "**/*.p12"
+      kind: glob
+      platforms: [windows, linux, macos]
+    - path: "**/*.pfx"
+      kind: glob
+      platforms: [windows, linux, macos]
+  content:
+    regex:
+      - '-----BEGIN [A-Z ]*PRIVATE KEY-----'
+credentials:
+  types:
+    - private-key
+impact:
+  credential_access: true
+references:
+  - name: OpenSSL Format Options
+    url: https://docs.openssl.org/4.0/man1/openssl-format-options/
+  - name: Let's Encrypt Where Are My Certificates
+    url: https://eff-certbot.readthedocs.io/en/stable/using.html#where-are-my-certificates
+metadata:
+  confidence: medium

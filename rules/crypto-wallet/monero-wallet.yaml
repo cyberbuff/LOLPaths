@@ -1,0 +1,32 @@
+schema_version: 1
+id: crypto-wallet.monero.wallets
+name: Monero Wallet Directory
+description: >
+  Monero data directories can contain wallet files and private key material.
+category: crypto-wallet
+subcategory: monero
+artifact_types:
+  - wallet
+  - credential
+sensitivity: critical
+match:
+  paths:
+    - path: "$HOME/.bitmonero/"
+      kind: directory
+      platforms: [linux, macos]
+    - path: 'C:\ProgramData\bitmonero\'
+      kind: directory
+      platforms: [windows]
+credentials:
+  types:
+    - private-key
+impact:
+  credential_access: true
+tags:
+  - wallet
+  - monero
+references:
+  - name: Monero Data Directory
+    url: https://docs.getmonero.org/interacting/overview/#data-directory
+metadata:
+  confidence: high

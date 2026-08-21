@@ -1,0 +1,27 @@
+schema_version: 1
+id: system.passwd-file
+name: Unix passwd File
+description: >
+  Unix passwd files reveal local account names, user IDs, home directories, and
+  login shells.
+category: system
+artifact_types:
+  - configuration
+sensitivity: informational
+match:
+  paths:
+    - path: "/etc/passwd"
+      kind: file
+      platforms: [linux, macos]
+impact:
+  discovery: true
+tags:
+  - unix
+  - accounts
+references:
+  - name: passwd
+    url: https://man7.org/linux/man-pages/man5/passwd.5.html
+  - name: TrendAI LiteLLM supply chain compromise
+    url: https://www.trendaisecurity.com/en-us/resources-insights/trendai-security-blog/inside-litellm-supply-chain-compromise
+metadata:
+  confidence: high

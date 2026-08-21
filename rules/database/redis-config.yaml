@@ -1,0 +1,37 @@
+schema_version: 1
+id: database.redis-config
+name: Redis Configuration
+description: >
+  Redis server configuration files can contain passwords, ACL settings, TLS
+  material references, and replication credentials.
+category: database
+subcategory: redis
+artifact_types:
+  - configuration
+  - credential
+  - database
+sensitivity: high
+match:
+  paths:
+    - path: "/etc/redis/redis.conf"
+      kind: file
+      platforms: [linux]
+  content:
+    contains:
+      - requirepass
+      - masterauth
+credentials:
+  types:
+    - password
+impact:
+  credential_access: true
+  remote_access: true
+tags:
+  - redis
+references:
+  - name: Redis configuration
+    url: https://redis.io/docs/latest/operate/oss_and_stack/management/config/
+  - name: TrendAI LiteLLM supply chain compromise
+    url: https://www.trendaisecurity.com/en-us/resources-insights/trendai-security-blog/inside-litellm-supply-chain-compromise
+metadata:
+  confidence: high

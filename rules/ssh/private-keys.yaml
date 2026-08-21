@@ -1,0 +1,65 @@
+schema_version: 1
+id: ssh.private-keys
+name: SSH Private Keys
+description: >
+  Private keys commonly used for SSH authentication.
+category: ssh
+artifact_types:
+  - credential
+  - private-key
+sensitivity: critical
+match:
+  paths:
+    - path: '%USERPROFILE%\.ssh\id_rsa'
+      kind: file
+      platforms: [windows]
+    - path: '%USERPROFILE%\.ssh\id_ed25519'
+      kind: file
+      platforms: [windows]
+    - path: '%USERPROFILE%\.ssh\id_ecdsa'
+      kind: file
+      platforms: [windows]
+    - path: '%USERPROFILE%\.ssh\id_dsa'
+      kind: file
+      platforms: [windows]
+    - path: '%USERPROFILE%\.ssh\id_*'
+      kind: glob
+      platforms: [windows]
+    - path: "$HOME/.ssh/id_rsa"
+      kind: file
+      platforms: [linux, macos]
+    - path: "$HOME/.ssh/id_ed25519"
+      kind: file
+      platforms: [linux, macos]
+    - path: "$HOME/.ssh/id_ecdsa"
+      kind: file
+      platforms: [linux, macos]
+    - path: "$HOME/.ssh/id_dsa"
+      kind: file
+      platforms: [linux, macos]
+    - path: "$HOME/.ssh/id_*"
+      kind: glob
+      platforms: [linux, macos]
+  content:
+    regex:
+      - '-----BEGIN OPENSSH PRIVATE KEY-----'
+      - '-----BEGIN RSA PRIVATE KEY-----'
+      - '-----BEGIN EC PRIVATE KEY-----'
+credentials:
+  types:
+    - private-key
+impact:
+  credential_access: true
+  lateral_movement: true
+  remote_access: true
+tags:
+  - ssh
+  - authentication
+  - private-key
+references:
+  - name: ssh
+    url: https://man.openbsd.org/ssh.1
+  - name: ssh-keygen
+    url: https://man.openbsd.org/ssh-keygen.1
+metadata:
+  confidence: high

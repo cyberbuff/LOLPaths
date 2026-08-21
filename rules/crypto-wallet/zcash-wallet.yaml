@@ -1,0 +1,29 @@
+schema_version: 1
+id: crypto-wallet.zcash.wallets
+name: Zcash Wallet Directory
+description: >
+  Zcash data directories can contain wallet databases and private key material.
+category: crypto-wallet
+subcategory: zcash
+artifact_types:
+  - wallet
+  - credential
+sensitivity: critical
+match:
+  paths:
+    - path: "$HOME/.zcash/"
+      kind: directory
+      platforms: [linux, macos]
+credentials:
+  types:
+    - private-key
+impact:
+  credential_access: true
+tags:
+  - wallet
+  - zcash
+references:
+  - name: Zcash User Guide
+    url: https://zcash.readthedocs.io/en/latest/rtd_pages/zcashd.html
+metadata:
+  confidence: medium

@@ -1,0 +1,60 @@
+schema_version: 1
+id: database.mysql.config
+name: MySQL Client Config
+description: >
+  MySQL client configuration files can contain usernames, passwords, and hostnames.
+category: database
+subcategory: mysql
+artifact_types:
+  - configuration
+  - credential
+  - database
+sensitivity: high
+match:
+  paths:
+    - path: '%WINDIR%\my.ini'
+      kind: file
+      platforms: [windows]
+    - path: '%WINDIR%\my.cnf'
+      kind: file
+      platforms: [windows]
+    - path: 'C:\my.ini'
+      kind: file
+      platforms: [windows]
+    - path: 'C:\my.cnf'
+      kind: file
+      platforms: [windows]
+    - path: 'C:\ProgramData\MySQL\MySQL Server 8.4\my.ini'
+      kind: file
+      platforms: [windows]
+    - path: '%APPDATA%\MySQL\.mylogin.cnf'
+      kind: file
+      platforms: [windows]
+    - path: "/etc/my.cnf"
+      kind: file
+      platforms: [linux, macos]
+    - path: "/etc/mysql/my.cnf"
+      kind: file
+      platforms: [linux, macos]
+    - path: "$HOME/.my.cnf"
+      kind: file
+      platforms: [linux, macos]
+    - path: "$HOME/.mylogin.cnf"
+      kind: file
+      platforms: [linux, macos]
+  content:
+    contains:
+      - password
+      - "[client]"
+credentials:
+  types:
+    - password
+impact:
+  credential_access: true
+tags:
+  - mysql
+references:
+  - name: MySQL Using Option Files
+    url: https://dev.mysql.com/doc/refman/8.4/en/option-files.html
+metadata:
+  confidence: high

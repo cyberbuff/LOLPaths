@@ -1,0 +1,36 @@
+schema_version: 1
+id: package-manager.maven-settings
+name: Maven Settings
+description: >
+  Maven settings files can contain server credentials for package repositories.
+category: package-manager
+subcategory: maven
+artifact_types:
+  - configuration
+  - credential
+sensitivity: high
+match:
+  paths:
+    - path: '%USERPROFILE%\.m2\settings.xml'
+      kind: file
+      platforms: [windows]
+    - path: "$HOME/.m2/settings.xml"
+      kind: file
+      platforms: [linux, macos]
+  content:
+    contains:
+      - "<servers>"
+      - "<password>"
+credentials:
+  types:
+    - password
+impact:
+  credential_access: true
+tags:
+  - maven
+  - java
+references:
+  - name: Maven Settings Reference
+    url: https://maven.apache.org/settings.html
+metadata:
+  confidence: high

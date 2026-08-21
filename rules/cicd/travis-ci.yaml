@@ -1,0 +1,32 @@
+schema_version: 1
+id: cicd.travis-ci.config
+name: Travis CI Configuration
+description: >
+  Travis CI configuration files can reveal build logic, deployment commands,
+  environment variables, and secret references.
+category: cicd
+subcategory: travis-ci
+artifact_types:
+  - configuration
+sensitivity: medium
+match:
+  paths:
+    - path: "**/.travis.y?ml"
+      kind: glob
+      platforms: [windows, linux, macos]
+  content:
+    contains:
+      - script
+      - deploy
+      - env
+impact:
+  discovery: true
+  source_code_access: true
+tags:
+  - travis-ci
+  - cicd
+references:
+  - name: Travis CI Build Config Reference
+    url: https://docs.travis-ci.com/user/build-config-reference/
+metadata:
+  confidence: high

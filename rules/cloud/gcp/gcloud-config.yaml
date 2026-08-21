@@ -1,0 +1,31 @@
+schema_version: 1
+id: cloud.gcp.gcloud-config
+name: gcloud Configuration
+description: >
+  gcloud configuration directories can contain account, project, and credential state.
+category: cloud
+subcategory: gcp
+artifact_types:
+  - configuration
+  - credential
+sensitivity: high
+match:
+  paths:
+    - path: '%APPDATA%\gcloud\'
+      kind: directory
+      platforms: [windows]
+    - path: "$HOME/.config/gcloud/"
+      kind: directory
+      platforms: [linux, macos]
+impact:
+  credential_access: true
+  cloud_access: true
+  discovery: true
+tags:
+  - gcp
+  - cloud
+references:
+  - name: Google Cloud SDK Configurations
+    url: https://cloud.google.com/sdk/docs/configurations
+metadata:
+  confidence: high

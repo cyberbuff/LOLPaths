@@ -1,0 +1,26 @@
+schema_version: 1
+id: ssh.known-hosts
+name: SSH Known Hosts
+description: >
+  SSH known_hosts files can reveal previously accessed hosts.
+category: ssh
+artifact_types:
+  - configuration
+sensitivity: low
+match:
+  paths:
+    - path: '%USERPROFILE%\.ssh\known_hosts'
+      kind: file
+      platforms: [windows]
+    - path: "$HOME/.ssh/known_hosts"
+      kind: file
+      platforms: [linux, macos]
+impact:
+  discovery: true
+tags:
+  - ssh
+references:
+  - name: ssh
+    url: https://man.openbsd.org/ssh.1
+metadata:
+  confidence: high

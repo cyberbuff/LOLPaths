@@ -1,0 +1,32 @@
+schema_version: 1
+id: crypto-wallet.solana.ledger-files
+name: Solana Ledger Files
+description: >
+  Solana ledger directories can contain validator state and local node data
+  that may support key and infrastructure discovery.
+category: crypto-wallet
+subcategory: solana
+artifact_types:
+  - state-file
+  - configuration
+sensitivity: medium
+match:
+  paths:
+    - path: "$HOME/ledger/**/*.json"
+      kind: glob
+      platforms: [linux, macos]
+    - path: "$HOME/ledger/**/*.bin"
+      kind: glob
+      platforms: [linux, macos]
+impact:
+  discovery: true
+tags:
+  - solana
+  - ledger
+references:
+  - name: Solana CLI
+    url: https://docs.solanalabs.com/cli
+  - name: TrendAI LiteLLM supply chain compromise
+    url: https://www.trendaisecurity.com/en-us/resources-insights/trendai-security-blog/inside-litellm-supply-chain-compromise
+metadata:
+  confidence: medium

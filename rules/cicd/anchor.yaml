@@ -1,0 +1,32 @@
+schema_version: 1
+id: cicd.anchor.config
+name: Anchor Configuration
+description: >
+  Anchor configuration files can reveal Solana program deployment settings,
+  cluster targets, wallet paths, and local test commands.
+category: cicd
+subcategory: anchor
+artifact_types:
+  - configuration
+sensitivity: medium
+match:
+  paths:
+    - path: "**/Anchor.toml"
+      kind: glob
+      platforms: [windows, linux, macos]
+  content:
+    contains:
+      - provider
+      - wallet
+      - cluster
+impact:
+  discovery: true
+  remote_access: true
+tags:
+  - anchor
+  - solana
+references:
+  - name: Anchor Configuration File
+    url: https://www.anchor-lang.com/docs/references/anchor-toml
+metadata:
+  confidence: medium

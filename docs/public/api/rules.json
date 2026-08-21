@@ -1,0 +1,24 @@
+{
+  "rules": [
+    {
+      "category": "application",
+      "id": "application.sample-secret",
+      "match": {
+        "paths": [
+          {
+            "kind": "file",
+            "path": "sample-secret-file",
+            "platforms": [
+              "linux",
+              "macos"
+            ]
+          }
+        ]
+      },
+      "name": "Sample Secret",
+      "schema_version": 1,
+      "sensitivity": "critical"
+    }
+  ],
+  "schema_version": 1
+}

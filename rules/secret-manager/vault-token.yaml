@@ -1,0 +1,31 @@
+schema_version: 1
+id: secret-manager.vault-token
+name: HashiCorp Vault Token
+description: >
+  Vault token files can contain reusable tokens for authenticating to Vault.
+category: secret-manager
+subcategory: vault
+artifact_types:
+  - credential
+  - token
+sensitivity: critical
+match:
+  paths:
+    - path: '%USERPROFILE%\.vault-token'
+      kind: file
+      platforms: [windows]
+    - path: "$HOME/.vault-token"
+      kind: file
+      platforms: [linux, macos]
+credentials:
+  types:
+    - access-token
+impact:
+  credential_access: true
+tags:
+  - vault
+references:
+  - name: Vault CLI Token Helper
+    url: https://developer.hashicorp.com/vault/docs/commands/token-helper
+metadata:
+  confidence: high

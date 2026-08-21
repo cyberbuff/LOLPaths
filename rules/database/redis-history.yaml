@@ -1,0 +1,24 @@
+schema_version: 1
+id: database.redis.history
+name: Redis CLI History
+description: >
+  Redis CLI history can contain connection details, commands, or authentication material.
+category: database
+subcategory: redis
+artifact_types:
+  - history
+  - database
+sensitivity: high
+match:
+  paths:
+    - path: "$HOME/.rediscli_history"
+      kind: file
+      platforms: [linux, macos]
+impact:
+  credential_access: true
+  discovery: true
+tags:
+  - redis
+  - history
+metadata:
+  confidence: high

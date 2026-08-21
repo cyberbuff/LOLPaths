@@ -1,0 +1,45 @@
+schema_version: 1
+id: containers.docker.config
+name: Docker Client Config
+description: >
+  Docker client config files can contain registry authentication material.
+category: containers
+subcategory: docker
+artifact_types:
+  - credential
+  - configuration
+sensitivity: critical
+match:
+  paths:
+    - path: '%USERPROFILE%\.docker\config.json'
+      kind: file
+      platforms: [windows]
+    - path: "$HOME/.docker/config.json"
+      kind: file
+      platforms: [linux, macos]
+    - path: "/root/.docker/config.json"
+      kind: file
+      platforms: [linux]
+    - path: "/kaniko/.docker/config.json"
+      kind: file
+      platforms: [linux]
+  content:
+    contains:
+      - auths
+      - credHelpers
+credentials:
+  types:
+    - bearer-token
+    - password
+impact:
+  credential_access: true
+tags:
+  - docker
+  - registry
+references:
+  - name: Docker CLI Configuration
+    url: https://docs.docker.com/reference/cli/docker/
+  - name: Docker Login
+    url: https://docs.docker.com/reference/cli/docker/login/
+metadata:
+  confidence: high

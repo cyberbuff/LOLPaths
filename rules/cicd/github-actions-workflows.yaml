@@ -1,0 +1,30 @@
+schema_version: 1
+id: cicd.github-actions.workflows
+name: GitHub Actions Workflows
+description: >
+  GitHub Actions workflow files can reveal build logic, permissions, and secret references.
+category: cicd
+subcategory: github-actions
+artifact_types:
+  - configuration
+sensitivity: medium
+match:
+  paths:
+    - path: "**/.github/workflows/*.y?ml"
+      kind: glob
+      platforms: [windows, linux, macos]
+  content:
+    contains:
+      - "runs-on:"
+      - "secrets."
+impact:
+  discovery: true
+  source_code_access: true
+tags:
+  - github-actions
+  - cicd
+references:
+  - name: GitHub Actions Workflow Syntax
+    url: https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax
+metadata:
+  confidence: high

@@ -1,0 +1,27 @@
+schema_version: 1
+id: ssh.config
+name: SSH Client Config
+description: >
+  SSH client configuration can identify hosts, users, proxy settings, and key paths.
+category: ssh
+artifact_types:
+  - configuration
+sensitivity: medium
+match:
+  paths:
+    - path: '%USERPROFILE%\.ssh\config'
+      kind: file
+      platforms: [windows]
+    - path: "$HOME/.ssh/config"
+      kind: file
+      platforms: [linux, macos]
+impact:
+  discovery: true
+  remote_access: true
+tags:
+  - ssh
+references:
+  - name: ssh_config
+    url: https://man.openbsd.org/ssh_config.5
+metadata:
+  confidence: high

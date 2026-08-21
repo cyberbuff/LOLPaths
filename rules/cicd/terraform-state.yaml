@@ -1,0 +1,38 @@
+schema_version: 1
+id: infrastructure.terraform.state
+name: Terraform State Files
+description: >
+  Terraform state files can contain resource attributes, provider metadata, and secrets.
+category: infrastructure
+subcategory: terraform
+artifact_types:
+  - state-file
+  - configuration
+sensitivity: high
+match:
+  paths:
+    - path: "$HOME/.terraform.d/credentials.tfrc.json"
+      kind: file
+      platforms: [linux, macos]
+    - path: "**/terraform.tfstate"
+      kind: glob
+      platforms: [windows, linux, macos]
+    - path: "**/terraform.tfstate.backup"
+      kind: glob
+      platforms: [windows, linux, macos]
+  content:
+    contains:
+      - '"resources"'
+      - '"outputs"'
+impact:
+  credential_access: true
+  discovery: true
+tags:
+  - terraform
+references:
+  - name: Terraform State
+    url: https://developer.hashicorp.com/terraform/language/state
+  - name: Terraform Manage Sensitive Data
+    url: https://developer.hashicorp.com/terraform/language/manage-sensitive-data
+metadata:
+  confidence: high

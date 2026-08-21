@@ -1,0 +1,11 @@
+{
+  "categories": 1,
+  "critical": 1,
+  "path_matchers": 1,
+  "platforms": [
+    "linux",
+    "macos"
+  ],
+  "rules": 1,
+  "schema_version": 1
+}

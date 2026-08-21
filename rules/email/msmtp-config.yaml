@@ -1,0 +1,42 @@
+schema_version: 1
+id: email.msmtp-config
+name: msmtp Configuration
+description: >
+  msmtp configuration files can contain SMTP accounts, usernames, passwords,
+  and password command references.
+category: email
+subcategory: msmtp
+artifact_types:
+  - credential
+  - configuration
+sensitivity: high
+match:
+  paths:
+    - path: "$HOME/.msmtprc"
+      kind: file
+      platforms: [linux, macos]
+    - path: "$XDG_CONFIG_HOME/msmtp/config"
+      kind: file
+      platforms: [linux, macos]
+    - path: "/etc/msmtprc"
+      kind: file
+      platforms: [linux]
+  content:
+    contains:
+      - account
+      - host
+      - password
+credentials:
+  types:
+    - password
+impact:
+  credential_access: true
+  remote_access: true
+tags:
+  - msmtp
+  - smtp
+references:
+  - name: msmtp Manual
+    url: https://marlam.de/msmtp/msmtp.html
+metadata:
+  confidence: medium

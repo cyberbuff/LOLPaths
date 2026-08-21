@@ -1,0 +1,44 @@
+schema_version: 1
+id: crypto-wallet.litecoin.wallets
+name: Litecoin Wallet Directory
+description: >
+  Litecoin data directories can contain wallet databases and private key material.
+category: crypto-wallet
+subcategory: litecoin
+artifact_types:
+  - wallet
+  - credential
+sensitivity: critical
+match:
+  paths:
+    - path: '%APPDATA%\Litecoin\wallets\'
+      kind: directory
+      platforms: [windows]
+    - path: '%APPDATA%\Litecoin\'
+      kind: directory
+      platforms: [windows]
+    - path: "$HOME/.litecoin/wallets/"
+      kind: directory
+      platforms: [linux]
+    - path: "$HOME/.litecoin/"
+      kind: directory
+      platforms: [linux]
+    - path: "$HOME/Library/Application Support/Litecoin/wallets/"
+      kind: directory
+      platforms: [macos]
+    - path: "$HOME/Library/Application Support/Litecoin/"
+      kind: directory
+      platforms: [macos]
+credentials:
+  types:
+    - private-key
+impact:
+  credential_access: true
+tags:
+  - wallet
+  - litecoin
+references:
+  - name: Litecoin Core file system
+    url: https://github.com/litecoin-project/litecoin/blob/master/doc/files.md
+metadata:
+  confidence: high

@@ -1,0 +1,35 @@
+schema_version: 1
+id: package-manager.nuget-config
+name: NuGet Configuration
+description: >
+  NuGet configuration can contain package source credentials.
+category: package-manager
+subcategory: nuget
+artifact_types:
+  - configuration
+  - credential
+sensitivity: high
+match:
+  paths:
+    - path: '%APPDATA%\NuGet\NuGet.Config'
+      kind: file
+      platforms: [windows]
+    - path: "$HOME/.nuget/NuGet/NuGet.Config"
+      kind: file
+      platforms: [linux, macos]
+  content:
+    contains:
+      - packageSourceCredentials
+credentials:
+  types:
+    - password
+    - access-token
+impact:
+  credential_access: true
+tags:
+  - nuget
+references:
+  - name: NuGet.Config File Reference
+    url: https://learn.microsoft.com/en-us/nuget/reference/nuget-config-file
+metadata:
+  confidence: medium

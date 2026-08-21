@@ -1,0 +1,41 @@
+schema_version: 1
+id: remote-access.lftp-config
+name: lftp Configuration
+description: >
+  lftp startup files can contain bookmark, proxy, username, and password
+  settings for remote file transfer services.
+category: remote-access
+subcategory: lftp
+artifact_types:
+  - credential
+  - configuration
+sensitivity: high
+match:
+  paths:
+    - path: "$HOME/.lftprc"
+      kind: file
+      platforms: [linux, macos]
+    - path: "$HOME/.lftp/rc"
+      kind: file
+      platforms: [linux, macos]
+    - path: "$HOME/.config/lftp/rc"
+      kind: file
+      platforms: [linux, macos]
+  content:
+    contains:
+      - password
+      - user
+credentials:
+  types:
+    - password
+impact:
+  credential_access: true
+  remote_access: true
+tags:
+  - lftp
+  - ftp
+references:
+  - name: lftp Manual Page
+    url: https://lftp.yar.ru/lftp-man.html
+metadata:
+  confidence: medium

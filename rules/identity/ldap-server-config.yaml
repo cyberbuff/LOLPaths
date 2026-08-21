@@ -1,0 +1,37 @@
+schema_version: 1
+id: identity.ldap-server-config
+name: LDAP Server Configuration
+description: >
+  LDAP server configuration files can contain root DNs, password hashes, TLS
+  material references, and directory access settings.
+category: identity
+subcategory: ldap
+artifact_types:
+  - configuration
+  - credential
+sensitivity: high
+match:
+  paths:
+    - path: "/etc/ldap/slapd.conf"
+      kind: file
+      platforms: [linux]
+    - path: "/etc/openldap/slapd.conf"
+      kind: file
+      platforms: [linux]
+  content:
+    contains:
+      - rootpw
+      - rootdn
+impact:
+  credential_access: true
+  discovery: true
+tags:
+  - ldap
+  - directory
+references:
+  - name: slapd.conf
+    url: https://www.openldap.org/software/man.cgi?query=slapd.conf&sektion=5
+  - name: TrendAI LiteLLM supply chain compromise
+    url: https://www.trendaisecurity.com/en-us/resources-insights/trendai-security-blog/inside-litellm-supply-chain-compromise
+metadata:
+  confidence: medium

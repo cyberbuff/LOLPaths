@@ -1,0 +1,31 @@
+schema_version: 1
+id: kubernetes.helm-directory
+name: Helm Home Directory
+description: >
+  Helm home directories can contain repository credentials, TLS files, chart
+  cache data, and cluster-related configuration.
+category: kubernetes
+subcategory: helm
+artifact_types:
+  - configuration
+  - credential
+  - certificate
+sensitivity: high
+match:
+  paths:
+    - path: "$HOME/.helm/"
+      kind: directory
+      platforms: [linux, macos]
+impact:
+  credential_access: true
+  discovery: true
+tags:
+  - kubernetes
+  - helm
+references:
+  - name: Helm
+    url: https://helm.sh/docs/
+  - name: TrendAI LiteLLM supply chain compromise
+    url: https://www.trendaisecurity.com/en-us/resources-insights/trendai-security-blog/inside-litellm-supply-chain-compromise
+metadata:
+  confidence: medium

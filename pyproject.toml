@@ -1,0 +1,36 @@
+[build-system]
+requires = ["hatchling==1.31.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "lolpaths"
+version = "0.1.0"
+description = "Filesystem path intelligence for sensitive artifacts."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{ name = "cyberbuff" }]
+dependencies = [
+  "PyYAML==6.0.3",
+  "jsonschema==4.26.0",
+]
+
+[project.scripts]
+lolpaths = "lolpaths.cli:main"
+
+[dependency-groups]
+dev = [
+  "pytest==9.1.1",
+  "ruff==0.16.1",
+  "ty==0.0.73",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

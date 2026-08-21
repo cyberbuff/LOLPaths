@@ -1,0 +1,115 @@
+@import "tailwindcss";
+@import "fumadocs-ui/css/solar.css";
+@import "fumadocs-ui/css/preset.css";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+:root {
+  --radius: 0.625rem;
+  --color-fd-background: hsl(48, 29%, 97%);
+  --color-fd-foreground: hsl(221, 39%, 14%);
+  --color-fd-muted: hsl(204, 29%, 91%);
+  --color-fd-muted-foreground: hsl(215, 16%, 42%);
+  --color-fd-border: hsl(205, 26%, 82%);
+  --color-fd-primary: hsl(168, 70%, 31%);
+  --color-fd-primary-foreground: hsl(0, 0%, 100%);
+  --background: var(--color-fd-background);
+  --foreground: var(--color-fd-foreground);
+  --card: var(--color-fd-background);
+  --card-foreground: var(--color-fd-foreground);
+  --popover: var(--color-fd-background);
+  --popover-foreground: var(--color-fd-foreground);
+  --primary: var(--color-fd-primary);
+  --primary-foreground: var(--color-fd-primary-foreground);
+  --muted: var(--color-fd-muted);
+  --muted-foreground: var(--color-fd-muted-foreground);
+  --accent: var(--color-fd-muted);
+  --accent-foreground: var(--color-fd-foreground);
+  --border: var(--color-fd-border);
+  --input: var(--color-fd-border);
+  --ring: var(--color-fd-primary);
+}
+
+.dark {
+  --color-fd-background: hsl(218, 31%, 8%);
+  --color-fd-foreground: hsl(180, 22%, 92%);
+  --color-fd-muted: hsl(217, 26%, 15%);
+  --color-fd-muted-foreground: hsl(200, 12%, 66%);
+  --color-fd-border: hsl(214, 23%, 22%);
+  --color-fd-primary: hsl(160, 72%, 48%);
+  --color-fd-primary-foreground: hsl(218, 31%, 8%);
+  --background: var(--color-fd-background);
+  --foreground: var(--color-fd-foreground);
+  --card: hsl(218, 29%, 10%);
+  --card-foreground: var(--color-fd-foreground);
+  --popover: hsl(218, 29%, 10%);
+  --popover-foreground: var(--color-fd-foreground);
+  --primary: var(--color-fd-primary);
+  --primary-foreground: var(--color-fd-primary-foreground);
+  --muted: var(--color-fd-muted);
+  --muted-foreground: var(--color-fd-muted-foreground);
+  --accent: hsl(217, 26%, 15%);
+  --accent-foreground: var(--color-fd-foreground);
+  --border: var(--color-fd-border);
+  --input: var(--color-fd-border);
+  --ring: var(--color-fd-primary);
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 20% 10%, hsl(160 72% 48% / 0.12), transparent 32rem),
+    radial-gradient(circle at 82% 22%, hsl(40 95% 58% / 0.1), transparent 28rem),
+    var(--color-fd-background);
+  color: var(--color-fd-foreground);
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: 0;
+}
+
+code,
+pre,
+kbd {
+  font-family:
+    "SFMono-Regular", "Cascadia Code", "Liberation Mono", Menlo, Consolas, monospace;
+}
+
+[data-navbar] {
+  border-bottom: 1px solid hsl(214 23% 22% / 0.9);
+  background: hsl(218 31% 8% / 0.86);
+  backdrop-filter: blur(12px);
+}
+
+.path-grid {
+  background-image:
+    linear-gradient(hsl(160 72% 48% / 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(160 72% 48% / 0.14) 1px, transparent 1px);
+  background-size: 42px 42px;
+}

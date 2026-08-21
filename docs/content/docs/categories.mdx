@@ -1,0 +1,36 @@
+---
+title: Categories
+description: Broad top-level categories and sensitivity guidance.
+icon: Tags
+---
+
+Categories are intentionally broad and stable. Use `subcategory` for products,
+providers, and technologies.
+
+Initial categories include:
+
+- `cloud`
+- `ssh`
+- `source-control`
+- `containers`
+- `kubernetes`
+- `cicd`
+- `package-manager`
+- `database`
+- `secret-manager`
+- `infrastructure`
+- `certificates`
+- `shell`
+- `browser`
+- `crypto-wallet`
+- `development`
+
+## Sensitivity
+
+- `critical`: directly reusable authentication material
+- `high`: highly likely to expose credentials or privileged operational data
+- `medium`: sensitive configuration or useful operational detail
+- `low`: contextual information useful for discovery
+- `informational`: limited sensitivity on its own
+
+Choose the lower value when evidence is weak.

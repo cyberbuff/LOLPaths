@@ -1,0 +1,33 @@
+schema_version: 1
+id: system.shadow-file
+name: Unix shadow File
+description: >
+  Unix shadow files contain local account password hashes and password aging
+  metadata.
+category: system
+artifact_types:
+  - credential
+  - password-store
+sensitivity: critical
+match:
+  paths:
+    - path: "/etc/shadow"
+      kind: file
+      platforms: [linux]
+credentials:
+  types:
+    - password-hash
+impact:
+  credential_access: true
+  privilege_escalation: true
+tags:
+  - unix
+  - accounts
+  - password-hash
+references:
+  - name: shadow
+    url: https://man7.org/linux/man-pages/man5/shadow.5.html
+  - name: TrendAI LiteLLM supply chain compromise
+    url: https://www.trendaisecurity.com/en-us/resources-insights/trendai-security-blog/inside-litellm-supply-chain-compromise
+metadata:
+  confidence: high

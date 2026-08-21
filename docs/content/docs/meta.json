@@ -1,0 +1,16 @@
+{
+	"pages": [
+		"---Start---",
+		"index",
+		"rule-format",
+		"matching-semantics",
+		"generated-artifacts",
+		"---Reference---",
+		"cli",
+		"schema",
+		"categories",
+		"contributing",
+		"---Rules---",
+		"..."
+	]
+}

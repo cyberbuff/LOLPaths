@@ -1,0 +1,41 @@
+schema_version: 1
+id: identity.ldap-client-config
+name: LDAP Client Configuration
+description: >
+  LDAP client configuration files can reveal directory hosts, bind settings,
+  TLS material, and authentication defaults.
+category: identity
+subcategory: ldap
+artifact_types:
+  - configuration
+  - credential
+sensitivity: medium
+match:
+  paths:
+    - path: "/etc/openldap/ldap.conf"
+      kind: file
+      platforms: [linux]
+    - path: "/etc/ldap/ldap.conf"
+      kind: file
+      platforms: [linux]
+    - path: "$HOME/.ldaprc"
+      kind: file
+      platforms: [linux, macos]
+    - path: "$HOME/ldaprc"
+      kind: file
+      platforms: [linux, macos]
+  content:
+    contains:
+      - URI
+      - BASE
+      - BINDDN
+impact:
+  discovery: true
+  remote_access: true
+tags:
+  - ldap
+references:
+  - name: ldap.conf
+    url: https://man.openbsd.org/ldap.conf.5
+metadata:
+  confidence: medium

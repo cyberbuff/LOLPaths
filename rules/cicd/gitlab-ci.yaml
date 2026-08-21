@@ -1,0 +1,32 @@
+schema_version: 1
+id: cicd.gitlab-ci.config
+name: GitLab CI Configuration
+description: >
+  GitLab CI configuration files can reveal build logic, deployment commands,
+  runner behavior, and secret references.
+category: cicd
+subcategory: gitlab-ci
+artifact_types:
+  - configuration
+sensitivity: medium
+match:
+  paths:
+    - path: "**/.gitlab-ci.y?ml"
+      kind: glob
+      platforms: [windows, linux, macos]
+  content:
+    contains:
+      - stages
+      - script
+      - variables
+impact:
+  discovery: true
+  source_code_access: true
+tags:
+  - gitlab-ci
+  - cicd
+references:
+  - name: GitLab CI/CD YAML Syntax Reference
+    url: https://docs.gitlab.com/ci/yaml/
+metadata:
+  confidence: high

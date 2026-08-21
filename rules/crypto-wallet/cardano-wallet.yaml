@@ -1,0 +1,26 @@
+schema_version: 1
+id: crypto-wallet.cardano.wallets
+name: Cardano Wallet Directory
+description: >
+  Cardano directories can contain wallet files, node state, and key material.
+category: crypto-wallet
+subcategory: cardano
+artifact_types:
+  - wallet
+  - credential
+sensitivity: critical
+match:
+  paths:
+    - path: "$HOME/.cardano/"
+      kind: directory
+      platforms: [linux, macos]
+credentials:
+  types:
+    - private-key
+impact:
+  credential_access: true
+tags:
+  - wallet
+  - cardano
+metadata:
+  confidence: low

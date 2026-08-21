@@ -1,0 +1,56 @@
+---
+title: Rule Format
+description: How LOLPaths YAML rules are structured.
+icon: FileCode2
+---
+
+Each rule represents one logical sensitive artifact. Platform-specific paths
+belong inside each path matcher.
+
+```yaml
+schema_version: 1
+id: cloud.aws.credentials
+name: AWS CLI Credentials
+category: cloud
+subcategory: aws
+artifact_types:
+  - credential
+  - configuration
+sensitivity: critical
+match:
+  paths:
+    - path: '%USERPROFILE%\.aws\credentials'
+      kind: file
+      platforms: [windows]
+    - path: "$HOME/.aws/credentials"
+      kind: file
+      platforms: [linux, macos]
+  content:
+    contains:
+      - aws_access_key_id
+    regex:
+      - '(?i)aws_secret_access_key\s*='
+```
+
+## Required Fields
+
+- `schema_version`
+- `id`
+- `name`
+- `category`
+- `sensitivity`
+- `match`
+
+At least one matcher is required: `match.paths`, `match.content.contains`, or
+`match.content.regex`.
+
+## Path Kinds
+
+LOLPaths v1 supports:
+
+- `file`
+- `directory`
+- `glob`
+
+Path regex is intentionally not part of schema version 1. Use recursive globs
+such as `**/.env.*`, `**/*.pem`, or `**/.github/workflows/*.y?ml`.

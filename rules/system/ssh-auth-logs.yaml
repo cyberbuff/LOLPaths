@@ -1,0 +1,29 @@
+schema_version: 1
+id: system.ssh-auth-logs
+name: SSH Authentication Logs
+description: >
+  SSH authentication logs can reveal accepted login events, usernames, source
+  addresses, and remote access patterns.
+category: system
+artifact_types:
+  - history
+sensitivity: low
+match:
+  paths:
+    - path: "/var/log/auth.log"
+      kind: file
+      platforms: [linux]
+    - path: "/var/log/secure"
+      kind: file
+      platforms: [linux]
+impact:
+  discovery: true
+tags:
+  - ssh
+  - logs
+  - authentication
+references:
+  - name: TrendAI LiteLLM supply chain compromise
+    url: https://www.trendaisecurity.com/en-us/resources-insights/trendai-security-blog/inside-litellm-supply-chain-compromise
+metadata:
+  confidence: medium

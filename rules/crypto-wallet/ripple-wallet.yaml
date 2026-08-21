@@ -1,0 +1,26 @@
+schema_version: 1
+id: crypto-wallet.ripple.wallets
+name: Ripple Wallet Directory
+description: >
+  Ripple wallet directories can contain wallet databases and private key material.
+category: crypto-wallet
+subcategory: ripple
+artifact_types:
+  - wallet
+  - credential
+sensitivity: critical
+match:
+  paths:
+    - path: "$HOME/.ripple/"
+      kind: directory
+      platforms: [linux, macos]
+credentials:
+  types:
+    - private-key
+impact:
+  credential_access: true
+tags:
+  - wallet
+  - ripple
+metadata:
+  confidence: low

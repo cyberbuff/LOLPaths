@@ -1,0 +1,85 @@
+schema_version: 1
+id: crypto-wallet.solana.keypair-files
+name: Solana Keypair Files
+description: >
+  Solana keypair JSON files can contain validator, identity, vote account,
+  stake account, faucet, and wallet private keys.
+category: crypto-wallet
+subcategory: solana
+artifact_types:
+  - wallet
+  - credential
+  - private-key
+sensitivity: critical
+match:
+  paths:
+    - path: "$HOME/validator-keypair.json"
+      kind: file
+      platforms: [linux, macos]
+    - path: "$HOME/vote-account-keypair.json"
+      kind: file
+      platforms: [linux, macos]
+    - path: "$HOME/authorized-withdrawer-keypair.json"
+      kind: file
+      platforms: [linux, macos]
+    - path: "$HOME/stake-account-keypair.json"
+      kind: file
+      platforms: [linux, macos]
+    - path: "$HOME/identity.json"
+      kind: file
+      platforms: [linux, macos]
+    - path: "$HOME/faucet-keypair.json"
+      kind: file
+      platforms: [linux, macos]
+    - path: "/home/sol/validator-keypair.json"
+      kind: file
+      platforms: [linux]
+    - path: "/home/solana/validator-keypair.json"
+      kind: file
+      platforms: [linux]
+    - path: "/opt/solana/validator-keypair.json"
+      kind: file
+      platforms: [linux]
+    - path: "/solana/validator-keypair.json"
+      kind: file
+      platforms: [linux]
+    - path: "/app/validator-keypair.json"
+      kind: file
+      platforms: [linux]
+    - path: "/data/validator-keypair.json"
+      kind: file
+      platforms: [linux]
+    - path: "**/*-keypair.json"
+      kind: glob
+      platforms: [windows, linux, macos]
+    - path: "**/keypair.json"
+      kind: glob
+      platforms: [windows, linux, macos]
+    - path: "**/id.json"
+      kind: glob
+      platforms: [windows, linux, macos]
+    - path: "**/.anchor/**/*.json"
+      kind: glob
+      platforms: [windows, linux, macos]
+    - path: "**/target/deploy/**/*.json"
+      kind: glob
+      platforms: [windows, linux, macos]
+    - path: "**/keys/**/*.json"
+      kind: glob
+      platforms: [windows, linux, macos]
+credentials:
+  types:
+    - private-key
+impact:
+  credential_access: true
+tags:
+  - wallet
+  - solana
+  - keypair
+references:
+  - name: Solana CLI
+    url: https://docs.solanalabs.com/cli
+  - name: TrendAI LiteLLM supply chain compromise
+    url: https://www.trendaisecurity.com/en-us/resources-insights/trendai-security-blog/inside-litellm-supply-chain-compromise
+metadata:
+  confidence: medium

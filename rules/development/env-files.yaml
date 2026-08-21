@@ -1,0 +1,38 @@
+schema_version: 1
+id: development.env-files
+name: Development Environment Files
+description: >
+  Dotenv-style files commonly contain application secrets, API keys, and connection strings.
+category: development
+artifact_types:
+  - environment
+  - configuration
+  - credential
+sensitivity: high
+match:
+  paths:
+    - path: "**/.env"
+      kind: glob
+      platforms: [windows, linux, macos]
+    - path: "**/.env.*"
+      kind: glob
+      platforms: [windows, linux, macos]
+  content:
+    regex:
+      - '(?i)(api[_-]?key|secret|token|password)\s*='
+credentials:
+  types:
+    - api-key
+    - password
+    - access-token
+impact:
+  credential_access: true
+  discovery: true
+tags:
+  - dotenv
+  - development
+references:
+  - name: dotenv README
+    url: https://github.com/motdotla/dotenv
+metadata:
+  confidence: high

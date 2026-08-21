@@ -1,0 +1,41 @@
+schema_version: 1
+id: database.mongodb-shell-global-config
+name: MongoDB Shell Global Configuration
+description: >
+  MongoDB Shell global configuration files can define startup behavior,
+  logging, history redaction, OIDC settings, and trusted endpoints.
+category: database
+subcategory: mongodb
+artifact_types:
+  - configuration
+  - database
+sensitivity: medium
+match:
+  paths:
+    - path: "mongosh.cfg"
+      kind: file
+      platforms: [windows]
+    - path: "/usr/local/etc/mongosh.conf"
+      kind: file
+      platforms: [macos]
+    - path: "/opt/homebrew/etc/mongosh.conf"
+      kind: file
+      platforms: [macos]
+    - path: "/etc/mongosh.conf"
+      kind: file
+      platforms: [linux, macos]
+  content:
+    contains:
+      - "mongosh:"
+      - redactHistory
+      - oidcTrustedEndpoints
+impact:
+  discovery: true
+tags:
+  - mongodb
+  - mongosh
+references:
+  - name: Configure Settings Using a Configuration File
+    url: https://www.mongodb.com/docs/mongodb-shell/reference/configure-shell-settings-global/
+metadata:
+  confidence: high
