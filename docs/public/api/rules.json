@@ -2,6 +2,205 @@
   "rules": [
     {
       "artifact_types": [
+        "token",
+        "configuration"
+      ],
+      "category": "application",
+      "credentials": {
+        "types": [
+          "authentication-token"
+        ]
+      },
+      "description": "Authy Desktop local storage directories can contain sensitive local state for two-factor authentication accounts.\n",
+      "id": "application.authy-desktop-local-storage",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "paths": [
+          {
+            "kind": "directory",
+            "path": "%APPDATA%\\Authy Desktop\\Local Storage\\leveldb\\",
+            "platforms": [
+              "windows"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "medium"
+      },
+      "name": "Authy Desktop Local Storage",
+      "references": [
+        {
+          "name": "eSentire Threat Intelligence Malware Analysis: Vidar Stealer",
+          "url": "https://www.esentire.com/blog/esentire-threat-intelligence-malware-analysis-vidar-stealer"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "authy",
+      "tags": [
+        "authy",
+        "mfa",
+        "token"
+      ]
+    },
+    {
+      "artifact_types": [
+        "token",
+        "session"
+      ],
+      "category": "application",
+      "credentials": {
+        "types": [
+          "access-token",
+          "session-token"
+        ]
+      },
+      "description": "Discord local storage directories can contain token-bearing browser storage and session artifacts used by the desktop application.\n",
+      "id": "application.discord-local-storage",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "paths": [
+          {
+            "kind": "directory",
+            "path": "%APPDATA%\\discord\\Local Storage\\leveldb\\",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "directory",
+            "path": "%APPDATA%\\discord\\Session Storage\\leveldb\\",
+            "platforms": [
+              "windows"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "high"
+      },
+      "name": "Discord Local Storage",
+      "references": [
+        {
+          "name": "eSentire Threat Intelligence Malware Analysis: Vidar Stealer",
+          "url": "https://www.esentire.com/blog/esentire-threat-intelligence-malware-analysis-vidar-stealer"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "discord",
+      "tags": [
+        "discord",
+        "token",
+        "session"
+      ]
+    },
+    {
+      "artifact_types": [
+        "session",
+        "configuration"
+      ],
+      "category": "application",
+      "credentials": {
+        "types": [
+          "session-token"
+        ]
+      },
+      "description": "Telegram Desktop tdata directories can contain encrypted local session and account artifacts.\n",
+      "id": "application.telegram-desktop-tdata",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "paths": [
+          {
+            "kind": "directory",
+            "path": "%APPDATA%\\Telegram Desktop\\tdata\\",
+            "platforms": [
+              "windows"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "high"
+      },
+      "name": "Telegram Desktop tdata",
+      "references": [
+        {
+          "name": "Whispers of Atlantida: Safeguarding Your Digital Treasure",
+          "url": "https://www.rapid7.com/blog/post/2024/01/17/whispers-of-atlantida-safeguarding-your-digital-treasure/"
+        },
+        {
+          "name": "eSentire Threat Intelligence Malware Analysis: Vidar Stealer",
+          "url": "https://www.esentire.com/blog/esentire-threat-intelligence-malware-analysis-vidar-stealer"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "telegram",
+      "tags": [
+        "telegram",
+        "session"
+      ]
+    },
+    {
+      "artifact_types": [
+        "password-store",
+        "cookie",
+        "session",
+        "configuration"
+      ],
+      "category": "browser",
+      "credentials": {
+        "types": [
+          "saved-password",
+          "session-cookie"
+        ]
+      },
+      "description": "Brave profile directories can contain saved passwords, cookies, local encryption state, autofill data, payment data, and session artifacts.\n",
+      "id": "browser.brave.profile-stores",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "paths": [
+          {
+            "kind": "directory",
+            "path": "%LOCALAPPDATA%\\BraveSoftware\\Brave-Browser\\User Data\\",
+            "platforms": [
+              "windows"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "medium"
+      },
+      "name": "Brave Profile Stores",
+      "references": [
+        {
+          "name": "Threat Hunting: Detecting Browser Credential Stealing [T1555.003]",
+          "url": "https://fourcore.io/blogs/threat-hunting-browser-credential-stealing"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "brave",
+      "tags": [
+        "browser",
+        "brave",
+        "credentials",
+        "cookies"
+      ]
+    },
+    {
+      "artifact_types": [
         "cookie",
         "session"
       ],
@@ -56,6 +255,388 @@
       "subcategory": "chrome",
       "tags": [
         "browser",
+        "cookies"
+      ]
+    },
+    {
+      "artifact_types": [
+        "password-store",
+        "cookie",
+        "session",
+        "configuration"
+      ],
+      "category": "browser",
+      "credentials": {
+        "types": [
+          "saved-password",
+          "session-cookie"
+        ]
+      },
+      "description": "Chrome profile directories can contain saved passwords, cookies, local encryption state, autofill data, payment data, and session artifacts.\n",
+      "id": "browser.chrome.profile-stores",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "paths": [
+          {
+            "kind": "directory",
+            "path": "%LOCALAPPDATA%\\Google\\Chrome\\User Data\\",
+            "platforms": [
+              "windows"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "medium"
+      },
+      "name": "Chrome Profile Stores",
+      "references": [
+        {
+          "name": "Threat Hunting: Detecting Browser Credential Stealing [T1555.003]",
+          "url": "https://fourcore.io/blogs/threat-hunting-browser-credential-stealing"
+        },
+        {
+          "name": "eSentire Threat Intelligence Malware Analysis: Vidar Stealer",
+          "url": "https://www.esentire.com/blog/esentire-threat-intelligence-malware-analysis-vidar-stealer"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "chrome",
+      "tags": [
+        "browser",
+        "chrome",
+        "credentials",
+        "cookies"
+      ]
+    },
+    {
+      "artifact_types": [
+        "password-store",
+        "cookie",
+        "session",
+        "configuration"
+      ],
+      "category": "browser",
+      "credentials": {
+        "types": [
+          "saved-password",
+          "session-cookie"
+        ]
+      },
+      "description": "Chromium profile directories can contain saved passwords, cookies, local encryption state, autofill data, payment data, and session artifacts.\n",
+      "id": "browser.chromium.profile-stores",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "paths": [
+          {
+            "kind": "directory",
+            "path": "%LOCALAPPDATA%\\Chromium\\User Data\\",
+            "platforms": [
+              "windows"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "medium"
+      },
+      "name": "Chromium Profile Stores",
+      "references": [
+        {
+          "name": "Threat Hunting: Detecting Browser Credential Stealing [T1555.003]",
+          "url": "https://fourcore.io/blogs/threat-hunting-browser-credential-stealing"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "chromium",
+      "tags": [
+        "browser",
+        "chromium",
+        "credentials",
+        "cookies"
+      ]
+    },
+    {
+      "artifact_types": [
+        "password-store",
+        "cookie",
+        "session",
+        "configuration"
+      ],
+      "category": "browser",
+      "credentials": {
+        "types": [
+          "saved-password",
+          "session-cookie"
+        ]
+      },
+      "description": "Microsoft Edge profile directories can contain saved passwords, cookies, local encryption state, autofill data, payment data, and session artifacts.\n",
+      "id": "browser.edge.profile-stores",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "paths": [
+          {
+            "kind": "directory",
+            "path": "%LOCALAPPDATA%\\Microsoft\\Edge\\User Data\\",
+            "platforms": [
+              "windows"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "medium"
+      },
+      "name": "Edge Profile Stores",
+      "references": [
+        {
+          "name": "Threat Hunting: Detecting Browser Credential Stealing [T1555.003]",
+          "url": "https://fourcore.io/blogs/threat-hunting-browser-credential-stealing"
+        },
+        {
+          "name": "eSentire Threat Intelligence Malware Analysis: Vidar Stealer",
+          "url": "https://www.esentire.com/blog/esentire-threat-intelligence-malware-analysis-vidar-stealer"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "edge",
+      "tags": [
+        "browser",
+        "edge",
+        "credentials",
+        "cookies"
+      ]
+    },
+    {
+      "artifact_types": [
+        "password-store",
+        "cookie",
+        "session"
+      ],
+      "category": "browser",
+      "credentials": {
+        "types": [
+          "saved-password",
+          "session-cookie"
+        ]
+      },
+      "description": "Firefox profile credential and cookie files can contain saved passwords, password database keys, cookies, and browser session state.\n",
+      "id": "browser.firefox-profile-credentials",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "paths": [
+          {
+            "kind": "glob",
+            "path": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\*\\logins.json",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "glob",
+            "path": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\*\\key4.db",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "glob",
+            "path": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\*\\key3.db",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "glob",
+            "path": "%APPDATA%\\Mozilla\\Firefox\\Profiles\\*\\cookies.sqlite",
+            "platforms": [
+              "windows"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "medium"
+      },
+      "name": "Firefox Profile Credentials",
+      "references": [
+        {
+          "name": "Threat Hunting: Detecting Browser Credential Stealing [T1555.003]",
+          "url": "https://fourcore.io/blogs/threat-hunting-browser-credential-stealing"
+        },
+        {
+          "name": "eSentire Threat Intelligence Malware Analysis: Vidar Stealer",
+          "url": "https://www.esentire.com/blog/esentire-threat-intelligence-malware-analysis-vidar-stealer"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "firefox",
+      "tags": [
+        "browser",
+        "firefox",
+        "credentials",
+        "cookies"
+      ]
+    },
+    {
+      "artifact_types": [
+        "password-store",
+        "cookie",
+        "session",
+        "configuration"
+      ],
+      "category": "browser",
+      "credentials": {
+        "types": [
+          "saved-password",
+          "session-cookie"
+        ]
+      },
+      "description": "Opera profile directories can contain saved passwords, cookies, local encryption state, autofill data, payment data, and session artifacts.\n",
+      "id": "browser.opera.profile-stores",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "paths": [
+          {
+            "kind": "directory",
+            "path": "%APPDATA%\\Opera Software\\Opera Stable\\",
+            "platforms": [
+              "windows"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "medium"
+      },
+      "name": "Opera Profile Stores",
+      "references": [
+        {
+          "name": "Threat Hunting: Detecting Browser Credential Stealing [T1555.003]",
+          "url": "https://fourcore.io/blogs/threat-hunting-browser-credential-stealing"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "opera",
+      "tags": [
+        "browser",
+        "opera",
+        "credentials",
+        "cookies"
+      ]
+    },
+    {
+      "artifact_types": [
+        "password-store",
+        "cookie",
+        "session",
+        "configuration"
+      ],
+      "category": "browser",
+      "credentials": {
+        "types": [
+          "saved-password",
+          "session-cookie"
+        ]
+      },
+      "description": "Vivaldi profile directories can contain saved passwords, cookies, local encryption state, autofill data, payment data, and session artifacts.\n",
+      "id": "browser.vivaldi.profile-stores",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "paths": [
+          {
+            "kind": "directory",
+            "path": "%LOCALAPPDATA%\\Vivaldi\\User Data\\",
+            "platforms": [
+              "windows"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "medium"
+      },
+      "name": "Vivaldi Profile Stores",
+      "references": [
+        {
+          "name": "Threat Hunting: Detecting Browser Credential Stealing [T1555.003]",
+          "url": "https://fourcore.io/blogs/threat-hunting-browser-credential-stealing"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "vivaldi",
+      "tags": [
+        "browser",
+        "vivaldi",
+        "credentials",
+        "cookies"
+      ]
+    },
+    {
+      "artifact_types": [
+        "password-store",
+        "cookie",
+        "session",
+        "configuration"
+      ],
+      "category": "browser",
+      "credentials": {
+        "types": [
+          "saved-password",
+          "session-cookie"
+        ]
+      },
+      "description": "Yandex Browser profile directories can contain saved passwords, cookies, local encryption state, autofill data, payment data, and session artifacts.\n",
+      "id": "browser.yandex.profile-stores",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "paths": [
+          {
+            "kind": "directory",
+            "path": "%LOCALAPPDATA%\\Yandex\\YandexBrowser\\User Data\\",
+            "platforms": [
+              "windows"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "medium"
+      },
+      "name": "Yandex Browser Profile Stores",
+      "references": [
+        {
+          "name": "Threat Hunting: Detecting Browser Credential Stealing [T1555.003]",
+          "url": "https://fourcore.io/blogs/threat-hunting-browser-credential-stealing"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "yandex",
+      "tags": [
+        "browser",
+        "yandex",
+        "credentials",
         "cookies"
       ]
     },
@@ -2201,6 +2782,91 @@
     },
     {
       "artifact_types": [
+        "history",
+        "database"
+      ],
+      "category": "database",
+      "description": "MySQL client history files can contain connection details, commands, or authentication material.\n",
+      "id": "database.mysql.history",
+      "impact": {
+        "credential_access": true,
+        "discovery": true
+      },
+      "match": {
+        "paths": [
+          {
+            "kind": "file",
+            "path": "$HOME/.mysql_history",
+            "platforms": [
+              "linux",
+              "macos"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "high"
+      },
+      "name": "MySQL Client History",
+      "references": [
+        {
+          "name": "MySQL Client Logging",
+          "url": "https://dev.mysql.com/doc/refman/8.0/en/mysql-logging.html"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "high",
+      "subcategory": "mysql",
+      "tags": [
+        "mysql",
+        "history"
+      ]
+    },
+    {
+      "artifact_types": [
+        "history",
+        "database"
+      ],
+      "category": "database",
+      "description": "PostgreSQL psql history files can contain connection details, commands, or authentication material.\n",
+      "id": "database.postgresql.history",
+      "impact": {
+        "credential_access": true,
+        "discovery": true
+      },
+      "match": {
+        "paths": [
+          {
+            "kind": "file",
+            "path": "$HOME/.psql_history",
+            "platforms": [
+              "linux",
+              "macos"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "high"
+      },
+      "name": "PostgreSQL psql History",
+      "references": [
+        {
+          "name": "PostgreSQL psql",
+          "url": "https://www.postgresql.org/docs/current/app-psql.html"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "high",
+      "subcategory": "postgresql",
+      "tags": [
+        "postgresql",
+        "psql",
+        "history"
+      ]
+    },
+    {
+      "artifact_types": [
         "credential",
         "database"
       ],
@@ -3452,6 +4118,72 @@
           "password"
         ]
       },
+      "description": "FileZilla saved-site files can contain FTP, FTPS, or SFTP connection details and saved passwords.\n",
+      "id": "remote-access.filezilla-sites",
+      "impact": {
+        "credential_access": true,
+        "remote_access": true
+      },
+      "match": {
+        "content": {
+          "contains": [
+            "Server",
+            "Host",
+            "User",
+            "Pass"
+          ]
+        },
+        "paths": [
+          {
+            "kind": "file",
+            "path": "%APPDATA%\\FileZilla\\recentservers.xml",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "file",
+            "path": "%APPDATA%\\FileZilla\\sitemanager.xml",
+            "platforms": [
+              "windows"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "high"
+      },
+      "name": "FileZilla Saved Site Credentials",
+      "references": [
+        {
+          "name": "eSentire Threat Intelligence Malware Analysis: Vidar Stealer",
+          "url": "https://www.esentire.com/blog/esentire-threat-intelligence-malware-analysis-vidar-stealer"
+        },
+        {
+          "name": "Immortal Information Stealer",
+          "url": "https://www.zscaler.com/blogs/research/immortal-information-stealer"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "filezilla",
+      "tags": [
+        "filezilla",
+        "ftp",
+        "sftp"
+      ]
+    },
+    {
+      "artifact_types": [
+        "credential",
+        "configuration"
+      ],
+      "category": "remote-access",
+      "credentials": {
+        "types": [
+          "password"
+        ]
+      },
       "description": "lftp startup files can contain bookmark, proxy, username, and password settings for remote file transfer services.\n",
       "id": "remote-access.lftp-config",
       "impact": {
@@ -3626,8 +4358,8 @@
         "history"
       ],
       "category": "shell",
-      "description": "Command history files may contain credentials, tokens, connection strings, hostnames, internal paths, or other sensitive data.\n",
-      "id": "shell.history",
+      "description": "Bash history files may contain credentials, tokens, connection strings, hostnames, internal paths, or other sensitive command data.\n",
+      "id": "shell.bash-history",
       "impact": {
         "credential_access": true,
         "discovery": true
@@ -3641,15 +4373,41 @@
               "linux",
               "macos"
             ]
-          },
-          {
-            "kind": "file",
-            "path": "$HOME/.zsh_history",
-            "platforms": [
-              "linux",
-              "macos"
-            ]
-          },
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "high"
+      },
+      "name": "Bash History",
+      "references": [
+        {
+          "name": "Bash History Facilities",
+          "url": "https://www.gnu.org/software/bash/manual/html_node/Bash-History-Facilities.html"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "high",
+      "subcategory": "bash",
+      "tags": [
+        "bash",
+        "shell",
+        "history"
+      ]
+    },
+    {
+      "artifact_types": [
+        "history"
+      ],
+      "category": "shell",
+      "description": "POSIX sh history files may contain credentials, tokens, connection strings, hostnames, internal paths, or other sensitive command data.\n",
+      "id": "shell.sh-history",
+      "impact": {
+        "credential_access": true,
+        "discovery": true
+      },
+      "match": {
+        "paths": [
           {
             "kind": "file",
             "path": "$HOME/.sh_history",
@@ -3657,26 +4415,38 @@
               "linux",
               "macos"
             ]
-          },
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "medium"
+      },
+      "name": "sh History",
+      "schema_version": 1,
+      "sensitivity": "high",
+      "subcategory": "sh",
+      "tags": [
+        "sh",
+        "shell",
+        "history"
+      ]
+    },
+    {
+      "artifact_types": [
+        "history"
+      ],
+      "category": "shell",
+      "description": "zsh history files may contain credentials, tokens, connection strings, hostnames, internal paths, or other sensitive command data.\n",
+      "id": "shell.zsh-history",
+      "impact": {
+        "credential_access": true,
+        "discovery": true
+      },
+      "match": {
+        "paths": [
           {
             "kind": "file",
-            "path": "$HOME/.mysql_history",
-            "platforms": [
-              "linux",
-              "macos"
-            ]
-          },
-          {
-            "kind": "file",
-            "path": "$HOME/.psql_history",
-            "platforms": [
-              "linux",
-              "macos"
-            ]
-          },
-          {
-            "kind": "file",
-            "path": "$HOME/.rediscli_history",
+            "path": "$HOME/.zsh_history",
             "platforms": [
               "linux",
               "macos"
@@ -3687,32 +4457,18 @@
       "metadata": {
         "confidence": "high"
       },
-      "name": "Shell History Files",
+      "name": "zsh History",
       "references": [
-        {
-          "name": "Bash History Facilities",
-          "url": "https://www.gnu.org/software/bash/manual/html_node/Bash-History-Facilities.html"
-        },
         {
           "name": "zsh Parameters",
           "url": "https://zsh.sourceforge.io/Doc/Release/Parameters.html"
-        },
-        {
-          "name": "MySQL Client Logging",
-          "url": "https://dev.mysql.com/doc/refman/8.0/en/mysql-logging.html"
-        },
-        {
-          "name": "PostgreSQL psql",
-          "url": "https://www.postgresql.org/docs/current/app-psql.html"
-        },
-        {
-          "name": "Redis CLI",
-          "url": "https://redis-stack.io/docs/connect/cli/"
         }
       ],
       "schema_version": 1,
       "sensitivity": "high",
+      "subcategory": "zsh",
       "tags": [
+        "zsh",
         "shell",
         "history"
       ]

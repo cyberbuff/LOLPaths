@@ -1,0 +1,28 @@
+schema_version: 1
+id: shell.bash-history
+name: Bash History
+description: >
+  Bash history files may contain credentials, tokens, connection strings,
+  hostnames, internal paths, or other sensitive command data.
+category: shell
+subcategory: bash
+artifact_types:
+  - history
+sensitivity: high
+match:
+  paths:
+    - path: "$HOME/.bash_history"
+      kind: file
+      platforms: [linux, macos]
+impact:
+  credential_access: true
+  discovery: true
+tags:
+  - bash
+  - shell
+  - history
+references:
+  - name: Bash History Facilities
+    url: https://www.gnu.org/software/bash/manual/html_node/Bash-History-Facilities.html
+metadata:
+  confidence: high

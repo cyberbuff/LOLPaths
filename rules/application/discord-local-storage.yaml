@@ -1,0 +1,35 @@
+schema_version: 1
+id: application.discord-local-storage
+name: Discord Local Storage
+description: >
+  Discord local storage directories can contain token-bearing browser storage
+  and session artifacts used by the desktop application.
+category: application
+subcategory: discord
+artifact_types:
+  - token
+  - session
+sensitivity: critical
+match:
+  paths:
+    - path: '%APPDATA%\discord\Local Storage\leveldb\'
+      kind: directory
+      platforms: [windows]
+    - path: '%APPDATA%\discord\Session Storage\leveldb\'
+      kind: directory
+      platforms: [windows]
+credentials:
+  types:
+    - access-token
+    - session-token
+impact:
+  credential_access: true
+tags:
+  - discord
+  - token
+  - session
+references:
+  - name: "eSentire Threat Intelligence Malware Analysis: Vidar Stealer"
+    url: https://www.esentire.com/blog/esentire-threat-intelligence-malware-analysis-vidar-stealer
+metadata:
+  confidence: high

@@ -1,0 +1,37 @@
+schema_version: 1
+id: browser.chrome.profile-stores
+name: Chrome Profile Stores
+description: >
+  Chrome profile directories can contain saved passwords, cookies, local
+  encryption state, autofill data, payment data, and session artifacts.
+category: browser
+subcategory: chrome
+artifact_types:
+  - password-store
+  - cookie
+  - session
+  - configuration
+sensitivity: critical
+match:
+  paths:
+    - path: '%LOCALAPPDATA%\Google\Chrome\User Data\'
+      kind: directory
+      platforms: [windows]
+credentials:
+  types:
+    - saved-password
+    - session-cookie
+impact:
+  credential_access: true
+tags:
+  - browser
+  - chrome
+  - credentials
+  - cookies
+references:
+  - name: "Threat Hunting: Detecting Browser Credential Stealing [T1555.003]"
+    url: https://fourcore.io/blogs/threat-hunting-browser-credential-stealing
+  - name: "eSentire Threat Intelligence Malware Analysis: Vidar Stealer"
+    url: https://www.esentire.com/blog/esentire-threat-intelligence-malware-analysis-vidar-stealer
+metadata:
+  confidence: medium

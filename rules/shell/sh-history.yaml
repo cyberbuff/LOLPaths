@@ -1,0 +1,25 @@
+schema_version: 1
+id: shell.sh-history
+name: sh History
+description: >
+  POSIX sh history files may contain credentials, tokens, connection strings,
+  hostnames, internal paths, or other sensitive command data.
+category: shell
+subcategory: sh
+artifact_types:
+  - history
+sensitivity: high
+match:
+  paths:
+    - path: "$HOME/.sh_history"
+      kind: file
+      platforms: [linux, macos]
+impact:
+  credential_access: true
+  discovery: true
+tags:
+  - sh
+  - shell
+  - history
+metadata:
+  confidence: medium

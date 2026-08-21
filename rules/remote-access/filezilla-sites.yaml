@@ -1,0 +1,43 @@
+schema_version: 1
+id: remote-access.filezilla-sites
+name: FileZilla Saved Site Credentials
+description: >
+  FileZilla saved-site files can contain FTP, FTPS, or SFTP connection details
+  and saved passwords.
+category: remote-access
+subcategory: filezilla
+artifact_types:
+  - credential
+  - configuration
+sensitivity: critical
+match:
+  paths:
+    - path: '%APPDATA%\FileZilla\recentservers.xml'
+      kind: file
+      platforms: [windows]
+    - path: '%APPDATA%\FileZilla\sitemanager.xml'
+      kind: file
+      platforms: [windows]
+  content:
+    contains:
+      - Server
+      - Host
+      - User
+      - Pass
+credentials:
+  types:
+    - password
+impact:
+  credential_access: true
+  remote_access: true
+tags:
+  - filezilla
+  - ftp
+  - sftp
+references:
+  - name: "eSentire Threat Intelligence Malware Analysis: Vidar Stealer"
+    url: https://www.esentire.com/blog/esentire-threat-intelligence-malware-analysis-vidar-stealer
+  - name: Immortal Information Stealer
+    url: https://www.zscaler.com/blogs/research/immortal-information-stealer
+metadata:
+  confidence: high

@@ -1,0 +1,35 @@
+schema_version: 1
+id: browser.vivaldi.profile-stores
+name: Vivaldi Profile Stores
+description: >
+  Vivaldi profile directories can contain saved passwords, cookies, local
+  encryption state, autofill data, payment data, and session artifacts.
+category: browser
+subcategory: vivaldi
+artifact_types:
+  - password-store
+  - cookie
+  - session
+  - configuration
+sensitivity: critical
+match:
+  paths:
+    - path: '%LOCALAPPDATA%\Vivaldi\User Data\'
+      kind: directory
+      platforms: [windows]
+credentials:
+  types:
+    - saved-password
+    - session-cookie
+impact:
+  credential_access: true
+tags:
+  - browser
+  - vivaldi
+  - credentials
+  - cookies
+references:
+  - name: "Threat Hunting: Detecting Browser Credential Stealing [T1555.003]"
+    url: https://fourcore.io/blogs/threat-hunting-browser-credential-stealing
+metadata:
+  confidence: medium

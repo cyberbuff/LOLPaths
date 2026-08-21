@@ -1,0 +1,31 @@
+schema_version: 1
+id: application.authy-desktop-local-storage
+name: Authy Desktop Local Storage
+description: >
+  Authy Desktop local storage directories can contain sensitive local state for
+  two-factor authentication accounts.
+category: application
+subcategory: authy
+artifact_types:
+  - token
+  - configuration
+sensitivity: critical
+match:
+  paths:
+    - path: '%APPDATA%\Authy Desktop\Local Storage\leveldb\'
+      kind: directory
+      platforms: [windows]
+credentials:
+  types:
+    - authentication-token
+impact:
+  credential_access: true
+tags:
+  - authy
+  - mfa
+  - token
+references:
+  - name: "eSentire Threat Intelligence Malware Analysis: Vidar Stealer"
+    url: https://www.esentire.com/blog/esentire-threat-intelligence-malware-analysis-vidar-stealer
+metadata:
+  confidence: medium

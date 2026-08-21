@@ -35,6 +35,7 @@ def schema_path() -> Path:
 def test_validate_and_generate_commands(tmp_path: Path, capsys: CaptureFixture[str]) -> None:
     rules_dir = tmp_path / "rules"
     generated_dir = tmp_path / "generated"
+    docs_dir = tmp_path / "docs"
     write_rule(rules_dir)
 
     validate_code = main(["validate", "--rules", str(rules_dir), "--schema", str(schema_path())])
@@ -47,6 +48,8 @@ def test_validate_and_generate_commands(tmp_path: Path, capsys: CaptureFixture[s
             str(schema_path()),
             "--output",
             str(generated_dir),
+            "--docs",
+            str(docs_dir),
         ]
     )
 
@@ -55,6 +58,7 @@ def test_validate_and_generate_commands(tmp_path: Path, capsys: CaptureFixture[s
     assert generate_code == 0
     assert "application.sample-secret" in output
     assert (generated_dir / "linux.txt").exists()
+    assert (docs_dir / "public/api/rules.json").exists()
     assert not (generated_dir / "rules.json").exists()
 
 

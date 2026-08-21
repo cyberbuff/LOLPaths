@@ -1,0 +1,28 @@
+schema_version: 1
+id: shell.zsh-history
+name: zsh History
+description: >
+  zsh history files may contain credentials, tokens, connection strings,
+  hostnames, internal paths, or other sensitive command data.
+category: shell
+subcategory: zsh
+artifact_types:
+  - history
+sensitivity: high
+match:
+  paths:
+    - path: "$HOME/.zsh_history"
+      kind: file
+      platforms: [linux, macos]
+impact:
+  credential_access: true
+  discovery: true
+tags:
+  - zsh
+  - shell
+  - history
+references:
+  - name: zsh Parameters
+    url: https://zsh.sourceforge.io/Doc/Release/Parameters.html
+metadata:
+  confidence: high

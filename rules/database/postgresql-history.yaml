@@ -1,0 +1,29 @@
+schema_version: 1
+id: database.postgresql.history
+name: PostgreSQL psql History
+description: >
+  PostgreSQL psql history files can contain connection details, commands, or
+  authentication material.
+category: database
+subcategory: postgresql
+artifact_types:
+  - history
+  - database
+sensitivity: high
+match:
+  paths:
+    - path: "$HOME/.psql_history"
+      kind: file
+      platforms: [linux, macos]
+impact:
+  credential_access: true
+  discovery: true
+tags:
+  - postgresql
+  - psql
+  - history
+references:
+  - name: PostgreSQL psql
+    url: https://www.postgresql.org/docs/current/app-psql.html
+metadata:
+  confidence: high
