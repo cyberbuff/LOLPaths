@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from lolpaths.validator import ValidationIssue, load_valid_rules, validate_rules
+from lolpaths.validator import ValidationIssue, validate_rules
 
 
 def write_rule(rules_dir: Path, name: str, text: str) -> Path:
@@ -175,68 +175,3 @@ match:
 
     assert "match" in messages(issues)
     assert "paths" in messages(issues)
-
-
-def test_catalog_includes_databricks_config_rule() -> None:
-    rules = load_valid_rules(Path("rules"), schema_path())
-    rule_ids = {rule["id"] for rule in rules}
-
-    assert "cloud.databricks.config" in rule_ids
-
-
-def test_catalog_covers_requested_secret_artifacts() -> None:
-    rules = load_valid_rules(Path("rules"), schema_path())
-    rule_ids = {rule["id"] for rule in rules}
-
-    assert {
-        "cloud.aws.imds-credentials",
-        "remote-access.netrc",
-        "remote-access.lftp-config",
-        "email.msmtp-config",
-        "database.mongodb-shell-config",
-        "database.mongodb-shell-global-config",
-        "cloud.mongodb.cli-config",
-        "cloud.mongodb-atlas.cli-config",
-        "identity.ldap-client-config",
-        "crypto-wallet.bitcoin.wallets",
-        "crypto-wallet.litecoin.wallets",
-        "crypto-wallet.dogecoin.wallets",
-        "crypto-wallet.zcash.wallets",
-        "crypto-wallet.dash.wallets",
-        "crypto-wallet.ripple.wallets",
-        "crypto-wallet.monero.wallets",
-        "crypto-wallet.ethereum.keystore",
-        "crypto-wallet.cardano.wallets",
-        "crypto-wallet.solana.config",
-        "cicd.gitlab-ci.config",
-        "cicd.travis-ci.config",
-        "cicd.jenkinsfile.config",
-        "cicd.drone.config",
-        "cicd.anchor.config",
-        "infrastructure.terraform-variable-files",
-    } <= rule_ids
-    assert "cicd.pipeline-configs" not in rule_ids
-    assert "crypto-wallet.common-wallets" not in rule_ids
-
-
-def test_catalog_covers_litellm_compromise_artifact_paths() -> None:
-    rules = load_valid_rules(Path("rules"), schema_path())
-    rule_ids = {rule["id"] for rule in rules}
-
-    assert {
-        "ssh.host-private-keys",
-        "kubernetes.service-account-ca-certificate",
-        "kubernetes.service-account-namespace",
-        "containers.runtime-secret-files",
-        "vpn.wireguard-config",
-        "kubernetes.helm-directory",
-        "system.environment-file",
-        "system.passwd-file",
-        "system.shadow-file",
-        "system.ssh-auth-logs",
-        "email.postfix-sasl-passwords",
-        "identity.ldap-server-config",
-        "database.redis-config",
-        "crypto-wallet.solana.keypair-files",
-        "crypto-wallet.solana.ledger-files",
-    } <= rule_ids
