@@ -95,10 +95,7 @@
     "match": {
       "type": "object",
       "additionalProperties": false,
-      "anyOf": [
-        { "required": ["paths"] },
-        { "required": ["content"] }
-      ],
+      "required": ["paths"],
       "properties": {
         "paths": {
           "type": "array",

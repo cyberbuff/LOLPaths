@@ -644,57 +644,6 @@
     {
       "artifact_types": [
         "credential",
-        "token"
-      ],
-      "category": "cloud",
-      "credentials": {
-        "types": [
-          "session-token",
-          "access-key",
-          "secret-access-key"
-        ]
-      },
-      "description": "AWS Instance Metadata Service endpoints can provide IMDSv2 tokens and temporary IAM role security credentials to software running on EC2 instances.\n",
-      "id": "cloud.aws.imds-credentials",
-      "impact": {
-        "cloud_access": true,
-        "credential_access": true
-      },
-      "match": {
-        "content": {
-          "contains": [
-            "169.254.169.254",
-            "/latest/api/token",
-            "/latest/meta-data/iam/security-credentials/"
-          ]
-        }
-      },
-      "metadata": {
-        "confidence": "high"
-      },
-      "name": "AWS Instance Metadata Credentials",
-      "references": [
-        {
-          "name": "Amazon EC2 Instance Metadata Service",
-          "url": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html"
-        },
-        {
-          "name": "IAM Roles for Amazon EC2",
-          "url": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html"
-        }
-      ],
-      "schema_version": 1,
-      "sensitivity": "critical",
-      "subcategory": "aws",
-      "tags": [
-        "aws",
-        "imds",
-        "cloud"
-      ]
-    },
-    {
-      "artifact_types": [
-        "credential",
         "configuration"
       ],
       "category": "cloud",

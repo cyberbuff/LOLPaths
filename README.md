@@ -75,8 +75,8 @@ Sensitivity describes exposure risk: `critical`, `high`, `medium`, `low`, or
 
 ## Generated Artifacts
 
-Path matchers use `file`, `directory`, and `glob`; content matchers may use
-literal strings or regexes.
+Path matchers are mandatory and use `file`, `directory`, and `glob`; content
+matchers may add literal strings or regexes.
 
 Generated files are derived from YAML and should not be edited manually:
 

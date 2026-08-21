@@ -153,7 +153,7 @@ def test_duplicate_rule_ids_fail(tmp_path: Path) -> None:
     assert "duplicate rule id" in messages(issues)
 
 
-def test_content_only_rule_is_valid(tmp_path: Path) -> None:
+def test_content_only_rule_requires_paths(tmp_path: Path) -> None:
     rules_dir = tmp_path / "rules"
     write_rule(
         rules_dir,
@@ -171,10 +171,10 @@ match:
 """,
     )
 
-    ids, issues = validate_rules(rules_dir, schema_path())
+    _, issues = validate_rules(rules_dir, schema_path())
 
-    assert ids == ["application.env-secrets"]
-    assert issues == []
+    assert "match" in messages(issues)
+    assert "paths" in messages(issues)
 
 
 def test_catalog_includes_databricks_config_rule() -> None:
