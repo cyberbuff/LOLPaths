@@ -28,24 +28,18 @@ match:
     )
 
 
-def schema_path() -> Path:
-    return Path(__file__).resolve().parents[1] / "schema" / "lolpaths.schema.json"
-
-
 def test_validate_and_generate_commands(tmp_path: Path, capsys: CaptureFixture[str]) -> None:
     rules_dir = tmp_path / "rules"
     generated_dir = tmp_path / "generated"
     docs_dir = tmp_path / "docs"
     write_rule(rules_dir)
 
-    validate_code = main(["validate", "--rules", str(rules_dir), "--schema", str(schema_path())])
+    validate_code = main(["validate", "--rules", str(rules_dir)])
     generate_code = main(
         [
             "generate",
             "--rules",
             str(rules_dir),
-            "--schema",
-            str(schema_path()),
             "--output",
             str(generated_dir),
             "--docs",
@@ -72,8 +66,6 @@ def test_list_and_show_commands_filter_rules(tmp_path: Path, capsys: CaptureFixt
             "list",
             "--rules",
             str(rules_dir),
-            "--schema",
-            str(schema_path()),
             "--platform",
             "linux",
             "--category",
@@ -86,8 +78,6 @@ def test_list_and_show_commands_filter_rules(tmp_path: Path, capsys: CaptureFixt
             "application.sample-secret",
             "--rules",
             str(rules_dir),
-            "--schema",
-            str(schema_path()),
         ]
     )
 

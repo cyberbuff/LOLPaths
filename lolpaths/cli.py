@@ -50,12 +50,11 @@ def _parser() -> argparse.ArgumentParser:
 
 def _add_rule_args(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--rules", type=Path, default=Path("rules"))
-    parser.add_argument("--schema", type=Path, default=Path("schema/lolpaths.schema.json"))
 
 
 def _validate(args: argparse.Namespace) -> int:
     print("Validating LOLPaths rules...")
-    ids, issues = validate_rules(args.rules, args.schema)
+    ids, issues = validate_rules(args.rules)
     for rule_id in ids:
         print(f"✓ {rule_id}")
     if issues:
@@ -69,7 +68,7 @@ def _validate(args: argparse.Namespace) -> int:
 
 def _generate(args: argparse.Namespace) -> int:
     try:
-        generate_outputs(args.rules, args.schema, args.output, args.docs)
+        generate_outputs(args.rules, args.output, args.docs)
     except ValueError as error:
         print(error)
         return 1
@@ -79,7 +78,7 @@ def _generate(args: argparse.Namespace) -> int:
 
 def _list(args: argparse.Namespace) -> int:
     try:
-        rules = load_valid_rules(args.rules, args.schema)
+        rules = load_valid_rules(args.rules)
     except ValueError as error:
         print(error)
         return 1
@@ -91,7 +90,7 @@ def _list(args: argparse.Namespace) -> int:
 
 def _show(args: argparse.Namespace) -> int:
     try:
-        rules = load_valid_rules(args.rules, args.schema)
+        rules = load_valid_rules(args.rules)
     except ValueError as error:
         print(error)
         return 1

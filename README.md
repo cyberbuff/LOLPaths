@@ -26,7 +26,7 @@ dump secret contents.
 uv sync
 uv run lolpaths validate
 uv run lolpaths generate
-uv run python -m pytest -q
+uv run pytest -q
 ```
 
 Useful read-only queries:
@@ -85,7 +85,7 @@ Generated files are derived from YAML and should not be edited manually:
 - `generated/macos.txt`
 - `docs/public/api/rules.json`
 - `docs/public/api/stats.json`
-- `docs/content/docs/rules/*.mdx`
+- `docs/content/docs/<rule path>.mdx`
 
 Run `uv run lolpaths generate` after changing rules.
 
@@ -109,7 +109,7 @@ choose sensitivity conservatively, include provenance when possible, then run:
 ```bash
 uv run lolpaths validate
 uv run lolpaths generate
-uv run python -m pytest -q
+uv run pytest -q
 ```
 
 ## License

@@ -12,11 +12,10 @@ PLATFORMS = ("windows", "linux", "macos")
 
 def generate_outputs(
     rules_dir: Path,
-    schema_path: Path,
     output_dir: Path,
     docs_dir: Path | None = None,
 ) -> None:
-    rule_files = load_valid_rule_files(rules_dir, schema_path)
+    rule_files = load_valid_rule_files(rules_dir)
     rules = [rule for _, rule in rule_files]
     output_dir.mkdir(parents=True, exist_ok=True)
 

@@ -12,10 +12,6 @@ def write_rule(rules_dir: Path, name: str, text: str) -> Path:
     return path
 
 
-def schema_path() -> Path:
-    return Path(__file__).resolve().parents[1] / "schema" / "lolpaths.schema.json"
-
-
 def valid_rule(rule_id: str = "cloud.aws.credentials") -> str:
     return f"""
 schema_version: 1
@@ -49,7 +45,7 @@ def test_valid_rule_with_platform_specific_paths_passes(tmp_path: Path) -> None:
     rules_dir = tmp_path / "rules"
     write_rule(rules_dir, "cloud/aws/credentials.yaml", valid_rule())
 
-    ids, issues = validate_rules(rules_dir, schema_path())
+    ids, issues = validate_rules(rules_dir)
 
     assert ids == ["cloud.aws.credentials"]
     assert issues == []
@@ -73,7 +69,7 @@ match:
 """,
     )
 
-    _, issues = validate_rules(rules_dir, schema_path())
+    _, issues = validate_rules(rules_dir)
 
     assert "sensitivity" in messages(issues)
 
@@ -101,7 +97,7 @@ def test_invalid_enums_fail(tmp_path: Path) -> None:
         valid_rule("ssh.bad-platform").replace("platforms: [linux, macos]", "platforms: [unix]", 1),
     )
 
-    _, issues = validate_rules(rules_dir, schema_path())
+    _, issues = validate_rules(rules_dir)
 
     text = messages(issues)
     assert "category" in text
@@ -120,7 +116,7 @@ def test_invalid_regexes_fail(tmp_path: Path) -> None:
         ),
     )
 
-    _, issues = validate_rules(rules_dir, schema_path())
+    _, issues = validate_rules(rules_dir)
 
     text = messages(issues)
     assert "match.content.regex[0]" in text
@@ -136,7 +132,7 @@ def test_path_regex_kind_fails(tmp_path: Path) -> None:
         .replace("kind: file", "kind: regex", 1),
     )
 
-    _, issues = validate_rules(rules_dir, schema_path())
+    _, issues = validate_rules(rules_dir)
 
     text = messages(issues)
     assert "match.paths[0].kind" in text
@@ -148,7 +144,7 @@ def test_duplicate_rule_ids_fail(tmp_path: Path) -> None:
     write_rule(rules_dir, "one.yaml", valid_rule("ssh.private-keys"))
     write_rule(rules_dir, "two.yaml", valid_rule("ssh.private-keys"))
 
-    _, issues = validate_rules(rules_dir, schema_path())
+    _, issues = validate_rules(rules_dir)
 
     assert "duplicate rule id" in messages(issues)
 
@@ -171,7 +167,7 @@ match:
 """,
     )
 
-    _, issues = validate_rules(rules_dir, schema_path())
+    _, issues = validate_rules(rules_dir)
 
     assert "match" in messages(issues)
     assert "paths" in messages(issues)

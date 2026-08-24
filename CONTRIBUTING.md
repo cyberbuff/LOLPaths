@@ -16,7 +16,7 @@ Thanks for helping improve LOLPaths. The source of truth is YAML under
 ```bash
 uv run lolpaths validate
 uv run lolpaths generate
-uv run python -m pytest -q
+uv run pytest -q
 ```
 
 ## Naming
@@ -37,4 +37,3 @@ vendors, tools, and technologies.
 Do not submit rules or tests that include real credentials, private keys,
 tokens, cookies, wallet seeds, or customer data. Examples should use metadata,
 path templates, and harmless strings only.
-

@@ -12,10 +12,6 @@ def write_rule(rules_dir: Path, name: str, text: str) -> None:
     path.write_text(text.strip() + "\n", encoding="utf-8")
 
 
-def schema_path() -> Path:
-    return Path(__file__).resolve().parents[1] / "schema" / "lolpaths.schema.json"
-
-
 def test_generator_writes_deterministic_platform_outputs(tmp_path: Path) -> None:
     rules_dir = tmp_path / "rules"
     output_dir = tmp_path / "generated"
@@ -55,9 +51,9 @@ match:
 """,
     )
 
-    generate_outputs(rules_dir, schema_path(), output_dir)
+    generate_outputs(rules_dir, output_dir)
     first = {path.name: path.read_text(encoding="utf-8") for path in output_dir.iterdir()}
-    generate_outputs(rules_dir, schema_path(), output_dir)
+    generate_outputs(rules_dir, output_dir)
     second = {path.name: path.read_text(encoding="utf-8") for path in output_dir.iterdir()}
 
     assert first == second
@@ -103,7 +99,7 @@ metadata:
 """,
     )
 
-    generate_outputs(rules_dir, schema_path(), output_dir, docs_dir)
+    generate_outputs(rules_dir, output_dir, docs_dir)
 
     api_rules = json.loads((docs_dir / "public/api/rules.json").read_text(encoding="utf-8"))
     stats = json.loads((docs_dir / "public/api/stats.json").read_text(encoding="utf-8"))

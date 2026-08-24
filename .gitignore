@@ -6,6 +6,7 @@
 docs/.next/
 docs/.source/
 docs/.tmp/
+docs/next-env.d.ts
 docs/node_modules/
 __pycache__/
 *.pyc

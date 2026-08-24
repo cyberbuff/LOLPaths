@@ -1,13 +1,13 @@
 ---
 title: Schema
-description: The JSON Schema contract for LOLPaths rules.
+description: The Pydantic contract for LOLPaths rules.
 icon: Braces
 ---
 
-The canonical structural schema lives at:
+The canonical structural schema is implemented as Pydantic models in:
 
 ```text
-schema/lolpaths.schema.json
+lolpaths/validator.py
 ```
 
 It validates:
@@ -21,8 +21,7 @@ It validates:
 - Metadata shape
 - Content matcher structure
 
-The validator adds checks that JSON Schema cannot express cleanly, including
-duplicate rule IDs and malformed content regexes.
+The validator also checks duplicate rule IDs and malformed content regexes.
 
 Rule IDs use lowercase dot-separated identifiers:
 
