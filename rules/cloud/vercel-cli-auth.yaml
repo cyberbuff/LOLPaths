@@ -1,0 +1,41 @@
+schema_version: 1
+id: cloud.vercel.cli-auth
+name: Vercel CLI Authentication
+description: >
+  Vercel CLI stores global authentication data in auth.json under the user
+  data directory.
+category: cloud
+subcategory: vercel
+artifact_types:
+  - credential
+  - token
+  - configuration
+sensitivity: critical
+match:
+  paths:
+    - path: '%APPDATA%\Roaming\xdg.data\com.vercel.cli\auth.json'
+      kind: file
+      platforms: [windows]
+    - path: "$HOME/.local/share/com.vercel.cli/auth.json"
+      kind: file
+      platforms: [linux]
+    - path: "$HOME/Library/Application Support/com.vercel.cli/auth.json"
+      kind: file
+      platforms: [macos]
+  content:
+    contains:
+      - token
+credentials:
+  types:
+    - access-token
+impact:
+  credential_access: true
+  cloud_access: true
+tags:
+  - vercel
+  - cloud
+references:
+  - name: Vercel Global Configuration
+    url: https://vercel.com/docs/project-configuration/global-configuration
+metadata:
+  confidence: high

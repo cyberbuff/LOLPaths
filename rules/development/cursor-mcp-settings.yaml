@@ -1,0 +1,40 @@
+schema_version: 1
+id: development.cursor-mcp-settings
+name: Cursor MCP Settings
+description: >
+  Cursor MCP settings can include local command definitions, HTTP headers, and
+  environment variables for external tool integrations.
+category: development
+subcategory: cursor
+artifact_types:
+  - credential
+  - configuration
+sensitivity: critical
+match:
+  paths:
+    - path: '%USERPROFILE%\.cursor\mcp.json'
+      kind: file
+      platforms: [windows]
+    - path: "$HOME/.cursor/mcp.json"
+      kind: file
+      platforms: [linux, macos]
+    - path: "**/.cursor/mcp.json"
+      kind: glob
+      platforms: [windows, linux, macos]
+  content:
+    contains:
+      - mcpServers
+credentials:
+  types:
+    - api-key
+    - access-token
+impact:
+  credential_access: true
+tags:
+  - cursor
+  - mcp
+references:
+  - name: Cursor Model Context Protocol
+    url: https://docs.cursor.com/context/model-context-protocol
+metadata:
+  confidence: high

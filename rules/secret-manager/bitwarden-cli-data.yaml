@@ -1,0 +1,39 @@
+schema_version: 1
+id: secret-manager.bitwarden-cli-data
+name: Bitwarden CLI Data
+description: >
+  Bitwarden CLI stores encrypted vault data and account state under the user's
+  Bitwarden CLI application data directory.
+category: secret-manager
+subcategory: bitwarden
+artifact_types:
+  - credential
+  - password-store
+  - configuration
+sensitivity: high
+match:
+  paths:
+    - path: '%APPDATA%\Bitwarden CLI\data.json'
+      kind: file
+      platforms: [windows]
+    - path: "$HOME/.config/Bitwarden CLI/data.json"
+      kind: file
+      platforms: [linux]
+    - path: "$HOME/Library/Application Support/Bitwarden CLI/data.json"
+      kind: file
+      platforms: [macos]
+credentials:
+  types:
+    - password-store
+impact:
+  credential_access: true
+tags:
+  - bitwarden
+  - secret-manager
+references:
+  - name: Bitwarden Data Storage
+    url: https://bitwarden.com/help/data-storage/
+  - name: Bitwarden Password Manager CLI
+    url: https://bitwarden.com/help/cli/
+metadata:
+  confidence: high

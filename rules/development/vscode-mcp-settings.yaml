@@ -1,0 +1,45 @@
+schema_version: 1
+id: development.vscode-mcp-settings
+name: VS Code MCP Settings
+description: >
+  VS Code MCP settings can include local command definitions, HTTP endpoints,
+  and sensitive input variables for agent tool integrations.
+category: development
+subcategory: vscode
+artifact_types:
+  - credential
+  - configuration
+sensitivity: high
+match:
+  paths:
+    - path: '%APPDATA%\Code\User\mcp.json'
+      kind: file
+      platforms: [windows]
+    - path: "$HOME/.config/Code/User/mcp.json"
+      kind: file
+      platforms: [linux]
+    - path: "$HOME/Library/Application Support/Code/User/mcp.json"
+      kind: file
+      platforms: [macos]
+    - path: "**/.vscode/mcp.json"
+      kind: glob
+      platforms: [windows, linux, macos]
+  content:
+    contains:
+      - servers
+credentials:
+  types:
+    - api-key
+    - access-token
+impact:
+  credential_access: true
+tags:
+  - vscode
+  - mcp
+references:
+  - name: VS Code MCP Servers
+    url: https://code.visualstudio.com/docs/agent-customization/mcp-servers
+  - name: VS Code MCP Configuration Reference
+    url: https://code.visualstudio.com/docs/agents/reference/mcp-configuration
+metadata:
+  confidence: high

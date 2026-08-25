@@ -1,0 +1,40 @@
+schema_version: 1
+id: cloud.flyctl.auth
+name: Fly.io flyctl Authentication
+description: >
+  flyctl may store Fly.io access tokens in its user configuration file for
+  authenticated local commands.
+category: cloud
+subcategory: flyio
+artifact_types:
+  - credential
+  - token
+  - configuration
+sensitivity: critical
+match:
+  paths:
+    - path: '%USERPROFILE%\.fly\config.yml'
+      kind: file
+      platforms: [windows]
+    - path: "$HOME/.fly/config.yml"
+      kind: file
+      platforms: [linux, macos]
+  content:
+    contains:
+      - access_token
+credentials:
+  types:
+    - access-token
+impact:
+  credential_access: true
+  cloud_access: true
+tags:
+  - flyio
+  - cloud
+references:
+  - name: Fly.io flyctl Authentication
+    url: https://fly.io/docs/flyctl/auth/
+  - name: Fly.io Configuration Folder Setup
+    url: https://community.fly.io/t/configuration-folder-setup/3668
+metadata:
+  confidence: medium

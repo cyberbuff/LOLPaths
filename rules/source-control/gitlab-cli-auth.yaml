@@ -1,0 +1,47 @@
+schema_version: 1
+id: source-control.gitlab-cli-auth
+name: GitLab CLI Authentication
+description: >
+  GitLab CLI configuration can store access tokens for GitLab.com and
+  self-managed GitLab hosts.
+category: source-control
+subcategory: gitlab-cli
+artifact_types:
+  - credential
+  - token
+  - configuration
+sensitivity: critical
+match:
+  paths:
+    - path: '%LOCALAPPDATA%\glab-cli\config.yml'
+      kind: file
+      platforms: [windows]
+    - path: "$HOME/.config/glab-cli/config.yml"
+      kind: file
+      platforms: [linux, macos]
+    - path: "$HOME/Library/Application Support/glab-cli/config.yml"
+      kind: file
+      platforms: [macos]
+    - path: "**/.git/glab-cli/config.yml"
+      kind: glob
+      platforms: [windows, linux, macos]
+  content:
+    contains:
+      - token
+      - host
+credentials:
+  types:
+    - access-token
+impact:
+  credential_access: true
+  source_code_access: true
+tags:
+  - gitlab
+  - source-control
+references:
+  - name: GitLab CLI Configuration
+    url: https://docs.gitlab.com/cli/config/
+  - name: GitLab CLI Authentication
+    url: https://docs.gitlab.com/cli/authentication/
+metadata:
+  confidence: high

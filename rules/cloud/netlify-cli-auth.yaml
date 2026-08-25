@@ -1,0 +1,38 @@
+schema_version: 1
+id: cloud.netlify.cli-auth
+name: Netlify CLI Authentication
+description: >
+  Netlify CLI stores user access tokens in a global config.json file after
+  interactive login.
+category: cloud
+subcategory: netlify
+artifact_types:
+  - credential
+  - token
+  - configuration
+sensitivity: critical
+match:
+  paths:
+    - path: '%APPDATA%\netlify\Config\config.json'
+      kind: file
+      platforms: [windows]
+    - path: "$HOME/.config/netlify/config.json"
+      kind: file
+      platforms: [linux]
+    - path: "$HOME/Library/Preferences/netlify/config.json"
+      kind: file
+      platforms: [macos]
+credentials:
+  types:
+    - access-token
+impact:
+  credential_access: true
+  cloud_access: true
+tags:
+  - netlify
+  - cloud
+references:
+  - name: Netlify CLI Authentication
+    url: https://docs.netlify.com/api-and-cli-guides/cli-guides/get-started-with-cli/
+metadata:
+  confidence: high

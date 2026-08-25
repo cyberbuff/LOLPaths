@@ -1,0 +1,41 @@
+schema_version: 1
+id: source-control.github-cli-auth
+name: GitHub CLI Authentication
+description: >
+  GitHub CLI host configuration can identify authenticated GitHub hosts and may
+  contain plaintext OAuth tokens when secure credential storage is unavailable.
+category: source-control
+subcategory: github-cli
+artifact_types:
+  - credential
+  - token
+  - configuration
+sensitivity: critical
+match:
+  paths:
+    - path: '%APPDATA%\GitHub CLI\hosts.yml'
+      kind: file
+      platforms: [windows]
+    - path: "$HOME/.config/gh/hosts.yml"
+      kind: file
+      platforms: [linux, macos]
+  content:
+    contains:
+      - oauth_token
+      - git_protocol
+credentials:
+  types:
+    - oauth-token
+impact:
+  credential_access: true
+  source_code_access: true
+tags:
+  - github
+  - source-control
+references:
+  - name: GitHub CLI Authentication
+    url: https://cli.github.com/manual/gh_auth_login
+  - name: GitHub CLI Environment
+    url: https://cli.github.com/manual/gh_help_environment
+metadata:
+  confidence: high

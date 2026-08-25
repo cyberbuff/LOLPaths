@@ -1,0 +1,43 @@
+schema_version: 1
+id: development.windsurf-mcp-settings
+name: Windsurf MCP Settings
+description: >
+  Windsurf MCP settings can include local command definitions, HTTP headers,
+  and environment variables for Cascade integrations.
+category: development
+subcategory: windsurf
+artifact_types:
+  - credential
+  - configuration
+sensitivity: critical
+match:
+  paths:
+    - path: '%APPDATA%\Codeium\Windsurf\mcp_config.json'
+      kind: file
+      platforms: [windows]
+    - path: '%USERPROFILE%\.codeium\windsurf\mcp_config.json'
+      kind: file
+      platforms: [windows]
+    - path: "$HOME/.codeium/windsurf/mcp_config.json"
+      kind: file
+      platforms: [linux, macos]
+    - path: "$HOME/.config/Codeium/Windsurf/mcp_config.json"
+      kind: file
+      platforms: [linux]
+  content:
+    contains:
+      - mcpServers
+credentials:
+  types:
+    - api-key
+    - access-token
+impact:
+  credential_access: true
+tags:
+  - windsurf
+  - mcp
+references:
+  - name: Windsurf Cascade MCP Integration
+    url: https://docs.windsurf.com/windsurf/cascade/mcp
+metadata:
+  confidence: high

@@ -1,0 +1,39 @@
+schema_version: 1
+id: cloud.aws.sso-cache
+name: AWS CLI SSO Cache
+description: >
+  AWS CLI IAM Identity Center sign-in creates cached SSO token files that can
+  grant temporary access while valid.
+category: cloud
+subcategory: aws
+artifact_types:
+  - credential
+  - token
+sensitivity: critical
+match:
+  paths:
+    - path: '%USERPROFILE%\.aws\sso\cache\*.json'
+      kind: glob
+      platforms: [windows]
+    - path: "$HOME/.aws/sso/cache/*.json"
+      kind: glob
+      platforms: [linux, macos]
+  content:
+    contains:
+      - accessToken
+      - expiresAt
+credentials:
+  types:
+    - sso-token
+impact:
+  credential_access: true
+  cloud_access: true
+tags:
+  - aws
+  - sso
+  - cloud
+references:
+  - name: AWS CLI IAM Identity Center Authentication
+    url: https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sso.html
+metadata:
+  confidence: high
