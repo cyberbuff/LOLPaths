@@ -1629,6 +1629,68 @@
     {
       "artifact_types": [
         "credential",
+        "token"
+      ],
+      "category": "cloud",
+      "credentials": {
+        "types": [
+          "sso-token"
+        ]
+      },
+      "description": "AWS CLI IAM Identity Center sign-in creates cached SSO token files that can grant temporary access while valid.\n",
+      "doc_path": "cloud/aws/sso-cache",
+      "id": "cloud.aws.sso-cache",
+      "impact": {
+        "cloud_access": true,
+        "credential_access": true
+      },
+      "match": {
+        "content": {
+          "contains": [
+            "accessToken",
+            "expiresAt"
+          ]
+        },
+        "paths": [
+          {
+            "kind": "glob",
+            "path": "%USERPROFILE%\\.aws\\sso\\cache\\*.json",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "glob",
+            "path": "$HOME/.aws/sso/cache/*.json",
+            "platforms": [
+              "linux",
+              "macos"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "high"
+      },
+      "name": "AWS CLI SSO Cache",
+      "references": [
+        {
+          "name": "AWS CLI IAM Identity Center Authentication",
+          "url": "https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sso.html"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "aws",
+      "tags": [
+        "aws",
+        "sso",
+        "cloud"
+      ]
+    },
+    {
+      "artifact_types": [
+        "credential",
         "configuration"
       ],
       "category": "cloud",
@@ -1753,6 +1815,71 @@
       "subcategory": "databricks",
       "tags": [
         "databricks",
+        "cloud"
+      ]
+    },
+    {
+      "artifact_types": [
+        "credential",
+        "token",
+        "configuration"
+      ],
+      "category": "cloud",
+      "credentials": {
+        "types": [
+          "access-token"
+        ]
+      },
+      "description": "flyctl may store Fly.io access tokens in its user configuration file for authenticated local commands.\n",
+      "doc_path": "cloud/flyctl-auth",
+      "id": "cloud.flyctl.auth",
+      "impact": {
+        "cloud_access": true,
+        "credential_access": true
+      },
+      "match": {
+        "content": {
+          "contains": [
+            "access_token"
+          ]
+        },
+        "paths": [
+          {
+            "kind": "file",
+            "path": "%USERPROFILE%\\.fly\\config.yml",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "file",
+            "path": "$HOME/.fly/config.yml",
+            "platforms": [
+              "linux",
+              "macos"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "medium"
+      },
+      "name": "Fly.io flyctl Authentication",
+      "references": [
+        {
+          "name": "Fly.io flyctl Authentication",
+          "url": "https://fly.io/docs/flyctl/auth/"
+        },
+        {
+          "name": "Fly.io Configuration Folder Setup",
+          "url": "https://community.fly.io/t/configuration-folder-setup/3668"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "flyio",
+      "tags": [
+        "flyio",
         "cloud"
       ]
     },
@@ -2025,6 +2152,135 @@
       "tags": [
         "mongodb",
         "mongocli",
+        "cloud"
+      ]
+    },
+    {
+      "artifact_types": [
+        "credential",
+        "token",
+        "configuration"
+      ],
+      "category": "cloud",
+      "credentials": {
+        "types": [
+          "access-token"
+        ]
+      },
+      "description": "Netlify CLI stores user access tokens in a global config.json file after interactive login.\n",
+      "doc_path": "cloud/netlify-cli-auth",
+      "id": "cloud.netlify.cli-auth",
+      "impact": {
+        "cloud_access": true,
+        "credential_access": true
+      },
+      "match": {
+        "paths": [
+          {
+            "kind": "file",
+            "path": "%APPDATA%\\netlify\\Config\\config.json",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "file",
+            "path": "$HOME/.config/netlify/config.json",
+            "platforms": [
+              "linux"
+            ]
+          },
+          {
+            "kind": "file",
+            "path": "$HOME/Library/Preferences/netlify/config.json",
+            "platforms": [
+              "macos"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "high"
+      },
+      "name": "Netlify CLI Authentication",
+      "references": [
+        {
+          "name": "Netlify CLI Authentication",
+          "url": "https://docs.netlify.com/api-and-cli-guides/cli-guides/get-started-with-cli/"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "netlify",
+      "tags": [
+        "netlify",
+        "cloud"
+      ]
+    },
+    {
+      "artifact_types": [
+        "credential",
+        "token",
+        "configuration"
+      ],
+      "category": "cloud",
+      "credentials": {
+        "types": [
+          "access-token"
+        ]
+      },
+      "description": "Vercel CLI stores global authentication data in auth.json under the user data directory.\n",
+      "doc_path": "cloud/vercel-cli-auth",
+      "id": "cloud.vercel.cli-auth",
+      "impact": {
+        "cloud_access": true,
+        "credential_access": true
+      },
+      "match": {
+        "content": {
+          "contains": [
+            "token"
+          ]
+        },
+        "paths": [
+          {
+            "kind": "file",
+            "path": "%APPDATA%\\Roaming\\xdg.data\\com.vercel.cli\\auth.json",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "file",
+            "path": "$HOME/.local/share/com.vercel.cli/auth.json",
+            "platforms": [
+              "linux"
+            ]
+          },
+          {
+            "kind": "file",
+            "path": "$HOME/Library/Application Support/com.vercel.cli/auth.json",
+            "platforms": [
+              "macos"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "high"
+      },
+      "name": "Vercel CLI Authentication",
+      "references": [
+        {
+          "name": "Vercel Global Configuration",
+          "url": "https://vercel.com/docs/project-configuration/global-configuration"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "vercel",
+      "tags": [
+        "vercel",
         "cloud"
       ]
     },
@@ -4211,6 +4467,75 @@
     },
     {
       "artifact_types": [
+        "credential",
+        "configuration"
+      ],
+      "category": "development",
+      "credentials": {
+        "types": [
+          "api-key",
+          "access-token"
+        ]
+      },
+      "description": "Cursor MCP settings can include local command definitions, HTTP headers, and environment variables for external tool integrations.\n",
+      "doc_path": "development/cursor-mcp-settings",
+      "id": "development.cursor-mcp-settings",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "content": {
+          "contains": [
+            "mcpServers"
+          ]
+        },
+        "paths": [
+          {
+            "kind": "file",
+            "path": "%USERPROFILE%\\.cursor\\mcp.json",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "file",
+            "path": "$HOME/.cursor/mcp.json",
+            "platforms": [
+              "linux",
+              "macos"
+            ]
+          },
+          {
+            "kind": "glob",
+            "path": "**/.cursor/mcp.json",
+            "platforms": [
+              "windows",
+              "linux",
+              "macos"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "high"
+      },
+      "name": "Cursor MCP Settings",
+      "references": [
+        {
+          "name": "Cursor Model Context Protocol",
+          "url": "https://docs.cursor.com/context/model-context-protocol"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "cursor",
+      "tags": [
+        "cursor",
+        "mcp"
+      ]
+    },
+    {
+      "artifact_types": [
         "environment",
         "configuration",
         "credential"
@@ -4378,6 +4703,159 @@
       "subcategory": "kiro",
       "tags": [
         "kiro",
+        "mcp"
+      ]
+    },
+    {
+      "artifact_types": [
+        "credential",
+        "configuration"
+      ],
+      "category": "development",
+      "credentials": {
+        "types": [
+          "api-key",
+          "access-token"
+        ]
+      },
+      "description": "VS Code MCP settings can include local command definitions, HTTP endpoints, and sensitive input variables for agent tool integrations.\n",
+      "doc_path": "development/vscode-mcp-settings",
+      "id": "development.vscode-mcp-settings",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "content": {
+          "contains": [
+            "servers"
+          ]
+        },
+        "paths": [
+          {
+            "kind": "file",
+            "path": "%APPDATA%\\Code\\User\\mcp.json",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "file",
+            "path": "$HOME/.config/Code/User/mcp.json",
+            "platforms": [
+              "linux"
+            ]
+          },
+          {
+            "kind": "file",
+            "path": "$HOME/Library/Application Support/Code/User/mcp.json",
+            "platforms": [
+              "macos"
+            ]
+          },
+          {
+            "kind": "glob",
+            "path": "**/.vscode/mcp.json",
+            "platforms": [
+              "windows",
+              "linux",
+              "macos"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "high"
+      },
+      "name": "VS Code MCP Settings",
+      "references": [
+        {
+          "name": "VS Code MCP Servers",
+          "url": "https://code.visualstudio.com/docs/agent-customization/mcp-servers"
+        },
+        {
+          "name": "VS Code MCP Configuration Reference",
+          "url": "https://code.visualstudio.com/docs/agents/reference/mcp-configuration"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "high",
+      "subcategory": "vscode",
+      "tags": [
+        "vscode",
+        "mcp"
+      ]
+    },
+    {
+      "artifact_types": [
+        "credential",
+        "configuration"
+      ],
+      "category": "development",
+      "credentials": {
+        "types": [
+          "api-key",
+          "access-token"
+        ]
+      },
+      "description": "Windsurf MCP settings can include local command definitions, HTTP headers, and environment variables for Cascade integrations.\n",
+      "doc_path": "development/windsurf-mcp-settings",
+      "id": "development.windsurf-mcp-settings",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "content": {
+          "contains": [
+            "mcpServers"
+          ]
+        },
+        "paths": [
+          {
+            "kind": "file",
+            "path": "%APPDATA%\\Codeium\\Windsurf\\mcp_config.json",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "file",
+            "path": "%USERPROFILE%\\.codeium\\windsurf\\mcp_config.json",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "file",
+            "path": "$HOME/.codeium/windsurf/mcp_config.json",
+            "platforms": [
+              "linux",
+              "macos"
+            ]
+          },
+          {
+            "kind": "file",
+            "path": "$HOME/.config/Codeium/Windsurf/mcp_config.json",
+            "platforms": [
+              "linux"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "high"
+      },
+      "name": "Windsurf MCP Settings",
+      "references": [
+        {
+          "name": "Windsurf Cascade MCP Integration",
+          "url": "https://docs.windsurf.com/windsurf/cascade/mcp"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "windsurf",
+      "tags": [
+        "windsurf",
         "mcp"
       ]
     },
@@ -5816,6 +6294,71 @@
     {
       "artifact_types": [
         "credential",
+        "password-store",
+        "configuration"
+      ],
+      "category": "secret-manager",
+      "credentials": {
+        "types": [
+          "password-store"
+        ]
+      },
+      "description": "Bitwarden CLI stores encrypted vault data and account state under the user's Bitwarden CLI application data directory.\n",
+      "doc_path": "secret-manager/bitwarden-cli-data",
+      "id": "secret-manager.bitwarden-cli-data",
+      "impact": {
+        "credential_access": true
+      },
+      "match": {
+        "paths": [
+          {
+            "kind": "file",
+            "path": "%APPDATA%\\Bitwarden CLI\\data.json",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "file",
+            "path": "$HOME/.config/Bitwarden CLI/data.json",
+            "platforms": [
+              "linux"
+            ]
+          },
+          {
+            "kind": "file",
+            "path": "$HOME/Library/Application Support/Bitwarden CLI/data.json",
+            "platforms": [
+              "macos"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "high"
+      },
+      "name": "Bitwarden CLI Data",
+      "references": [
+        {
+          "name": "Bitwarden Data Storage",
+          "url": "https://bitwarden.com/help/data-storage/"
+        },
+        {
+          "name": "Bitwarden Password Manager CLI",
+          "url": "https://bitwarden.com/help/cli/"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "high",
+      "subcategory": "bitwarden",
+      "tags": [
+        "bitwarden",
+        "secret-manager"
+      ]
+    },
+    {
+      "artifact_types": [
+        "credential",
         "token"
       ],
       "category": "secret-manager",
@@ -6089,6 +6632,154 @@
       "subcategory": "git",
       "tags": [
         "git"
+      ]
+    },
+    {
+      "artifact_types": [
+        "credential",
+        "token",
+        "configuration"
+      ],
+      "category": "source-control",
+      "credentials": {
+        "types": [
+          "oauth-token"
+        ]
+      },
+      "description": "GitHub CLI host configuration can identify authenticated GitHub hosts and may contain plaintext OAuth tokens when secure credential storage is unavailable.\n",
+      "doc_path": "source-control/github-cli-auth",
+      "id": "source-control.github-cli-auth",
+      "impact": {
+        "credential_access": true,
+        "source_code_access": true
+      },
+      "match": {
+        "content": {
+          "contains": [
+            "oauth_token",
+            "git_protocol"
+          ]
+        },
+        "paths": [
+          {
+            "kind": "file",
+            "path": "%APPDATA%\\GitHub CLI\\hosts.yml",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "file",
+            "path": "$HOME/.config/gh/hosts.yml",
+            "platforms": [
+              "linux",
+              "macos"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "high"
+      },
+      "name": "GitHub CLI Authentication",
+      "references": [
+        {
+          "name": "GitHub CLI Authentication",
+          "url": "https://cli.github.com/manual/gh_auth_login"
+        },
+        {
+          "name": "GitHub CLI Environment",
+          "url": "https://cli.github.com/manual/gh_help_environment"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "github-cli",
+      "tags": [
+        "github",
+        "source-control"
+      ]
+    },
+    {
+      "artifact_types": [
+        "credential",
+        "token",
+        "configuration"
+      ],
+      "category": "source-control",
+      "credentials": {
+        "types": [
+          "access-token"
+        ]
+      },
+      "description": "GitLab CLI configuration can store access tokens for GitLab.com and self-managed GitLab hosts.\n",
+      "doc_path": "source-control/gitlab-cli-auth",
+      "id": "source-control.gitlab-cli-auth",
+      "impact": {
+        "credential_access": true,
+        "source_code_access": true
+      },
+      "match": {
+        "content": {
+          "contains": [
+            "token",
+            "host"
+          ]
+        },
+        "paths": [
+          {
+            "kind": "file",
+            "path": "%LOCALAPPDATA%\\glab-cli\\config.yml",
+            "platforms": [
+              "windows"
+            ]
+          },
+          {
+            "kind": "file",
+            "path": "$HOME/.config/glab-cli/config.yml",
+            "platforms": [
+              "linux",
+              "macos"
+            ]
+          },
+          {
+            "kind": "file",
+            "path": "$HOME/Library/Application Support/glab-cli/config.yml",
+            "platforms": [
+              "macos"
+            ]
+          },
+          {
+            "kind": "glob",
+            "path": "**/.git/glab-cli/config.yml",
+            "platforms": [
+              "windows",
+              "linux",
+              "macos"
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "confidence": "high"
+      },
+      "name": "GitLab CLI Authentication",
+      "references": [
+        {
+          "name": "GitLab CLI Configuration",
+          "url": "https://docs.gitlab.com/cli/config/"
+        },
+        {
+          "name": "GitLab CLI Authentication",
+          "url": "https://docs.gitlab.com/cli/authentication/"
+        }
+      ],
+      "schema_version": 1,
+      "sensitivity": "critical",
+      "subcategory": "gitlab-cli",
+      "tags": [
+        "gitlab",
+        "source-control"
       ]
     },
     {

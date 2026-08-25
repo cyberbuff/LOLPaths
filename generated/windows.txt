@@ -5,7 +5,10 @@
 %APPDATA%\Binance\simple-storage.json
 %APPDATA%\Bitcoin\*wallet*.dat
 %APPDATA%\Bitcoin\wallets\
+%APPDATA%\Bitwarden CLI\data.json
 %APPDATA%\Blockstream\Green\wallets\
+%APPDATA%\Code\User\mcp.json
+%APPDATA%\Codeium\Windsurf\mcp_config.json
 %APPDATA%\Coinomi\Coinomi\wallets\*.config
 %APPDATA%\Coinomi\Coinomi\wallets\*.wallet
 %APPDATA%\Daedalus Mainnet\wallets\she*.sqlite
@@ -21,6 +24,7 @@
 %APPDATA%\Exodus\window-state.json
 %APPDATA%\FileZilla\recentservers.xml
 %APPDATA%\FileZilla\sitemanager.xml
+%APPDATA%\GitHub CLI\hosts.yml
 %APPDATA%\Guarda\Local Storage\leveldb\
 %APPDATA%\Litecoin\
 %APPDATA%\Litecoin\wallets\
@@ -33,6 +37,7 @@
 %APPDATA%\NuGet\NuGet.Config
 %APPDATA%\Opera Software\Opera Stable\
 %APPDATA%\Raven\*wallet*.dat
+%APPDATA%\Roaming\xdg.data\com.vercel.cli\auth.json
 %APPDATA%\Telegram Desktop\tdata\
 %APPDATA%\Thunderbird\Profiles\*\key4.db
 %APPDATA%\Thunderbird\Profiles\*\logins.json
@@ -46,6 +51,7 @@
 %APPDATA%\gcloud\application_default_credentials.json
 %APPDATA%\jaxx\Local Storage\file__0.localstorage
 %APPDATA%\mongocli\config.toml
+%APPDATA%\netlify\Config\config.json
 %APPDATA%\pip\pip.ini
 %APPDATA%\postgresql\pgpass.conf
 %APPDATA%\rabby-desktop\
@@ -56,18 +62,23 @@
 %LOCALAPPDATA%\Microsoft\Edge\User Data\
 %LOCALAPPDATA%\Vivaldi\User Data\
 %LOCALAPPDATA%\Yandex\YandexBrowser\User Data\
+%LOCALAPPDATA%\glab-cli\config.yml
 %PROGRAMDATA%\Jenkins\.jenkins\credentials.xml
 %PROGRAMFILES%\OpenVPN\config\*.ovpn
 %PROGRAMFILES%\Steam\ssfn*
 %PROGRAMFILES(X86)%\Steam\ssfn*
 %USERPROFILE%\.aws\config
 %USERPROFILE%\.aws\credentials
+%USERPROFILE%\.aws\sso\cache\*.json
 %USERPROFILE%\.azure\
 %USERPROFILE%\.cargo\credentials.toml
 %USERPROFILE%\.claude.json
 %USERPROFILE%\.claude\mcp.json
+%USERPROFILE%\.codeium\windsurf\mcp_config.json
+%USERPROFILE%\.cursor\mcp.json
 %USERPROFILE%\.databrickscfg
 %USERPROFILE%\.docker\config.json
+%USERPROFILE%\.fly\config.yml
 %USERPROFILE%\.git-credentials
 %USERPROFILE%\.gitconfig
 %USERPROFILE%\.kiro\settings\mcp.json
@@ -97,12 +108,15 @@
 **/*.pfx
 **/*.ppk
 **/.anchor/**/*.json
+**/.cursor/mcp.json
 **/.drone.y?ml
 **/.env
 **/.env.*
+**/.git/glab-cli/config.yml
 **/.github/workflows/*.y?ml
 **/.gitlab-ci.y?ml
 **/.travis.y?ml
+**/.vscode/mcp.json
 **/Anchor.toml
 **/Jenkinsfile
 **/ansible.cfg

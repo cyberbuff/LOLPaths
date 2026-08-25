@@ -2,6 +2,7 @@
 $HOME/.ansible/
 $HOME/.aws/config
 $HOME/.aws/credentials
+$HOME/.aws/sso/cache/*.json
 $HOME/.azure/
 $HOME/.bash_history
 $HOME/.bitcoin/
@@ -10,19 +11,24 @@ $HOME/.cardano/
 $HOME/.cargo/credentials.toml
 $HOME/.claude.json
 $HOME/.claude/mcp.json
+$HOME/.codeium/windsurf/mcp_config.json
 $HOME/.config/filezilla/recentservers.xml
 $HOME/.config/filezilla/sitemanager.xml
 $HOME/.config/gcloud/
 $HOME/.config/gcloud/application_default_credentials.json
+$HOME/.config/gh/hosts.yml
+$HOME/.config/glab-cli/config.yml
 $HOME/.config/kilo/config.json
 $HOME/.config/lftp/rc
 $HOME/.config/solana/
+$HOME/.cursor/mcp.json
 $HOME/.dashcore/
 $HOME/.databrickscfg
 $HOME/.docker/config.json
 $HOME/.dogecoin/
 $HOME/.electrum/wallets/
 $HOME/.ethereum/keystore/
+$HOME/.fly/config.yml
 $HOME/.git-credentials
 $HOME/.gitconfig
 $HOME/.helm/
@@ -61,8 +67,10 @@ $HOME/.terraform.d/credentials.tfrc.json
 $HOME/.vault-token
 $HOME/.zcash/
 $HOME/.zsh_history
+$HOME/Library/Application Support/Bitwarden CLI/data.json
 $HOME/Library/Application Support/BraveSoftware/Brave-Browser/
 $HOME/Library/Application Support/Chromium/
+$HOME/Library/Application Support/Code/User/mcp.json
 $HOME/Library/Application Support/Firefox/Profiles/*/cookies.sqlite
 $HOME/Library/Application Support/Firefox/Profiles/*/key3.db
 $HOME/Library/Application Support/Firefox/Profiles/*/key4.db
@@ -79,11 +87,14 @@ $HOME/Library/Application Support/Steam/ssfn*
 $HOME/Library/Application Support/Telegram Desktop/tdata/
 $HOME/Library/Application Support/atlascli/config.toml
 $HOME/Library/Application Support/com.operasoftware.Opera/
+$HOME/Library/Application Support/com.vercel.cli/auth.json
 $HOME/Library/Application Support/discord/Local Storage/
+$HOME/Library/Application Support/glab-cli/config.yml
 $HOME/Library/Application Support/mongocli/config.toml
 $HOME/Library/Containers/com.apple.Notes/Data/Library/Notes/
 $HOME/Library/Containers/com.apple.Safari/Data/Library/Cookies/
 $HOME/Library/Keychains/login.keychain-db
+$HOME/Library/Preferences/netlify/config.json
 $HOME/authorized-withdrawer-keypair.json
 $HOME/faucet-keypair.json
 $HOME/identity.json
@@ -106,12 +117,15 @@ $XDG_CONFIG_HOME/pip/pip.conf
 **/*.pfx
 **/*.ppk
 **/.anchor/**/*.json
+**/.cursor/mcp.json
 **/.drone.y?ml
 **/.env
 **/.env.*
+**/.git/glab-cli/config.yml
 **/.github/workflows/*.y?ml
 **/.gitlab-ci.y?ml
 **/.travis.y?ml
+**/.vscode/mcp.json
 **/Anchor.toml
 **/Jenkinsfile
 **/ansible.cfg
